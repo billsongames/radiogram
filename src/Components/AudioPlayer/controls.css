@@ -1,0 +1,9 @@
+.controls {
+  margin: auto;
+}  
+
+.control-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
