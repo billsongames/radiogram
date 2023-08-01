@@ -1,29 +1,49 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
+import { RadioBrowserApi } from "radio-browser-api";
 import { Carousel } from '@trendyol-js/react-carousel';
-
 import { api_test_data } from "../../data/api_test_data";
+
+import "./tuner.css"
+
+const api = new RadioBrowserApi('RadioPlayer')
+
+const response = await api.searchStations({
+  countryCode: 'US',
+  limit: 10,
+  offset: 0 // this is the default - can be omited
+})
 
 function Tuner() {
 
-  const searchResults = api_test_data
-  let stationLogos = []
-  let stationNames = []
+  const [tunerDisplayData, setTunerDisplayData] = useState([])
 
   const no_image = "./no_image_available.png"
 
 
 
-  for (let i=0; i<searchResults.length; i++) {
-    if (searchResults[i].favicon == "") {
-      stationLogos.push(no_image)
+  for (let i=0; i<response.length; i++) {
+    let stationLogo
+    let stationName
+
+    if (response[i].favicon === "") {
+      stationLogo = no_image
     } else {
-      stationLogos.push(searchResults[i].favicon)
+      stationLogo = (response[i].favicon)
     }
-    stationNames.push(searchResults[i].name)  
-  }
+    stationName = (response[i].name)
+
+    tunerDisplayData.push({favicon: stationLogo, name: stationName})
+  }  
+
+
+    
+
 
 
   
+
+
+
 
   return(
     <div className='tuner'>
@@ -31,120 +51,21 @@ function Tuner() {
         <Carousel
           show = {6}
           slide = {6}
-          swiping={true}>
+          >
 
-          <div>
-            <div>
-              <img src={stationLogos[0]} />
+          {tunerDisplayData.map((station) => (
+            <div className='carousel-entry'key = {station.name}>
+              <div>
+                <img className="station-logo" src={station.favicon} alt={station.name} />
+              </div>
+              <div>
+                {station.name}
+              </div>
             </div>
-            <div>
-              {stationNames[0]}
-            </div>        
-          </div>
+          ))}
+        </Carousel>
 
-        <div>
-          <div>
-            <img src={stationLogos[1]} />
-          </div>
-          <div>
-            {stationNames[1]}
-          </div>        
-        </div>
-
-        <div>
-          <div>
-            <img src={stationLogos[2]} />
-          </div>
-          <div>
-            {stationNames[2]}
-          </div>        
-        </div>
-
-        <div>
-          <div>
-            <img src={stationLogos[3]} />
-          </div>
-          <div>
-            {stationNames[3]}
-          </div>        
-        </div>
-
-        <div>
-            <div>
-              <img src={stationLogos[0]} />
-            </div>
-            <div>
-              {stationNames[0]}
-            </div>        
-          </div>
-
-        <div>
-          <div>
-            <img src={stationLogos[1]} />
-          </div>
-          <div>
-            {stationNames[1]}
-          </div>        
-        </div>
-
-        <div>
-          <div>
-            <img src={stationLogos[2]} />
-          </div>
-          <div>
-            {stationNames[2]}
-          </div>        
-        </div>
-
-        <div>
-          <div>
-            <img src={stationLogos[3]} />
-          </div>
-          <div>
-            {stationNames[3]}
-          </div>        
-        </div>
-
-        <div>
-            <div>
-              <img src={stationLogos[0]} />
-            </div>
-            <div>
-              {stationNames[0]}
-            </div>        
-          </div>
-
-        <div>
-          <div>
-            <img src={stationLogos[1]} />
-          </div>
-          <div>
-            {stationNames[1]}
-          </div>        
-        </div>
-
-        <div>
-          <div>
-            <img src={stationLogos[2]} />
-          </div>
-          <div>
-            {stationNames[2]}
-          </div>        
-        </div>
-
-        <div>
-          <div>
-            <img src={stationLogos[3]} />
-          </div>
-          <div>
-            {stationNames[3]}
-          </div>        
-        </div>
-
-        
-
-      </Carousel>
-    </div>
+      </div>
     </div>
     
   )

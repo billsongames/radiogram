@@ -9,10 +9,8 @@ import Tuner from './Tuner/Tuner';
 function App() {
   return (
     <>
-      <Tuner>
-      </Tuner>
-      <AudioPlayer>
-      </AudioPlayer>
+      <Tuner></Tuner>
+      <AudioPlayer></AudioPlayer>
     </>
   );
 }
