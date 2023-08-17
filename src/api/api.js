@@ -8,7 +8,7 @@ const getStations = async () => {
   const results = await api.searchStations({
   countryCode: 'GB',
   limit: 100,
-  offset: 0 // this is the default - can be omited
+  offset: 0 // this is the default - can be omited yepper
   })
 
 console.log(results)
