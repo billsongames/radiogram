@@ -14,8 +14,8 @@ const response = await api.searchStations({
   offset: 0 // this is the default - can be omited
 })
 
-const onStationLogoClick = () => {
-  console.log("logo clicked")
+const  onStationLogoClick = event => {
+  console.log(event.target.id)
 
 }
 
@@ -62,9 +62,10 @@ function Tuner() {
               <div>
                 <img
                   className="station-logo"
+                  id={station.name}
                   src={station.favicon}
                   alt={station.name}
-                  onClick={onStationLogoClick} />
+                  onClick = { onStationLogoClick } />
               </div>
               <div>
                 {station.name}
