@@ -40,7 +40,7 @@ function Controls({ audioRef }) {
           <IoPlayBackSharp />
         </button>
 
-        <button onClick={togglePlayPause}>
+        <button   onClick={togglePlayPause}>
           {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
         </button>
 

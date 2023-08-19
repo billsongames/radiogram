@@ -9,25 +9,24 @@ import "./tuner.css"
 const api = new RadioBrowserApi('RadioPlayer')
 
 const response = await api.searchStations({
-  countryCode: 'US',
+  countryCode: "GB",
   limit: 10,
   offset: 0 // this is the default - can be omited
 })
 
-const  onStationLogoClick = event => {
-  console.log(event.target.id)
 
-}
 
-function Tuner() {
+function Tuner( {onStationLogoClick} ) {
 
   const [tunerDisplayData, setTunerDisplayData] = useState([])
-
   const no_image = "./no_image_available.png"
+
+
 
   for (let i=0; i<response.length; i++) {
     let stationLogo
     let stationName
+    let stationUrlResolved
 
     if (response[i].favicon === "") {
       stationLogo = no_image
@@ -35,16 +34,15 @@ function Tuner() {
       stationLogo = (response[i].favicon)
     }
     stationName = (response[i].name)
+    stationUrlResolved = (response[i].urlResolved)
 
-    tunerDisplayData.push({favicon: stationLogo, name: stationName})
+    tunerDisplayData.push({favicon: stationLogo,
+                           name: stationName,
+                           urlResolved: stationUrlResolved
+                          })
   }  
 
-
-    
-
-
-
-  
+  console.log(tunerDisplayData)
 
 
 
@@ -61,12 +59,14 @@ function Tuner() {
             <div className='carousel-entry'key = {station.name}>
               <div>
                 <img
-                  className="station-logo"
-                  id={station.name}
+                  className="tuner-station-logo"
+                  id={station.urlResolved}
+                  name={station.name}
                   src={station.favicon}
                   alt={station.name}
-                  onClick = { onStationLogoClick } />
+                  onClick ={onStationLogoClick}/>
               </div>
+              {}
               <div>
                 {station.name}
               </div>

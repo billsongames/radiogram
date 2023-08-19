@@ -13,12 +13,9 @@ import getStations from "../../api/api";
 
 
 
-function AudioPlayer() {  
-
-  const [currentStation, setStation] = useState(api_test_data[5])
+function AudioPlayer( {currentStation} ) {
 
   const audioRef = useRef()
-
   
   return(
     <div className="audio-player">
