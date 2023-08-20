@@ -14,6 +14,8 @@ function App() {
     urlResolved: "http://live.str3am.com:2240/live"
   })
 
+  const [radioPlaying, setRadioPlaying] = useState(false)
+
 
   const  handleStationLogoClick = event => {
     setCurrentStation({
@@ -21,12 +23,22 @@ function App() {
       favicon: event.target.src,
       urlResolved: event.target.id
     })
-   }
+  }
+
+  const handleToggleRadioPlaying = () => {
+    setRadioPlaying((prev) => !prev)
+  }
+
+
 
   return (
     <>
       <Tuner onStationLogoClick = {handleStationLogoClick}></Tuner>
-      <AudioPlayer currentStation={currentStation}></AudioPlayer>
+      <AudioPlayer
+        toggleRadioPlaying = {handleToggleRadioPlaying}
+        currentStation = {currentStation}
+        radioPlaying = {radioPlaying}>
+      </AudioPlayer>
     </>
   );
 }

@@ -8,11 +8,32 @@ import "./tuner.css"
 
 const api = new RadioBrowserApi('RadioPlayer')
 
-const response = await api.searchStations({
-  countryCode: "GB",
-  limit: 10,
-  offset: 0 // this is the default - can be omited
-})
+let errorMessage = "ok"
+
+const response = api_test_data
+
+
+
+//const response = await api.searchStations({
+//  countryCode: "GB",
+//  limit: 10,
+//  offset: 0 // this is the default - can be omited
+//})
+
+//  try {
+//    const response = await api.searchStations({
+//      countryCode: "GB",
+//      limit: 10,
+//      offset: 0 // this is the default - can be omited
+//    })
+//  } catch(err) {
+//    errorMessage = "Service unavailable"
+//    alert(err)
+//  }
+
+
+
+
 
 
 
@@ -20,7 +41,6 @@ function Tuner( {onStationLogoClick} ) {
 
   const [tunerDisplayData, setTunerDisplayData] = useState([])
   const no_image = "./no_image_available.png"
-
 
 
   for (let i=0; i<response.length; i++) {
@@ -33,6 +53,7 @@ function Tuner( {onStationLogoClick} ) {
     } else {
       stationLogo = (response[i].favicon)
     }
+
     stationName = (response[i].name)
     stationUrlResolved = (response[i].urlResolved)
 
@@ -40,10 +61,8 @@ function Tuner( {onStationLogoClick} ) {
                            name: stationName,
                            urlResolved: stationUrlResolved
                           })
-  }  
-
-  console.log(tunerDisplayData)
-
+    }
+      
 
 
 

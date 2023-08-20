@@ -13,7 +13,7 @@ import getStations from "../../api/api";
 
 
 
-function AudioPlayer( {currentStation} ) {
+function AudioPlayer( {currentStation, radioPlaying} ) {
 
   const audioRef = useRef()
   

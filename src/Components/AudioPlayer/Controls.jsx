@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 
 import {
   IoPlayBackSharp,
@@ -15,11 +15,10 @@ import "./controls.css"
 function Controls({ audioRef }) {
   const [isPlaying ,setIsPlaying] = useState(false)
 
-
-
   const togglePlayPause = () => {
     setIsPlaying((prev) => !prev)
   }
+
 
   useEffect(() => {
     if (isPlaying) {
