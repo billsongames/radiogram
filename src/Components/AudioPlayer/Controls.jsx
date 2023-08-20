@@ -12,43 +12,26 @@ import {
 import "./controls.css"
 
 
-function Controls({ audioRef }) {
-  const [isPlaying ,setIsPlaying] = useState(false)
-
-  const togglePlayPause = () => {
-    setIsPlaying((prev) => !prev)
-  }
-
-
-  useEffect(() => {
-    if (isPlaying) {
-      audioRef.current.play()
-    } else {
-      audioRef.current.pause()
-    }
-  }, [isPlaying, audioRef])
-
-
+function Controls({ togglePlayPause, isPlaying }) {
+ 
   return(
     <div className="controls">
       <div className="control-buttons">
-        <button>
-          <IoPlaySkipBackSharp />
-        </button>
-        <button>
-          <IoPlayBackSharp />
-        </button>
 
-        <button   onClick={togglePlayPause}>
-          {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
+      {isPlaying ? (
+        <button
+          onClick={() => togglePlayPause(false)}>
+          <IoPauseSharp />
         </button>
+        ) :
+      (
+        <button
+          onClick={() => togglePlayPause(true)}>
+          <IoPlaySharp />
+        </button>
+        
+      )}
 
-        <button>
-          <IoPlayForwardSharp />
-        </button>
-        <button>
-          <IoPlaySkipForwardSharp />
-        </button>
       </div>
     </div>  
   )

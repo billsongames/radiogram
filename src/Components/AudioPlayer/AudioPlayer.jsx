@@ -1,4 +1,4 @@
-import { React, useState, useRef } from "react";
+import { React, useEffect, useState, useRef } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 import { api_test_data } from "../../data/api_test_data";
 
@@ -13,20 +13,32 @@ import getStations from "../../api/api";
 
 
 
-function AudioPlayer( {currentStation, radioPlaying} ) {
+function AudioPlayer( {currentStation} ) {
 
-  const audioRef = useRef()
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  const audioRef = useRef(new Audio(currentStation.urlResolved))
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
   
   return(
     <div className="audio-player">
       <div className="audio-player-inner">
         <DisplayStation
           currentStation={currentStation}
-          audioRef = {audioRef}
+//          audioRef = {audioRef}
         />        
 
         <Controls
-          audioRef = {audioRef}
+          isPlaying={isPlaying}
+          togglePlayPause={setIsPlaying}
+
         />
       </div>
     </div>  
