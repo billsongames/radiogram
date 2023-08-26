@@ -12,25 +12,30 @@ import {
 import "./controls.css"
 
 
-function Controls({ togglePlayPause, isPlaying }) {
+function Controls({
+  isPlaying,
+  onPlayPauseClick
+}) {
  
   return(
     <div className="controls">
       <div className="control-buttons">
 
-      {isPlaying ? (
+      {isPlaying
+      ? 
         <button
-          onClick={() => togglePlayPause(false)}>
+          type="button"
+          onClick={() => onPlayPauseClick(false)}>
           <IoPauseSharp />
         </button>
-        ) :
-      (
-        <button
-          onClick={() => togglePlayPause(true)}>
-          <IoPlaySharp />
-        </button>
         
-      )}
+      : 
+        <button
+          type="button"
+          onClick={() => onPlayPauseClick(true)}>
+          <IoPlaySharp />
+        </button>        
+      }
 
       </div>
     </div>  
