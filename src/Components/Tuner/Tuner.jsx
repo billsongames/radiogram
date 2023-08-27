@@ -1,35 +1,19 @@
-import { React, useEffect, useState } from 'react';
+import { React, useCallback, useEffect, useState } from 'react';
 import { RadioBrowserApi } from "radio-browser-api";
+
 import { Carousel } from '@trendyol-js/react-carousel';
 import { api_test_data } from "../../data/api_test_data";
-import getStations from '../../api/api';
+import { apiSearchByCountry, api_test_call } from "../../api/api"
 
 import "./tuner.css"
 
-const api = new RadioBrowserApi('RadioPlayer')
+const no_image = "./no_image_available.png"
 
-let errorMessage = "ok"
+const api = new RadioBrowserApi('My Radio App')
 
-const response = api_test_data
-
-
-
-//const response = await api.searchStations({
-//  countryCode: "GB",
-//  limit: 10,
-//  offset: 0 // this is the default - can be omited
-//})
-
-//  try {
-//    const response = await api.searchStations({
-//      countryCode: "GB",
-//      limit: 10,
-//      offset: 0 // this is the default - can be omited
-//    })
-//  } catch(err) {
-//    errorMessage = "Service unavailable"
-//    alert(err)
-//  }
+const test = () => {
+  alert("test")
+}
 
 
 
@@ -37,31 +21,25 @@ const response = api_test_data
 
 
 
-function Tuner( {onStationLogoClick} ) {
+function Tuner( {onStationLogoClick, onStationSearch} ) {
 
-  const [tunerDisplayData, setTunerDisplayData] = useState([])
-  const no_image = "./no_image_available.png"
+  const [search, setSearch] = useState("");
+  const [tunerDisplayData, setTunerDisplayData] = useState(api_test_data)
+
+  const handleSearchInput = (event) => {
+    setSearch(event.target.value);
+  };
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    test()
+/*     setTunerDisplayData(()=> apiCountrySearch) */
+  };
 
 
-  for (let i=0; i<response.length; i++) {
-    let stationLogo
-    let stationName
-    let stationUrlResolved
 
-    if (response[i].favicon === "") {
-      stationLogo = no_image
-    } else {
-      stationLogo = (response[i].favicon)
-    }
+  
 
-    stationName = (response[i].name)
-    stationUrlResolved = (response[i].urlResolved)
-
-    tunerDisplayData.push({favicon: stationLogo,
-                           name: stationName,
-                           urlResolved: stationUrlResolved
-                          })
-    }
       
 
 
@@ -92,10 +70,20 @@ function Tuner( {onStationLogoClick} ) {
             </div>
           ))}
         </Carousel>
-
+      </div>
+      <div className='tuner-search-container'>
+        <form className='search-form' onSubmit={handleSubmit}>
+          <input
+            className='search-form__input'
+            type='text'
+            placeholder='Search station tags...'
+            value={search}
+            onChange={handleSearchInput}
+          />
+          <button className='search-form__button' type='submit'>Search...</button>  
+        </form>
       </div>
     </div>
-    
   )
 }  
 
