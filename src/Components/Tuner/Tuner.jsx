@@ -5,10 +5,18 @@ import { Carousel } from '@trendyol-js/react-carousel';
 import { api_test_data } from "../../data/api_test_data";
 import { apiSearchByCountry, api_test_call } from "../../api/api"
 
-
 import "./tuner.css"
 
 const no_image = "./no_image_available.png"
+
+const api = new RadioBrowserApi('My Radio App')
+
+const test = () => {
+  alert("test")
+}
+
+
+
 
 
 
@@ -24,8 +32,11 @@ function Tuner( {onStationLogoClick, onStationSearch} ) {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    onStationSearch(search)
+    test()
+/*     setTunerDisplayData(()=> apiCountrySearch) */
   };
+
+
 
   
 
@@ -59,7 +70,8 @@ function Tuner( {onStationLogoClick, onStationSearch} ) {
             </div>
           ))}
         </Carousel>
-
+      </div>
+      <div className='tuner-search-container'>
         <form className='search-form' onSubmit={handleSubmit}>
           <input
             className='search-form__input'
@@ -68,13 +80,10 @@ function Tuner( {onStationLogoClick, onStationSearch} ) {
             value={search}
             onChange={handleSearchInput}
           />
-
           <button className='search-form__button' type='submit'>Search...</button>  
         </form>
-
       </div>
     </div>
-    
   )
 }  
 
