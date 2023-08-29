@@ -36,7 +36,7 @@ const App = () =>  {
 
     setCurrentStation({
       name: "Tuning...",
-      favicon : "",
+      favicon : "./radio_antenna.png",
       urlResolved: event.target.id
     })
   }
