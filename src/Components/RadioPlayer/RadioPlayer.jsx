@@ -19,7 +19,7 @@ import 'react-h5-audio-player/lib/styles.css'
 
 
 
-function RadioPlayer ({ currentStation, onStationTuned }) {
+const RadioPlayer = ({ currentStation, onStationTuned }) => {
 
   const {name,favicon,urlResolved} = currentStation
 
