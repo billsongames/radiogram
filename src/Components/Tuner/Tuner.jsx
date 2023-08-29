@@ -1,83 +1,121 @@
 import { React, useCallback, useEffect, useState } from 'react';
 import { RadioBrowserApi } from "radio-browser-api";
 
-import { Carousel } from '@trendyol-js/react-carousel';
-import { api_test_data } from "../../data/api_test_data";
-import { apiSearchByCountry, api_test_call } from "../../api/api"
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 import "./tuner.css"
 
-const no_image = "./no_image_available.png"
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 10
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 6
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 4
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 2
+    }
+};
 
 
 
 
-function Tuner( {onStationLogoClick, onStationSearch} ) {
-
-  const [search, setSearch] = useState("");
-  const [tunerDisplayData, setTunerDisplayData] = useState(api_test_data)
-
-  const handleSearchInput = (event) => {
-    setSearch(event.target.value);
-  };
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onStationSearch(search)
-  };
-
-  
-
-      
 
 
 
-  return(
+
+const Tuner = ({onStationLogoClick}) => {
+
+  const [tunerDisplayData, setTunerDisplayData] = useState([])
+  const [stationFilter, setStationFilter] = useState("");
+
+
+
+  /*   const handleSearchInput = (event) => {
+      setSearchFilter(event.target.value);
+    }; */
+
+  /*   const handleSubmit = (event) => {
+      event.preventDefault();
+      onStationSearch(searchFilter)
+    }; */
+
+  const api = new RadioBrowserApi("BG Radio App")
+  //api.setBaseUrl('https://de1.api.radio-browser.info/')
+
+  const setupAPI = useCallback(async (stationFilter) => {
+    return api.searchStations({
+      countryCode: 'US',
+      limit: 30
+    })
+  },[])
+
+
+
+  useEffect(() => {
+    setupAPI(stationFilter).then((data) => setTunerDisplayData(data));
+  }, [stationFilter, setupAPI]);
+
+
+
+
+
+  return (
     <div className='tuner'>
       <div className='tuner-carousel'>
+        stations
         <Carousel
-          show = {6}
-          slide = {6}
+          responsive={responsive}
+          infinite={true}
+          slidesToSlide = {6}
           >
 
-          {tunerDisplayData.map((station) => (
-            <div className='carousel-entry'key = {station.name}>
-              <div>
-                <img
-                  className="tuner-station-logo"
-                  id={station.urlResolved}
-                  name={station.name}
-                  src={station.favicon}
-                  alt={station.name}
-                  onClick ={onStationLogoClick}/>
-              </div>
-              {}
-              <div>
-                {station.name}
-              </div>
+        {tunerDisplayData.map((station) => (
+          <div className='carousel-entry' key={station.name}>
+            <img
+              className="tuner-station-logo"
+              id={station.urlResolved}
+              name={station.name}
+              src={station.favicon}
+              alt={station.name}
+              
+              onClick ={onStationLogoClick}
+            />
+            <div>
+              {station.name}
             </div>
-          ))}
+          </div>
+        )
+        )}
+
+
         </Carousel>
 
-        <form className='search-form' onSubmit={handleSubmit}>
+        {/* <form className='search-form' onSubmit={handleSubmit}>
           <input
             className='search-form__input'
             type='text'
             placeholder='Search station tags...'
-            value={search}
+            value={searchFilter}
             onChange={handleSearchInput}
           />
 
           <button className='search-form__button' type='submit'>Search...</button>  
-        </form>
+        </form> */}
 
       </div>
     </div>
-    
-  )
-}  
 
+  )
+}
 
 export default Tuner
-

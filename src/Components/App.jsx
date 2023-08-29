@@ -1,21 +1,24 @@
 import { React, useState}  from 'react';
 import { RadioBrowserApi } from "radio-browser-api";
-import logo from '../logo.svg';
+
 //import './App.css';
 
 import RadioPlayer from './RadioPlayer/RadioPlayer';
 import Tuner from './Tuner/Tuner';
 
+import {api_test_data} from "../data/api_test_data"
+
+const api = new RadioBrowserApi('My Radio App')
+const no_image = "./no_image_available.png"
 
 
-function App() {
 
-  const [currentStation, setCurrentStation] = useState({
-    name: " WVPE HD3 - Blues",
-    favicon: "https://cdn-radiotime-logos.tunein.com/s244589d.png",
-    urlResolved: "http://live.str3am.com:2240/live"
-  })
 
+
+
+const App = () =>  {
+
+  const [currentStation, setCurrentStation] = useState(api_test_data[5])
 
   const  handleStationLogoClick = event => {
     setCurrentStation({
@@ -28,13 +31,17 @@ function App() {
   const handleSearchRequest = (searchQuery) => {
     alert(searchQuery)
   }
+  
+
+
 
 
   return (
     <>
       <Tuner
         onStationLogoClick = {handleStationLogoClick}
-        onStationSearch = {handleSearchRequest}>
+//        onStationSearch = {handleSearchRequest}
+      >
       </Tuner>
       <RadioPlayer
         currentStation = {currentStation}>
@@ -43,4 +50,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
