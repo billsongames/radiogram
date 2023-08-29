@@ -10,7 +10,7 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 10
+    items: 6
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -25,12 +25,6 @@ const responsive = {
     items: 2
     }
 };
-
-
-
-
-
-
 
 
 const Tuner = ({onStationLogoClick}) => {
@@ -59,13 +53,9 @@ const Tuner = ({onStationLogoClick}) => {
     })
   },[])
 
-
-
   useEffect(() => {
     setupAPI(stationFilter).then((data) => setTunerDisplayData(data));
   }, [stationFilter, setupAPI]);
-
-
 
 
 
@@ -108,7 +98,6 @@ const Tuner = ({onStationLogoClick}) => {
             value={searchFilter}
             onChange={handleSearchInput}
           />
-
           <button className='search-form__button' type='submit'>Search...</button>  
         </form> */}
 
