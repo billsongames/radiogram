@@ -4,6 +4,8 @@ import { RadioBrowserApi } from "radio-browser-api";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
+import { filters } from '../../data/filters';
+
 import "./tuner.css"
 
 const responsive = {
@@ -30,8 +32,16 @@ const responsive = {
 const Tuner = ({onStationLogoClick}) => {
 
   const [tunerDisplayData, setTunerDisplayData] = useState([])
-  const [stationFilter, setStationFilter] = useState("");
+  const [stationFilter, setStationFilter] = useState({
+    countryCode: 'GB',
+    limit: 50,
+    offset: 0
+  });
 
+/*   const handleFilterClick = (event) => {
+    alert(event.id)
+    setStationFilter(event.id)
+  } */
 
 
   /*   const handleSearchInput = (event) => {
@@ -44,25 +54,25 @@ const Tuner = ({onStationLogoClick}) => {
     }; */
 
   const api = new RadioBrowserApi("BG Radio App")
-  //api.setBaseUrl('https://de1.api.radio-browser.info/')
+  api.setBaseUrl('https://de1.api.radio-browser.info/')
 
   const setupAPI = useCallback(async (stationFilter) => {
-    return api.searchStations({
-      countryCode: 'US',
-      limit: 30
-    })
+    return api.searchStations(stationFilter)
   },[])
 
+
   useEffect(() => {
-    setupAPI(stationFilter).then((data) => setTunerDisplayData(data));
-  }, [stationFilter, setupAPI]);
+    setupAPI(stationFilter)
+    .then((data) => setTunerDisplayData(data))
+    .catch(error => {console.log(error)})
+  }, [setupAPI, stationFilter])
+
 
 
 
   return (
     <div className='tuner'>
       <div className='tuner-carousel'>
-        stations
         <Carousel
           responsive={responsive}
           infinite={true}
@@ -86,9 +96,9 @@ const Tuner = ({onStationLogoClick}) => {
           </div>
         )
         )}
-
-
         </Carousel>
+
+
 
         {/* <form className='search-form' onSubmit={handleSubmit}>
           <input
@@ -102,6 +112,24 @@ const Tuner = ({onStationLogoClick}) => {
         </form> */}
 
       </div>
+      <div className="tuner-filter__container">
+          {filters.map((filter) => (
+            <div
+              key={filter}
+              id={filter}
+              className="tuner-filter__item"
+              onClick={() => setStationFilter({
+                countryCode: 'US',
+                limit: 50,
+                offset: 0
+                })
+                
+              }
+            >
+              {filter}  
+            </div>
+          ))}
+        </div>
     </div>
 
   )

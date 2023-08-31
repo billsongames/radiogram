@@ -22,3 +22,14 @@
   object-fit: contain;
 }
 
+.tuner-filter__container {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tuner-filter__item {
+  padding: 20px
+}
+
