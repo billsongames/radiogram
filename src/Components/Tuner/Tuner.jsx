@@ -31,12 +31,13 @@ const responsive = {
 
 const Tuner = ({onStationLogoClick}) => {
 
-  const [tunerDisplayData, setTunerDisplayData] = useState([])
+  const [countryCode, setCountryCode] = useState("GB")
   const [stationFilter, setStationFilter] = useState({
     countryCode: 'GB',
     limit: 50,
     offset: 0
   });
+  const [tunerDisplayData, setTunerDisplayData] = useState([])
 
 /*   const handleFilterClick = (event) => {
     alert(event.id)
@@ -54,7 +55,7 @@ const Tuner = ({onStationLogoClick}) => {
     }; */
 
   const api = new RadioBrowserApi("BG Radio App")
-  api.setBaseUrl('https://de1.api.radio-browser.info/')
+  api.setBaseUrl('https://at1.api.radio-browser.info/')
 
   const setupAPI = useCallback(async (stationFilter) => {
     return api.searchStations(stationFilter)
@@ -119,8 +120,9 @@ const Tuner = ({onStationLogoClick}) => {
               id={filter}
               className="tuner-filter__item"
               onClick={() => setStationFilter({
-                countryCode: 'US',
+                countryCode: 'GB',
                 limit: 50,
+                tag: `${filter}`.toLowerCase(),
                 offset: 0
                 })
                 

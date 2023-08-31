@@ -1,5 +1,10 @@
 export const filters = 
   [
-    "pop",
-    "rock"
+    "Pop",
+    "Rock",
+    "Jazz",
+    "Electro",
+    "Blues",
+    "Funk",
+    "Alternative"
   ]
