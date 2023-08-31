@@ -119,6 +119,7 @@ const Tuner = ({onStationLogoClick}) => {
               key={filter}
               id={filter}
               className="tuner-filter__item"
+              
               onClick={() => setStationFilter({
                 countryCode: 'GB',
                 limit: 50,
