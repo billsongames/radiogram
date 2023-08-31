@@ -21,7 +21,7 @@ let staticIsPlaying = false
 
 const App = () =>  {
 
-  const [currentStation, setCurrentStation] = useState([])
+  const [currentStation, setCurrentStation] = useState({name: "Select a station..."})
   const [newStation, setNewStation] = useState([])
 
   const  handleStationLogoClick = event => {
@@ -49,7 +49,6 @@ const App = () =>  {
   const handleStationTuned = () => {
     staticPlayer.pause()
     staticIsPlaying = false
-    console.log("static off / radio on")
     setCurrentStation(newStation)
     }
 
