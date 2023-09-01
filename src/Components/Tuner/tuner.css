@@ -8,6 +8,7 @@
 .tuner-carousel {
   margin: auto;
   width: 80%;
+  height: 200px
 }
 
 .carousel-entry {
@@ -20,5 +21,16 @@
   width: 120px;
   height: 120px;
   object-fit: contain;
+}
+
+.tuner-filter__container {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tuner-filter__item {
+  padding: 20px
 }
 

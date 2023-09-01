@@ -21,30 +21,34 @@ let staticIsPlaying = false
 
 const App = () =>  {
 
-  const [currentStation, setCurrentStation] = useState([])
+  const [currentStation, setCurrentStation] = useState({name: "Select a station..."})
   const [newStation, setNewStation] = useState([])
 
   const  handleStationLogoClick = event => {
-    staticPlayer.play()
-    staticIsPlaying = true
 
-    setNewStation({
-      name: event.target.name,
-      favicon: event.target.src,
-      urlResolved: event.target.id
-    })
+    if (event.target.name === currentStation.name){
+      return
+    } else {
+        staticPlayer.play()
+        staticIsPlaying = true
 
-    setCurrentStation({
-      name: "Tuning...",
-      favicon : "./radio_antenna.png",
-      urlResolved: event.target.id
-    })
+        setNewStation({
+          name: event.target.name,
+          favicon: event.target.src,
+          urlResolved: event.target.id
+        })
+
+        setCurrentStation({
+          name: "Tuning...",
+          favicon : "./radio_antenna.png",
+          urlResolved: event.target.id
+        })
+      }
   }
 
   const handleStationTuned = () => {
     staticPlayer.pause()
     staticIsPlaying = false
-    console.log("static off / radio on")
     setCurrentStation(newStation)
     }
 
