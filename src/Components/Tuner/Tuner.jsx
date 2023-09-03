@@ -32,27 +32,60 @@ const responsive = {
 const Tuner = ({onStationLogoClick}) => {
 
   const [countryCode, setCountryCode] = useState("GB")
+
+
+  const [searchByTagFilter, setSearchByTagFilter] = useState("")
+  const [searchByNameFilter, setSearchByNameFilter] = useState("")
   const [stationFilter, setStationFilter] = useState({
-    countryCode: 'GB',
+    countryCode: `${countryCode}`,
     limit: 50,
-    offset: 0
+    offset: 0,
+    lastCheckOk: true
   });
   const [tunerDisplayData, setTunerDisplayData] = useState([])
 
-/*   const handleFilterClick = (event) => {
-    alert(event.id)
-    setStationFilter(event.id)
-  } */
 
 
-  /*   const handleSearchInput = (event) => {
-      setSearchFilter(event.target.value);
-    }; */
 
-  /*   const handleSubmit = (event) => {
-      event.preventDefault();
-      onStationSearch(searchFilter)
-    }; */
+/*   const handleSearchByTagInput = (event) => {
+    setSearchByTagFilter(event.target.value);
+  };
+
+  const handleSearchByTagSubmit = (event) => {
+    event.preventDefault();
+    if (setSearchByTagFilter === "") {
+      return
+    } else {
+      setStationFilter({
+      countryCode: `${countryCode}`,
+      limit: 50,
+      tag: `${searchByTagFilter}`.toLowerCase(),
+      offset: 0,
+      lastCheckOk: true
+    })
+    setSearchByTagFilter("")
+    }
+  }; */
+
+  const handleSearchByNameInput = (event) => {
+    setSearchByNameFilter(event.target.value);
+  };
+
+  const handleSearchByNameSubmit = (event) => {
+    event.preventDefault();
+    if (setSearchByNameFilter === "") {
+      return
+    } else {
+      setStationFilter({
+      countryCode: `${countryCode}`,
+      limit: 50,
+      name: `${searchByNameFilter}`.toLowerCase(),
+      offset: 0,
+      lastCheckOk: true
+    })
+    setSearchByNameFilter("")
+    }
+  };
 
   const api = new RadioBrowserApi("BG Radio App")
   api.setBaseUrl('https://at1.api.radio-browser.info/')
@@ -101,18 +134,33 @@ const Tuner = ({onStationLogoClick}) => {
 
 
 
-        {/* <form className='search-form' onSubmit={handleSubmit}>
-          <input
-            className='search-form__input'
-            type='text'
-            placeholder='Search station tags...'
-            value={searchFilter}
-            onChange={handleSearchInput}
-          />
-          <button className='search-form__button' type='submit'>Search...</button>  
-        </form> */}
+{/*     <form className='search-form' onSubmit={handleSearchByTextSubmit}>
+      <input
+        className='search-form__input'
+        type='text'
+        placeholder='Search station tags...'
+        value={searchByTagFilter}
+        onChange={handleSearchByTagInput}
+      />
+      <button className='search-form__button' type='submit'>Search...</button>  
+    </form> */}
 
+{/* #### SEARCH BY NAME ####   */}      
+
+        <form className='search-form' onSubmit={handleSearchByNameSubmit}>
+          <input
+          className='search-form__input'
+          type='text'
+          placeholder='Search station names...'
+          value={searchByNameFilter}
+          onChange={handleSearchByNameInput}
+          />
+          <button className='search-form__button' type='submit'>Search</button>  
+        </form>
       </div>
+
+{/* #### FILTERS ####   */}    
+
       <div className="tuner-filter__container">
           {filters.map((filter) => (
             <div
@@ -121,12 +169,12 @@ const Tuner = ({onStationLogoClick}) => {
               className="tuner-filter__item"
               
               onClick={() => setStationFilter({
-                countryCode: 'GB',
+                countryCode: `${countryCode}`,
                 limit: 50,
                 tag: `${filter}`.toLowerCase(),
-                offset: 0
-                })
-                
+                offset: 0,
+                lastCheckOk: true
+                })                
               }
             >
               {filter}  
