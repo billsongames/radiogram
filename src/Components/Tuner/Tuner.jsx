@@ -6,6 +6,8 @@ import "react-multi-carousel/lib/styles.css";
 
 import { filters } from '../../data/filters';
 
+import default_station_logo from "../../assets/img/station_no_logo.png"
+
 import "./tuner.css"
 
 const responsive = {
@@ -44,28 +46,12 @@ const Tuner = ({onStationLogoClick}) => {
   });
   const [tunerDisplayData, setTunerDisplayData] = useState([])
 
+  const SetDefaultSrc = (event) => {
+		event.target.src = default_station_logo
+	};
 
 
 
-/*   const handleSearchByTagInput = (event) => {
-    setSearchByTagFilter(event.target.value);
-  };
-
-  const handleSearchByTagSubmit = (event) => {
-    event.preventDefault();
-    if (setSearchByTagFilter === "") {
-      return
-    } else {
-      setStationFilter({
-      countryCode: `${countryCode}`,
-      limit: 50,
-      tag: `${searchByTagFilter}`.toLowerCase(),
-      offset: 0,
-      lastCheckOk: true
-    })
-    setSearchByTagFilter("")
-    }
-  }; */
 
   const handleSearchByNameInput = (event) => {
     setSearchByNameFilter(event.target.value);
@@ -121,6 +107,7 @@ const Tuner = ({onStationLogoClick}) => {
               name={station.name}
               src={station.favicon}
               alt={station.name}
+              onError={SetDefaultSrc}
               
               onClick ={onStationLogoClick}
             />

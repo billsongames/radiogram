@@ -6,12 +6,14 @@ import { RadioBrowserApi } from "radio-browser-api";
 import RadioPlayer from './RadioPlayer/RadioPlayer';
 import Tuner from './Tuner/Tuner';
 
-import {api_test_data} from "../data/api_test_data"
+import radio_antenna from "../assets/img/radio_antenna.png"
+import tuning_static from "../assets/audio/tuning-radio-7150.mp3"
+import white_logo from "../assets/img/white.png"
 
 const api = new RadioBrowserApi('My Radio App')
 const no_image = "./no_image_available.png"
 
-const staticPlayer = new Audio("./tuning-radio-7150.mp3")
+const staticPlayer = new Audio(tuning_static)
 staticPlayer.loop=(true)
 
 let staticIsPlaying = false
@@ -21,7 +23,11 @@ let staticIsPlaying = false
 
 const App = () =>  {
 
-  const [currentStation, setCurrentStation] = useState({name: "Select a station..."})
+  const [currentStation, setCurrentStation] = useState(
+    {
+      name: "Select a station...",
+      favicon: white_logo
+    })
   const [newStation, setNewStation] = useState([])
 
   const  handleStationLogoClick = event => {
@@ -40,7 +46,7 @@ const App = () =>  {
 
         setCurrentStation({
           name: "Tuning...",
-          favicon : "./radio_antenna.png",
+          favicon : radio_antenna,
           urlResolved: event.target.id
         })
       }
