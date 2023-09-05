@@ -1,0 +1,14 @@
+.header-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-container{
+  margin: auto;
+  text-align: center;
+}
+
+.login-container {
+
+}
