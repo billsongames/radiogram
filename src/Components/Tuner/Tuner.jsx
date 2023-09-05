@@ -35,8 +35,6 @@ const Tuner = ({onStationLogoClick}) => {
 
   const [countryCode, setCountryCode] = useState("GB")
 
-
-  const [searchByTagFilter, setSearchByTagFilter] = useState("")
   const [searchByNameFilter, setSearchByNameFilter] = useState("")
   const [stationFilter, setStationFilter] = useState({
     countryCode: `${countryCode}`,
@@ -107,6 +105,8 @@ const Tuner = ({onStationLogoClick}) => {
               name={station.name}
               src={station.favicon}
               alt={station.name}
+              tags={station.tags}
+              
               onError={SetDefaultSrc}
               
               onClick ={onStationLogoClick}
@@ -115,59 +115,47 @@ const Tuner = ({onStationLogoClick}) => {
               {station.name}
             </div>
           </div>
-        )
-        )}
+        ))}
         </Carousel>
+      </div>
 
+{/* ### FILTERS ###   */}
 
+      <div className="tuner-filter__container">
+        {filters.map((filter) => (
+          <div
+            key={filter}
+            id={filter}
+            className="tuner-filter__item"
+              
+            onClick={() => setStationFilter({
+              countryCode: `${countryCode}`,
+              limit: 50,
+              tag: `${filter}`.toLowerCase(),
+              offset: 0,
+              lastCheckOk: true
+              })                
+            }
+          >
+            {filter}  
+          </div>
+          ))}
+      </div>
 
-{/*     <form className='search-form' onSubmit={handleSearchByTextSubmit}>
-      <input
-        className='search-form__input'
-        type='text'
-        placeholder='Search station tags...'
-        value={searchByTagFilter}
-        onChange={handleSearchByTagInput}
-      />
-      <button className='search-form__button' type='submit'>Search...</button>  
-    </form> */}
+{/* #### SEARCH BY NAME ####   */}
 
-{/* #### SEARCH BY NAME ####   */}      
-
+      <div>
         <form className='search-form' onSubmit={handleSearchByNameSubmit}>
           <input
-          className='search-form__input'
-          type='text'
-          placeholder='Search station names...'
-          value={searchByNameFilter}
-          onChange={handleSearchByNameInput}
+            className='search-form__input'
+            type='text'
+            placeholder='Search station names...'
+            value={searchByNameFilter}
+            onChange={handleSearchByNameInput}
           />
           <button className='search-form__button' type='submit'>Search</button>  
         </form>
       </div>
-
-{/* #### FILTERS ####   */}    
-
-      <div className="tuner-filter__container">
-          {filters.map((filter) => (
-            <div
-              key={filter}
-              id={filter}
-              className="tuner-filter__item"
-              
-              onClick={() => setStationFilter({
-                countryCode: `${countryCode}`,
-                limit: 50,
-                tag: `${filter}`.toLowerCase(),
-                offset: 0,
-                lastCheckOk: true
-                })                
-              }
-            >
-              {filter}  
-            </div>
-          ))}
-        </div>
     </div>
 
   )
