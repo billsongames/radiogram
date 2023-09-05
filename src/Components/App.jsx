@@ -1,17 +1,17 @@
 import { React, useState}  from 'react';
 import { RadioBrowserApi } from "radio-browser-api";
 
-//import './App.css';
-
-import RadioPlayer from './RadioPlayer/RadioPlayer';
+import Header from './Header/Header';
 import Tuner from './Tuner/Tuner';
+import RadioPlayer from './RadioPlayer/RadioPlayer';
+
 
 import radio_antenna from "../assets/img/radio_antenna.png"
 import tuning_static from "../assets/audio/tuning-radio-7150.mp3"
 import white_logo from "../assets/img/white.png"
 
-const api = new RadioBrowserApi('My Radio App')
-const no_image = "./no_image_available.png"
+import './App.css';
+
 
 const staticPlayer = new Audio(tuning_static)
 staticPlayer.loop=(true)
@@ -69,6 +69,7 @@ const App = () =>  {
 
   return (
     <>
+      <Header/>
       <Tuner
         onStationLogoClick = {handleStationLogoClick}
 //        onStationSearch = {handleSearchRequest}
