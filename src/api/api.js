@@ -12,6 +12,7 @@ const api_test_call = () => {
   for (let i=0; i<response.length; i++) {
     if (response[i].favicon === "") {
     response[i].favicon = no_image
+    
     } 
   }
   console.log(response)
