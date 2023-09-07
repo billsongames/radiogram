@@ -3,19 +3,22 @@ import React from "react";
 import Title from "./Title";
 import Login from "./Login";
 
+import rp_logo from "../../../src/assets/img/radio_player.png"
+
 import "./header.css"
 
-const Header = () => {
+const Header = ({ userID, handleLogin, handleLogout} ) => {
   return(
-    <div className="header-container">
+    <div className="header">
       <div className="title-container">
-        <h1>
-          RadioPlayer
-        </h1>
+        <img src={rp_logo} alt="RadioPlayer logo"/>
       </div>
-      <div className="login-container">
-        <Login/>
-      </div>
+      <Login
+        userID={userID}
+        onLogin={handleLogin}
+        onLogout={handleLogout}
+      />  
+
       
     </div>
   )

@@ -1,0 +1,18 @@
+.login{
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  align-content: end;
+}
+
+.my-facebook-button-class {
+  background-color: #4267B2;
+  color: #EEEEEE;
+  width: 160px;
+  height: 32px;
+  font-weight: bold;
+  margin: 0px 10px 0px 0px;
+  border: 2px solid #4267B2;
+  border-radius: 8px;
+  transition-duration: 0.2s;
+}

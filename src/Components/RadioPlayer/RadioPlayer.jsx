@@ -1,14 +1,5 @@
 import { React, useEffect, useState, useRef } from "react";
 
-import {
-  IoPlayBackSharp,
-  IoPlayForwardSharp,
-  IoPlaySkipBackSharp,
-  IoPlaySkipForwardSharp,
-  IoPlaySharp,
-  IoPauseSharp,
-} from "react-icons/io5"
-
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player'
 import DisplayStation from "../DisplayStation/DisplayStation";
 
@@ -17,13 +8,8 @@ import "./radio-player.css"
 import 'react-h5-audio-player/lib/styles.css'
 
 
-
-
 const RadioPlayer = ({ currentStation, onStationTuned }) => {
 
-  const {name,favicon,urlResolved} = currentStation
-
-  
   return(
     <div className="radio-player">
       <div className="display-station">
@@ -36,12 +22,6 @@ const RadioPlayer = ({ currentStation, onStationTuned }) => {
           autoplay = {false}
           src = {currentStation.urlResolved}
           autoPlayAfterSrcChange = {true}
-
-/*           customIcons={{
-            play: IoPlaySharp,
-            pause: IoPauseSharp
-          }} */
-          
           layout = "stacked-reverse"
           showSkipControls = {false}          
           showJumpControls = {false}
@@ -54,11 +34,8 @@ const RadioPlayer = ({ currentStation, onStationTuned }) => {
               RHAP_UI.VOLUME_CONTROLS,
             ]}
           customProgressBarSection = {[]}
-
           onPlaying = {onStationTuned}
-
-        />
-        
+        />        
       </div>  
     </div>  
   )

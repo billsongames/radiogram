@@ -13,23 +13,28 @@ import "./tuner.css"
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 6,
+    breakpoint: { max: 4000, min: 1201 },
+    items: 8,
     partialVisibilityGutter: 0
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 1200, min: 1025 },
+    items: 8,
+    partialVisibilityGutter: 0
+  },
+  laptop: {
+    breakpoint: { max: 1024, min: 769 },
+    items: 8,
+    partialVisibilityGutter: 0
+  },  
+  tablet: {
+    breakpoint: { max: 768, min: 481 },
     items: 6,
     partialVisibilityGutter: 0
   },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 4,
-    partialVisibilityGutter: 0
-  },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 2,
+    breakpoint: { max: 480, min: 0 },
+    items: 4,
     partialVisibilityGutter: 0
     }
 
@@ -96,34 +101,6 @@ const Tuner = ({onStationLogoClick}) => {
 
   return (
     <div className='tuner'>
-      <div className='tuner-carousel'>
-        <Carousel
-          responsive={responsive}
-          infinite={true}
-          slidesToSlide = {6}
-          >
-
-        {tunerDisplayData.map((station) => (
-          <div className='carousel-entry' key={station.name}>
-            <img
-              className="tuner-station-logo"
-              id={station.urlResolved}
-              name={station.name}
-              src={station.favicon}
-              alt={station.name}
-              tags={station.tags}
-              
-              onError={SetDefaultSrc}
-              
-              onClick ={onStationLogoClick}
-            />
-            <div>
-              {station.name}
-            </div>
-          </div>
-        ))}
-        </Carousel>
-      </div>
 
 {/* ### FILTERS ###   */}
 
@@ -147,6 +124,38 @@ const Tuner = ({onStationLogoClick}) => {
           </div>
           ))}
       </div>
+
+      <div className='tuner-carousel'>
+        <Carousel
+          responsive={responsive}
+          infinite={true}
+          slidesToSlide = {6}
+          >
+
+        {tunerDisplayData.map((station) => (
+          <div className='carousel-entry' key={station.name}>
+            <img
+              className="tuner-station__logo"
+              id={station.urlResolved}
+              name={station.name}
+              src={station.favicon}
+              alt={station.name}
+              tags={station.tags}
+              
+              onError={SetDefaultSrc}
+              
+              onClick ={onStationLogoClick}
+            />
+            <div className='tuner-station__name'>
+              {station.name}
+            </div>
+          </div>
+        ))}
+        </Carousel>
+      </div>
+      <hr />
+
+
 
 {/* #### SEARCH BY NAME ####   */}
 

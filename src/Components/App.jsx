@@ -11,6 +11,7 @@ import tuning_static from "../assets/audio/tuning-radio-7150.mp3"
 import white_logo from "../assets/img/white.png"
 
 import './App.css';
+import Login from './Header/Login';
 
 
 const staticPlayer = new Audio(tuning_static)
@@ -22,6 +23,18 @@ let staticIsPlaying = false
 
 
 const App = () =>  {
+
+  const [userID, setUserID] = useState("")
+
+  const handleLogin = (response) => {
+    setUserID(response.id)
+    alert("logged in")
+  }
+
+  const handleLogout = () => {
+    window.FB.logout()
+    setUserID("")
+  }
 
   const [currentStation, setCurrentStation] = useState(
     {
@@ -68,11 +81,14 @@ const App = () =>  {
 
 
   return (
-    <>
-      <Header/>
+    <div className='App'>
+      <Header
+        userID={userID}
+        handleLogin={handleLogin}
+        handleLogout={handleLogout}
+      />        
       <Tuner
         onStationLogoClick = {handleStationLogoClick}
-//        onStationSearch = {handleSearchRequest}
       >
       </Tuner>
       <RadioPlayer
@@ -80,7 +96,9 @@ const App = () =>  {
         onStationTuned = {handleStationTuned}
       >
       </RadioPlayer>
-    </>
+    </div>
+
+
   );
 }
 
