@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Login from "./Login";
 import SavedStations from "./SavedStations";
@@ -16,37 +17,25 @@ const dateString = `${days[date.getDay()]} ${date.getDate()} ${months[date.getMo
 
 const Header = ({ userID, handleLogin, handleLogout, handleStationLogoClick }) => {
   return(
-    <div className="header">
+    <div className="header-container">
 
-      <div className="login-menu-container">
+      <div className="header__date">
+        {dateString}
+      </div>
+
+      <div className="header__logo">        
+        <img src={rp_logo} alt="RadioPlayer logo"/>
+      </div>
+
+      <div className="header__login">
         <div>
           <Login
             userID={userID}
             onLogin={handleLogin}
             onLogout={handleLogout}
           />
-        </div>
-        
-        {userID
-        ?
-          <div>
-            <SavedStations onStationLogoClick = {handleStationLogoClick}/>
-          </div>
-      
-        :
-        <>
-        </>
-        }
+        </div>  
       </div>
-
-      <div className="logo-container">        
-        <img src={rp_logo} alt="RadioPlayer logo"/>
-      </div>
-
-      <div className="date-container">
-        {dateString}
-      </div>
-      
     </div>
   )
 }

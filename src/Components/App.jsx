@@ -1,8 +1,10 @@
 import { React, useState}  from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RadioBrowserApi } from "radio-browser-api";
 
 import Header from './Header/Header';
 import Tuner from './Tuner/Tuner';
+import SavedStations from './Header/SavedStations';
 import RadioPlayer from './RadioPlayer/RadioPlayer';
 
 
@@ -86,20 +88,18 @@ const App = () =>  {
         handleLogout={handleLogout}
         handleStationLogoClick={handleStationLogoClick}
       />
-      <Tuner
-        onStationLogoClick = {handleStationLogoClick}
-      >
-      </Tuner>
+      <Tuner onStationLogoClick = {handleStationLogoClick}/>
       <RadioPlayer
         currentStation = {currentStation}
         onStationTuned = {handleStationTuned}
-      >
-      </RadioPlayer>      
-
-
+        />
+        {userID
+        ?
+        <SavedStations onStationLogoClick={handleStationLogoClick}/>
+        :
+        <></>
+        }
     </div>
-
-
   );
 }
 

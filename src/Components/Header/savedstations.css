@@ -1,14 +1,35 @@
-.saved-stations {
-  background-color: white;
-  border: 2px solid;
-  border-radius: 6px;
-  border-color: black;
+/* .saved-stations-container {
+  margin: auto;
+} */
+
+.saved-stations__title {
+  text-align: center;
+  padding: 4px
+}
+
+
+.saved-stations__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 100px);
+  grid-template-rows: repeat(4, 80px);
+  grid-template-areas: 
+  "save save save save save save"
+  "save save save save save save"
+  "save save save save save save"
+  "save save save save save save"
+  ;
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+  justify-content: center;
 }
 
 .saved-station__entry {
-  padding: 4px;
+  background-color: white;
+  border: 1px;
+  border-style: solid;
+  border-radius: 4px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   text-align: center;
 }

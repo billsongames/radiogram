@@ -94,8 +94,6 @@ const Tuner = ({onStationLogoClick}) => {
     setupAPI(stationFilter)
     .then((data) => setTunerDisplayData(data))
     .catch(error => {console.log(error)})
-
-    console.log(tunerDisplayData)
   }, [setupAPI, stationFilter])
 
 
@@ -153,7 +151,6 @@ const Tuner = ({onStationLogoClick}) => {
         ))}
         </Carousel>
       </div>
-      <hr />
 
 
 
