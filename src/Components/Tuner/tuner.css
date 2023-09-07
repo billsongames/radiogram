@@ -32,13 +32,13 @@
 
 .tuner-filter__container {
   margin: auto;
-  padding: 4px 0px 12px 0px;
+  padding: 4px 0px 4px 0px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
 .tuner-filter__item {
-  padding: 4px 20px
+  padding: 4px 10px;
 }
 

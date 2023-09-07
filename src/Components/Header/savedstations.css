@@ -1,0 +1,25 @@
+.saved-stations {
+  background-color: white;
+  border: 2px solid;
+  border-radius: 6px;
+  border-color: black;
+}
+
+.saved-station__entry {
+  padding: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+
+.saved-station__logo {
+  padding: 4px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.saved-station__name {
+  font-size: 10px;
+}

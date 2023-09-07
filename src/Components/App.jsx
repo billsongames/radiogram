@@ -28,7 +28,6 @@ const App = () =>  {
 
   const handleLogin = (response) => {
     setUserID(response.id)
-    alert("logged in")
   }
 
   const handleLogout = () => {
@@ -44,7 +43,6 @@ const App = () =>  {
   const [newStation, setNewStation] = useState([])
 
   const  handleStationLogoClick = event => {
-
     if (event.target.name === currentStation.name){
       return
     } else {
@@ -86,7 +84,8 @@ const App = () =>  {
         userID={userID}
         handleLogin={handleLogin}
         handleLogout={handleLogout}
-      />        
+        handleStationLogoClick={handleStationLogoClick}
+      />
       <Tuner
         onStationLogoClick = {handleStationLogoClick}
       >
@@ -95,7 +94,9 @@ const App = () =>  {
         currentStation = {currentStation}
         onStationTuned = {handleStationTuned}
       >
-      </RadioPlayer>
+      </RadioPlayer>      
+
+
     </div>
 
 

@@ -5,6 +5,8 @@ import FacebookLogin from 'react-facebook-login';
 
 import "./login.css"
 
+import saved_stations from "../../data/api_test_data"
+
 
 
 const Login = ({userID, onLogin, onLogout}) => {
@@ -12,14 +14,11 @@ const Login = ({userID, onLogin, onLogout}) => {
     <div className="login">
       {userID
       ?
-      <div>
-        <select>
-          <option value="1">1</option>
-          <option value="2"><img src="https://mytuner.global.ssl.fastly.net/media/tvos_radios/cjqfbpl6lyyn.png"/></option>
-          <option value="3">3</option>
-        </select>
-        Hello
-      </div>
+      <>
+        <div>
+          logged in
+        </div>
+      </>  
 
       :    
       <FacebookLogin

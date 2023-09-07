@@ -94,6 +94,8 @@ const Tuner = ({onStationLogoClick}) => {
     setupAPI(stationFilter)
     .then((data) => setTunerDisplayData(data))
     .catch(error => {console.log(error)})
+
+    console.log(tunerDisplayData)
   }, [setupAPI, stationFilter])
 
 
@@ -133,7 +135,7 @@ const Tuner = ({onStationLogoClick}) => {
           >
 
         {tunerDisplayData.map((station) => (
-          <div className='carousel-entry' key={station.name}>
+          <div className='carousel-entry' key={station.urlResolved}  onClick ={onStationLogoClick}>
             <img
               className="tuner-station__logo"
               id={station.urlResolved}
@@ -142,9 +144,7 @@ const Tuner = ({onStationLogoClick}) => {
               alt={station.name}
               tags={station.tags}
               
-              onError={SetDefaultSrc}
-              
-              onClick ={onStationLogoClick}
+              onError={SetDefaultSrc}            
             />
             <div className='tuner-station__name'>
               {station.name}
