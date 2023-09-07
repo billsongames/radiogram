@@ -22,12 +22,6 @@ const RadioPlayer = ({ currentStation, onStationTuned }) => {
           autoplay = {false}
           src = {currentStation.urlResolved}
           autoPlayAfterSrcChange = {true}
-
-/*           customIcons={{
-            play: IoPlaySharp,
-            pause: IoPauseSharp
-          }} */
-          
           layout = "stacked-reverse"
           showSkipControls = {false}          
           showJumpControls = {false}
@@ -40,11 +34,8 @@ const RadioPlayer = ({ currentStation, onStationTuned }) => {
               RHAP_UI.VOLUME_CONTROLS,
             ]}
           customProgressBarSection = {[]}
-
           onPlaying = {onStationTuned}
-
-        />
-        
+        />        
       </div>  
     </div>  
   )

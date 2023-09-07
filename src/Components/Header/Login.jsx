@@ -10,6 +10,18 @@ import "./login.css"
 const Login = ({userID, onLogin, onLogout}) => {
   return(
     <div className="login">
+      {userID
+      ?
+      <div>
+        <select>
+          <option value="1">1</option>
+          <option value="2"><img src="https://mytuner.global.ssl.fastly.net/media/tvos_radios/cjqfbpl6lyyn.png"/></option>
+          <option value="3">3</option>
+        </select>
+        Hello
+      </div>
+
+      :    
       <FacebookLogin
         appId="970142087432030"
         autoLoad={false}
@@ -18,7 +30,8 @@ const Login = ({userID, onLogin, onLogout}) => {
         cssClass="my-facebook-button-class"
         cookie={true}
       />
-    </div>
+    }
+  </div>
   )
 }
 

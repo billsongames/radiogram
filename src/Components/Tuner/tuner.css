@@ -16,28 +16,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 180px;
-/*   border: 2px solid;
-  border-radius: 4px;
-  border-color: black; */
   text-align: center;
 }
 
-.tuner-station-logo {
+.tuner-station__logo {
   padding: 4px;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
+}
+
+.tuner-station__name {
+  font-size: 12px;
 }
 
 .tuner-filter__container {
   margin: auto;
+  padding: 4px 0px 12px 0px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
 .tuner-filter__item {
-  padding: 20px
+  padding: 4px 20px
 }
 

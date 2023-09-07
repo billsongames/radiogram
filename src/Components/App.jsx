@@ -81,13 +81,12 @@ const App = () =>  {
 
 
   return (
-    <>
-      <Header/>
-      <Login
+    <div className='App'>
+      <Header
         userID={userID}
-        onLogin={handleLogin}
-        onLogout={handleLogout}
-      />          
+        handleLogin={handleLogin}
+        handleLogout={handleLogout}
+      />        
       <Tuner
         onStationLogoClick = {handleStationLogoClick}
       >
@@ -97,7 +96,9 @@ const App = () =>  {
         onStationTuned = {handleStationTuned}
       >
       </RadioPlayer>
-    </>
+    </div>
+
+
   );
 }
 
