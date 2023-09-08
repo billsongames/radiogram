@@ -1,4 +1,5 @@
 import {React, useState} from "react";
+import { Markup } from 'interweave';
 
 import { api_test_data } from "../../data/api_test_data";
 import default_station_logo from "../../assets/img/station_no_logo.png"
@@ -12,7 +13,10 @@ const SavedStations = ({onStationLogoClick}) => {
 		event.target.src = default_station_logo
 	};
 
-
+/* const markupContent = `
+  <span class="saved-station__entry">Helloooo</span>
+  <span class="saved-station__entry">Helloooo</span>
+  ` */
 
 
 
@@ -23,10 +27,6 @@ const SavedStations = ({onStationLogoClick}) => {
   
   return(
     <div className='saved-stations-container'>
-      <div className="saved-stations__title">
-        PRESETS
-      </div>
-      
       <div className="saved-stations__grid" >
         {api_test_data.map((station) => (
           <div className='saved-station__entry' key={station.urlResolved}  onClick ={onStationLogoClick}>
@@ -37,6 +37,7 @@ const SavedStations = ({onStationLogoClick}) => {
               src={station.favicon}
               alt={station.name}
               tags={station.tags}
+              draggable="true"
               
               onError={SetDefaultSrc}            
             />
@@ -45,13 +46,9 @@ const SavedStations = ({onStationLogoClick}) => {
             </div>
           </div>
         ))}
-  
-        <div className="saved-station__entry">
-          entry
-        </div>
-        <div>
-          entry
-        </div>
+
+
+
       </div>
     </div>
 

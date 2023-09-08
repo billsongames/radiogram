@@ -1,6 +1,7 @@
-/* .saved-stations-container {
+.saved-stations-container {
   margin: auto;
-} */
+  padding: 12px
+}
 
 .saved-stations__title {
   text-align: center;
@@ -10,21 +11,17 @@
 
 .saved-stations__grid {
   display: grid;
-  grid-template-columns: repeat(6, 100px);
-  grid-template-rows: repeat(4, 80px);
-  grid-template-areas: 
-  "save save save save save save"
-  "save save save save save save"
-  "save save save save save save"
-  "save save save save save save"
-  ;
-  grid-column-gap: 2px;
-  grid-row-gap: 2px;
+  grid-template-columns: repeat(8, 120px);
+  grid-template-rows: repeat(auto, 100px);
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
   justify-content: center;
 }
 
 .saved-station__entry {
-  background-color: white;
+  width: 120px;
+  height: 100px;
+  background-color: whitesmoke;
   border: 1px;
   border-style: solid;
   border-radius: 4px;
@@ -32,6 +29,11 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+
+.saved-station__entry:hover{
+  background-color: grey;
+  transition-duration: 0.5s;
 }
 
 .saved-station__logo {

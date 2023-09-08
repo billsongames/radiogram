@@ -82,17 +82,28 @@ const App = () =>  {
 
   return (
     <div className='App'>
-      <Header
-        userID={userID}
-        handleLogin={handleLogin}
-        handleLogout={handleLogout}
-        handleStationLogoClick={handleStationLogoClick}
-      />
-      <Tuner onStationLogoClick = {handleStationLogoClick}/>
-      <RadioPlayer
-        currentStation = {currentStation}
-        onStationTuned = {handleStationTuned}
+      <div className="top-section">
+        <Header
+          userID={userID}
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          handleStationLogoClick={handleStationLogoClick}
         />
+        <Tuner onStationLogoClick = {handleStationLogoClick}/>
+        <RadioPlayer
+          currentStation = {currentStation}
+          onStationTuned = {handleStationTuned}
+        />
+        {userID
+        ?
+        <div className="saved-stations__title">
+          PRESETS
+        </div>
+        :
+        <></>          
+        }
+      </div>
+
         {userID
         ?
         <SavedStations onStationLogoClick={handleStationLogoClick}/>

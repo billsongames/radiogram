@@ -93,6 +93,7 @@ const Tuner = ({onStationLogoClick}) => {
   useEffect(() => {
     setupAPI(stationFilter)
     .then((data) => setTunerDisplayData(data))
+    .then(console.log(tunerDisplayData))
     .catch(error => {console.log(error)})
   }, [setupAPI, stationFilter])
 

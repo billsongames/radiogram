@@ -17,6 +17,12 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  z-index: 32;
+}
+
+.carousel-entry:hover{
+  background-color: grey;
+  transition-duration: 0.5s;
 }
 
 .tuner-station__logo {
