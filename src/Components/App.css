@@ -6,3 +6,9 @@
 .App {
   margin: auto;
 }
+
+.top-section{
+  position: sticky;
+  top: 0;
+  background-color: white;
+}

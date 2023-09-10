@@ -6,6 +6,8 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@tippyjs/react": "^4.2.6",
+    "interweave": "^13.1.0",
     "node-fetch": "^3.3.1",
     "radio-browser-api": "^6.0.1",
     "react": "^18.2.0",
@@ -14,11 +16,12 @@
     "react-h5-audio-player": "^3.8.6",
     "react-icons": "^4.10.1",
     "react-multi-carousel": "^2.8.4",
+    "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

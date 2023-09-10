@@ -1,14 +1,28 @@
-.header {
+.header-container {
   margin: auto;
-  display: flex;
+  width: 60%;
+  padding: 4px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+.header__date {
+  text-align: start;
+}
+
+.header__logo {
+  margin: auto;
+}
+
+.header__login {
+  display:flex;
   flex-direction: column;
+  align-items: end;
 }
 
-.title-container{
-  margin: auto;
-  text-align: center;
-}
 
-.login-container {
 
-}
+
+
+

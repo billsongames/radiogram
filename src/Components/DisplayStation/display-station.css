@@ -7,8 +7,8 @@
 }
 
 .display-station__logo {
-  border: 4px solid;
-  border-radius: 12px;
+  border: 2px solid;
+  border-radius: 6px;
   border-color: black;
   width: 100px;
   height: 100px;

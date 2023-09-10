@@ -8,7 +8,7 @@
 .tuner-carousel {
   margin: auto;
   width: 60%;
-  height: auto;
+  height: 140px;
 }
 
 .carousel-entry {
@@ -17,6 +17,12 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  z-index: 32;
+}
+
+.carousel-entry:hover{
+  background-color: grey;
+  transition-duration: 0.5s;
 }
 
 .tuner-station__logo {
@@ -32,13 +38,13 @@
 
 .tuner-filter__container {
   margin: auto;
-  padding: 4px 0px 12px 0px;
+  padding: 4px 0px 4px 0px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
 .tuner-filter__item {
-  padding: 4px 20px
+  padding: 4px 10px;
 }
 

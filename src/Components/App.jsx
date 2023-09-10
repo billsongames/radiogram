@@ -1,8 +1,10 @@
 import { React, useState}  from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RadioBrowserApi } from "radio-browser-api";
 
 import Header from './Header/Header';
 import Tuner from './Tuner/Tuner';
+import SavedStations from './Header/SavedStations';
 import RadioPlayer from './RadioPlayer/RadioPlayer';
 
 
@@ -28,7 +30,6 @@ const App = () =>  {
 
   const handleLogin = (response) => {
     setUserID(response.id)
-    alert("logged in")
   }
 
   const handleLogout = () => {
@@ -44,7 +45,6 @@ const App = () =>  {
   const [newStation, setNewStation] = useState([])
 
   const  handleStationLogoClick = event => {
-
     if (event.target.name === currentStation.name){
       return
     } else {
@@ -82,23 +82,35 @@ const App = () =>  {
 
   return (
     <div className='App'>
-      <Header
-        userID={userID}
-        handleLogin={handleLogin}
-        handleLogout={handleLogout}
-      />        
-      <Tuner
-        onStationLogoClick = {handleStationLogoClick}
-      >
-      </Tuner>
-      <RadioPlayer
-        currentStation = {currentStation}
-        onStationTuned = {handleStationTuned}
-      >
-      </RadioPlayer>
+      <div className="top-section">
+        <Header
+          userID={userID}
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          handleStationLogoClick={handleStationLogoClick}
+        />
+        <Tuner onStationLogoClick = {handleStationLogoClick}/>
+        <RadioPlayer
+          currentStation = {currentStation}
+          onStationTuned = {handleStationTuned}
+        />
+        {userID
+        ?
+        <div className="saved-stations__title">
+          PRESETS
+        </div>
+        :
+        <></>          
+        }
+      </div>
+
+        {userID
+        ?
+        <SavedStations onStationLogoClick={handleStationLogoClick}/>
+        :
+        <></>
+        }
     </div>
-
-
   );
 }
 
