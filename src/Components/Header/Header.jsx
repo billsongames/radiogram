@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import Login from "./Login";
-import SavedStations from "./SavedStations";
 
 import rp_logo from "../../../src/assets/img/radio_player.png"
 

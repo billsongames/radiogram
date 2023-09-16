@@ -4,10 +4,10 @@ import { Markup } from 'interweave';
 import { api_test_data } from "../../data/api_test_data";
 import default_station_logo from "../../assets/img/station_no_logo.png"
 
-import "./savedstations.css"
+import "./presets.css"
 
 
-const SavedStations = ({onStationLogoClick}) => {
+const Presets = ({onStationLogoClick}) => {
 
   const SetDefaultSrc = (event) => {
 		event.target.src = default_station_logo
@@ -26,12 +26,12 @@ const SavedStations = ({onStationLogoClick}) => {
 
   
   return(
-    <div className='saved-stations-container'>
-      <div className="saved-stations__grid" >
+    <div className='presets-container'>
+      <div className="presets__grid" >
         {api_test_data.map((station) => (
-          <div className='saved-station__entry' key={station.urlResolved}  onClick ={onStationLogoClick}>
+          <div className='preset__entry' key={station.id}  onClick ={onStationLogoClick}>
             <img
-              className="saved-station__logo"
+              className="preset__logo"
               id={station.urlResolved}
               name={station.name}
               src={station.favicon}
@@ -41,7 +41,7 @@ const SavedStations = ({onStationLogoClick}) => {
               
               onError={SetDefaultSrc}            
             />
-            <div className='saved-station__name'>
+            <div className='preset__name'>
               {station.name}
             </div>
           </div>
@@ -56,4 +56,4 @@ const SavedStations = ({onStationLogoClick}) => {
 
 }
 
-export default SavedStations
+export default Presets

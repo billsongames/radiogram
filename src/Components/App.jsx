@@ -1,10 +1,13 @@
-import { React, useState}  from 'react';
+import { React, useEffect, useState}  from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RadioBrowserApi } from "radio-browser-api";
 
+import { collection, query,  where, getCountFromServer, doc, setDoc } from "firebase/firestore";
+import {db} from "../backend/firebase"
+
 import Header from './Header/Header';
 import Tuner from './Tuner/Tuner';
-import SavedStations from './Header/SavedStations';
+import Presets from './Presets/Presets';
 import RadioPlayer from './RadioPlayer/RadioPlayer';
 
 
@@ -14,6 +17,7 @@ import white_logo from "../assets/img/white.png"
 
 import './App.css';
 import Login from './Header/Login';
+
 
 
 const staticPlayer = new Audio(tuning_static)
@@ -27,6 +31,7 @@ let staticIsPlaying = false
 const App = () =>  {
 
   const [userID, setUserID] = useState("")
+  const [presets, setPresets] = useState([])
 
   const handleLogin = (response) => {
     setUserID(response.id)
@@ -76,6 +81,47 @@ const App = () =>  {
     alert(searchQuery)
   }
   
+/*   useEffect(() => {
+    async function checkIfUserExists() {
+      if (userID){
+        const userCol = collection(db, "users")
+        const userSnapshot = await getDocs(userCol)
+        const userList = userSnapshot.docs.map(doc => doc.data())
+        console.log(userList)
+        }
+      }
+    
+    checkIfUserExists()
+  }, [userID]) */
+
+  useEffect(() => {
+    async function checkIfUserExists() {
+      if (userID){
+
+// CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
+
+        const coll = collection(db, "users");
+        const q = query(coll, where("userID", "==", `${userID}`))
+        
+// RUN THE QUERY
+
+        const querySnapshot = await getCountFromServer(q)
+        console.log("User exists. Count = ", querySnapshot.data().count)
+
+        if (querySnapshot.data().count === 0) {
+          console.log("No user exists")
+          await setDoc(doc(coll), {
+            userID: `${userID}`,
+            presets: []
+          })
+          console.log("user added")
+        }
+      }
+    }    
+
+    checkIfUserExists()
+  }, [userID])
+
 
 
 
@@ -96,7 +142,7 @@ const App = () =>  {
         />
         {userID
         ?
-        <div className="saved-stations__title">
+        <div className="presets__title">
           PRESETS
         </div>
         :
@@ -106,7 +152,7 @@ const App = () =>  {
 
         {userID
         ?
-        <SavedStations onStationLogoClick={handleStationLogoClick}/>
+        <Presets onStationLogoClick={handleStationLogoClick}/>
         :
         <></>
         }
