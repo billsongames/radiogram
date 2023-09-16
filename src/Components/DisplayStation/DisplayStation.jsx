@@ -14,6 +14,7 @@ const  DisplayStation = ({currentStation}) => {
   }
 
   const tags = tagWords.join(", ") */
+  console.log(currentStation)
 
   return(
     <div className="display-station__info">

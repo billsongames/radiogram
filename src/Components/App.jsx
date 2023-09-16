@@ -2,6 +2,9 @@ import { React, useEffect, useState}  from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RadioBrowserApi } from "radio-browser-api";
 
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {auth} from "../backend/firebase"
+
 import { collection, query,  where, getCountFromServer, doc, setDoc } from "firebase/firestore";
 import {db} from "../backend/firebase"
 
@@ -10,13 +13,13 @@ import Tuner from './Tuner/Tuner';
 import Presets from './Presets/Presets';
 import RadioPlayer from './RadioPlayer/RadioPlayer';
 
-
 import radio_antenna from "../assets/img/radio_antenna.png"
 import tuning_static from "../assets/audio/tuning-radio-7150.mp3"
 import white_logo from "../assets/img/white.png"
 
 import './App.css';
 import Login from './Header/Login';
+import { api_test_data } from '../data/api_test_data';
 
 
 
@@ -32,16 +35,6 @@ const App = () =>  {
 
   const [userID, setUserID] = useState("")
   const [presets, setPresets] = useState([])
-
-  const handleLogin = (response) => {
-    setUserID(response.id)
-  }
-
-  const handleLogout = () => {
-    window.FB.logout()
-    setUserID("")
-  }
-
   const [currentStation, setCurrentStation] = useState(
     {
       name: "Select a station...",
@@ -49,8 +42,48 @@ const App = () =>  {
     })
   const [newStation, setNewStation] = useState([])
 
+// FACEBOOK LOGIN  
+/*   const handleLogin = (response) => {
+    setUserID(response.id)
+  } */
+
+  const handleLogin = () => {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result
+      console.log(result)
+      setUserID(result.user.email)
+
+      //const user = result
+
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+        });
+  }
+
+  const handleLogout = () => {
+    window.FB.logout()
+    setUserID("")
+  }
+
   const  handleStationLogoClick = event => {
-    if (event.target.name === currentStation.name){
+    console.log(event.target.tags)
+    if (event.target.id === currentStation.id){
       return
     } else {
         staticPlayer.play()
@@ -59,13 +92,13 @@ const App = () =>  {
         setNewStation({
           name: event.target.name,
           favicon: event.target.src,
-          urlResolved: event.target.id
+          urlResolved: event.target.dataset.urlresolved
         })
 
         setCurrentStation({
           name: "Tuning...",
           favicon : radio_antenna,
-          urlResolved: event.target.id
+          urlResolved: event.target.dataset.urlresolved
         })
       }
   }
@@ -77,22 +110,6 @@ const App = () =>  {
     }
 
 
-  const handleSearchRequest = (searchQuery) => {
-    alert(searchQuery)
-  }
-  
-/*   useEffect(() => {
-    async function checkIfUserExists() {
-      if (userID){
-        const userCol = collection(db, "users")
-        const userSnapshot = await getDocs(userCol)
-        const userList = userSnapshot.docs.map(doc => doc.data())
-        console.log(userList)
-        }
-      }
-    
-    checkIfUserExists()
-  }, [userID]) */
 
   useEffect(() => {
     async function checkIfUserExists() {
@@ -106,13 +123,13 @@ const App = () =>  {
 // RUN THE QUERY
 
         const querySnapshot = await getCountFromServer(q)
-        console.log("User exists. Count = ", querySnapshot.data().count)
+        console.log("Count = ", querySnapshot.data().count)
 
         if (querySnapshot.data().count === 0) {
           console.log("No user exists")
           await setDoc(doc(coll), {
             userID: `${userID}`,
-            presets: []
+            presets: [api_test_data[0],api_test_data[1],api_test_data[2]]
           })
           console.log("user added")
         }
@@ -152,7 +169,7 @@ const App = () =>  {
 
         {userID
         ?
-        <Presets onStationLogoClick={handleStationLogoClick}/>
+        <Presets userID={userID} onStationLogoClick={handleStationLogoClick}/>
         :
         <></>
         }

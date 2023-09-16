@@ -1,5 +1,8 @@
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 import { Markup } from 'interweave';
+
+import { collection, query,  where, getCountFromServer, getDocs, setDoc } from "firebase/firestore";
+import {db} from "../../backend/firebase"
 
 import { api_test_data } from "../../data/api_test_data";
 import default_station_logo from "../../assets/img/station_no_logo.png"
@@ -7,7 +10,9 @@ import default_station_logo from "../../assets/img/station_no_logo.png"
 import "./presets.css"
 
 
-const Presets = ({onStationLogoClick}) => {
+const Presets = ({userID, onStationLogoClick}) => {
+
+  const [presets, setPresets] = useState([])
 
   const SetDefaultSrc = (event) => {
 		event.target.src = default_station_logo
@@ -18,7 +23,26 @@ const Presets = ({onStationLogoClick}) => {
   <span class="saved-station__entry">Helloooo</span>
   ` */
 
+  useEffect(() => {
+    async function populatePresets() {
+      if (userID){
 
+// CREATE THE QUERY TO GET MATCHING DB ENTRIES
+
+        const coll = collection(db, "users");
+        const q = query(coll, where("userID", "==", `${userID}`))
+        
+// RUN THE QUERY
+
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach((doc) => {
+          setPresets(doc.data().presets);
+        })
+      }
+    }    
+
+    populatePresets()
+  }, [userID])
 
 
 
@@ -28,15 +52,16 @@ const Presets = ({onStationLogoClick}) => {
   return(
     <div className='presets-container'>
       <div className="presets__grid" >
-        {api_test_data.map((station) => (
+        {presets.map((station) => (
           <div className='preset__entry' key={station.id}  onClick ={onStationLogoClick}>
             <img
               className="preset__logo"
-              id={station.urlResolved}
               name={station.name}
               src={station.favicon}
+              data-urlresolved={station.urlResolved}
               alt={station.name}
-              tags={station.tags}
+              tags={station.tags}              
+              
               draggable="true"
               
               onError={SetDefaultSrc}            

@@ -20,15 +20,16 @@ const Login = ({userID, onLogin, onLogout}) => {
         </div>
       </>  
 
-      :    
-      <FacebookLogin
+      :
+      <button onClick={onLogin}>Log in</button>    
+/*       <FacebookLogin
         appId="970142087432030"
         autoLoad={false}
         fields="name,email,picture"
         callback={onLogin}
         cssClass="my-facebook-button-class"
         cookie={true}
-      />
+      /> */
     }
   </div>
   )
