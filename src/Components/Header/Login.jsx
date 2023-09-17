@@ -1,5 +1,6 @@
 import React from "react";
-import FacebookLogin from 'react-facebook-login';
+//import FacebookLogin from 'react-facebook-login';
+import { GoogleLoginButton } from "react-social-login-buttons";
 
 //970142087432030
 
@@ -21,7 +22,8 @@ const Login = ({userID, onLogin, onLogout}) => {
       </>  
 
       :
-      <button onClick={onLogin}>Log in</button>    
+      <GoogleLoginButton onClick={onLogin} />
+
 /*       <FacebookLogin
         appId="970142087432030"
         autoLoad={false}

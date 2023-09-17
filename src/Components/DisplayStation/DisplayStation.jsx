@@ -3,6 +3,8 @@ import { React, useState, useRef } from "react";
 import {api_test_data} from "../../data/api_test_data"
 
 import "./display-station.css"
+import saved_preset from "../../assets/img/heart-solid.png"
+import not_saved_preset from "../../assets/img/heart-regular.png"
 
 const  DisplayStation = ({currentStation}) => {
 
@@ -17,9 +19,27 @@ const  DisplayStation = ({currentStation}) => {
   console.log(currentStation)
 
   return(
-    <div className="display-station__info">
-      <img className="display-station__logo" src={currentStation.favicon} alt={currentStation.name}/>
-      {currentStation.name}
+    <div className="display-station">
+      <div>
+        <img className="display-station__logo" src={currentStation.favicon} alt={currentStation.name}/>
+      </div>
+      <div className="display-station__info">
+        <div>
+          {currentStation.name}          
+        </div>
+        <div>
+          tags
+        </div>
+        <div>
+          <img
+            className= "display-station__hearticon"
+            src={not_saved_preset}
+            alt = "Station not a preset"/>
+        </div>
+
+      </div>
+      
+      
     </div>
   )
 }

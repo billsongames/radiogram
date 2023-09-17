@@ -1,6 +1,6 @@
-.display-station__info {
+.display-station {
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
   align-items: center;
   margin: 10px;
 
@@ -13,5 +13,18 @@
   width: 100px;
   height: 100px;
   object-fit: contain;
+}
 
+.display-station__info {
+  margin: 10px;
+  height: 100px;
+  display: flex;
+  flex-flow: column;
+  align-items: start;
+}
+
+.display-station__hearticon {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
 }

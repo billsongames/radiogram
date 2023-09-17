@@ -60,7 +60,7 @@ const Presets = ({userID, onStationLogoClick}) => {
               src={station.favicon}
               data-urlresolved={station.urlResolved}
               alt={station.name}
-              tags={station.tags}              
+//              tags={station.tags}              
               
               draggable="true"
               
