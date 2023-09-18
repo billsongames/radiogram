@@ -8,16 +8,17 @@ import "./radio-player.css"
 import 'react-h5-audio-player/lib/styles.css'
 
 
-const RadioPlayer = ({ currentStation, onStationTuned }) => {
+const RadioPlayer = ({ currentStation, onStationTuned, onPresetSaveButtonClicked }) => {
 
   return(
     <div className="radio-player">
-      <div className="display-station">
+      <div className="display-station-container">
         <DisplayStation
           currentStation={currentStation}
+          onPresetSaveButtonClicked={onPresetSaveButtonClicked}
         />
       </div>
-      <div className="audioplayer">
+      <div className="audioplayer-container">
         <AudioPlayer
           autoplay = {false}
           src = {currentStation.urlResolved}

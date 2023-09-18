@@ -1,6 +1,6 @@
 .display-station {
   display: flex;
-  flex-flow: row;
+  flex-direction: row;
   align-items: center;
   margin: 10px;
 
@@ -16,11 +16,9 @@
 }
 
 .display-station__info {
-  margin: 10px;
-  display: flex;
-  flex-flow: column;
-  align-items: start;
-  align-content: space-around;
+  margin: 0px 10px 0px 10px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .display-station__hearticon {

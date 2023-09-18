@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import Login from "./Login";
 
@@ -14,7 +13,7 @@ const months=["January", "February", "March", "April", "May", "June", "July", "A
 
 const dateString = `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
 
-const Header = ({ userID, handleLogin, handleLogout, handleStationLogoClick }) => {
+const Header = ({ userID, handleLogin, handleLogout }) => {
   return(
     <div className="header-container">
 

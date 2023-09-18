@@ -6,7 +6,7 @@ import "./display-station.css"
 import saved_preset from "../../assets/img/heart-solid.png"
 import not_saved_preset from "../../assets/img/heart-regular.png"
 
-const  DisplayStation = ({currentStation}) => {
+const  DisplayStation = ({currentStation, onPresetSaveButtonClicked}) => {
 
 /*   let tagWords = (currentStation.tags)
   console.log(tagWords)
@@ -16,7 +16,8 @@ const  DisplayStation = ({currentStation}) => {
   }
 
   const tags = tagWords.join(", ") */
-  console.log(currentStation)
+
+
 
   return(
     <div className="display-station">
@@ -34,7 +35,9 @@ const  DisplayStation = ({currentStation}) => {
           <img
             className= "display-station__hearticon"
             src={not_saved_preset}
-            alt = "Station not a preset"/>
+            alt = "Station not a preset"
+            onClick={onPresetSaveButtonClicked}
+            />
         </div>
 
       </div>

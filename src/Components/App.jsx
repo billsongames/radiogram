@@ -1,32 +1,35 @@
 import { React, useEffect, useState}  from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { RadioBrowserApi } from "radio-browser-api";
+
+//############
 
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import {auth} from "../backend/firebase"
+//import {auth} from "../backend/firebase"
 
 import { collection, query,  where, getCountFromServer, doc, setDoc } from "firebase/firestore";
 import {db} from "../backend/firebase"
+
+//############
 
 import Header from './Header/Header';
 import Tuner from './Tuner/Tuner';
 import Presets from './Presets/Presets';
 import RadioPlayer from './RadioPlayer/RadioPlayer';
 
+//############
+
 import radio_antenna from "../assets/img/radio_antenna.png"
 import tuning_static from "../assets/audio/tuning-radio-7150.mp3"
 import white_logo from "../assets/img/white.png"
 
+//############
+
 import './App.css';
-import Login from './Header/Login';
 import { api_test_data } from '../data/api_test_data';
-
-
 
 const staticPlayer = new Audio(tuning_static)
 staticPlayer.loop=(true)
 
-let staticIsPlaying = false
+//let staticIsPlaying = false
 
 
 
@@ -42,11 +45,6 @@ const App = () =>  {
     })
   const [newStation, setNewStation] = useState([])
 
-// FACEBOOK LOGIN  
-/*   const handleLogin = (response) => {
-    setUserID(response.id)
-  } */
-
   const handleLogin = () => {
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
@@ -57,8 +55,8 @@ const App = () =>  {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result
-      console.log(result)
       setUserID(result.user.email)
+
 
       //const user = result
 
@@ -87,7 +85,7 @@ const App = () =>  {
       return
     } else {
         staticPlayer.play()
-        staticIsPlaying = true
+//        staticIsPlaying = true
 
         setNewStation({
           name: event.target.name,
@@ -105,9 +103,16 @@ const App = () =>  {
 
   const handleStationTuned = () => {
     staticPlayer.pause()
-    staticIsPlaying = false
+//    staticIsPlaying = false
     setCurrentStation(newStation)
     }
+
+
+  const handlePresetSaveButtonClicked = () => {
+    alert("save clicked")
+  }  
+
+
 
 
 
@@ -123,7 +128,6 @@ const App = () =>  {
 // RUN THE QUERY
 
         const querySnapshot = await getCountFromServer(q)
-        console.log("Count = ", querySnapshot.data().count)
 
         if (querySnapshot.data().count === 0) {
           console.log("No user exists")
@@ -131,7 +135,6 @@ const App = () =>  {
             userID: `${userID}`,
             presets: [api_test_data[0],api_test_data[1],api_test_data[2]]
           })
-          console.log("user added")
         }
       }
     }    
@@ -144,6 +147,7 @@ const App = () =>  {
 
 
   return (
+    
     <div className='App'>
       <div className="top-section">
         <Header
@@ -156,6 +160,7 @@ const App = () =>  {
         <RadioPlayer
           currentStation = {currentStation}
           onStationTuned = {handleStationTuned}
+          onPresetSaveButtonClicked = {handlePresetSaveButtonClicked}
         />
         {userID
         ?
@@ -174,6 +179,7 @@ const App = () =>  {
         <></>
         }
     </div>
+    
   );
 }
 

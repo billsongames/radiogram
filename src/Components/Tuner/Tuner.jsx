@@ -137,7 +137,7 @@ const Tuner = ({onStationLogoClick}) => {
               src={station.favicon}
               data-urlresolved={station.urlResolved}
               alt={station.name}
-              tags={station.tags}              
+              data-tags={station.tags}              
               
               onError={SetDefaultSrc}            
             />
