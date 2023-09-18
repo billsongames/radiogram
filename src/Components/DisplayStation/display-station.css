@@ -17,10 +17,10 @@
 
 .display-station__info {
   margin: 10px;
-  height: 100px;
   display: flex;
   flex-flow: column;
   align-items: start;
+  align-content: space-around;
 }
 
 .display-station__hearticon {
