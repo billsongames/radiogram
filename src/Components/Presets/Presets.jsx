@@ -10,6 +10,8 @@ import default_station_logo from "../../assets/img/station_no_logo.png"
 import "./presets.css"
 
 
+
+
 const Presets = ({userID, onStationLogoClick}) => {
 
   const [presets, setPresets] = useState([])
@@ -17,6 +19,8 @@ const Presets = ({userID, onStationLogoClick}) => {
   const SetDefaultSrc = (event) => {
 		event.target.src = default_station_logo
 	};
+
+  
 
 /* const markupContent = `
   <span class="saved-station__entry">Helloooo</span>
@@ -78,7 +82,8 @@ const Presets = ({userID, onStationLogoClick}) => {
     </div>
 
   )
-
 }
+
+
 
 export default Presets

@@ -107,10 +107,9 @@ const App = () =>  {
     setCurrentStation(newStation)
     }
 
-
-  const handlePresetSaveButtonClicked = () => {
-    alert("save clicked")
-  }  
+  const handlePresetSaveClicked = () => {
+      alert("save clicked app")
+    }  
 
 
 
@@ -160,7 +159,7 @@ const App = () =>  {
         <RadioPlayer
           currentStation = {currentStation}
           onStationTuned = {handleStationTuned}
-          onPresetSaveButtonClicked = {handlePresetSaveButtonClicked}
+          onPresetSaveClicked={handlePresetSaveClicked}
         />
         {userID
         ?
@@ -174,7 +173,11 @@ const App = () =>  {
 
         {userID
         ?
-        <Presets userID={userID} onStationLogoClick={handleStationLogoClick}/>
+        <Presets
+          userID={userID}
+          onStationLogoClick={handleStationLogoClick}
+          onPresetSaveClicked={handlePresetSaveClicked}
+          />
         :
         <></>
         }

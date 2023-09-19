@@ -1,12 +1,12 @@
 import { React, useState, useRef } from "react";
-
+import {onPresetSaveButtonClicked} from "../Presets/Presets"
 import {api_test_data} from "../../data/api_test_data"
 
 import "./display-station.css"
 import saved_preset from "../../assets/img/heart-solid.png"
 import not_saved_preset from "../../assets/img/heart-regular.png"
 
-const  DisplayStation = ({currentStation, onPresetSaveButtonClicked}) => {
+const  DisplayStation = ({currentStation, onPresetSaveClicked}) => {
 
 /*   let tagWords = (currentStation.tags)
   console.log(tagWords)
@@ -36,7 +36,7 @@ const  DisplayStation = ({currentStation, onPresetSaveButtonClicked}) => {
             className= "display-station__hearticon"
             src={not_saved_preset}
             alt = "Station not a preset"
-            onClick={onPresetSaveButtonClicked}
+            onClick={onPresetSaveClicked}
             />
         </div>
 
