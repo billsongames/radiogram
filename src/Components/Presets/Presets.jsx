@@ -12,9 +12,9 @@ import "./presets.css"
 
 
 
-const Presets = ({userID, onStationLogoClick}) => {
+const Presets = ({userID, onStationLogoClick, presets}) => {
 
-  const [presets, setPresets] = useState([])
+//  const [presets, setPresets] = useState([])
 
   const SetDefaultSrc = (event) => {
 		event.target.src = default_station_logo
@@ -27,7 +27,7 @@ const Presets = ({userID, onStationLogoClick}) => {
   <span class="saved-station__entry">Helloooo</span>
   ` */
 
-  useEffect(() => {
+/*   useEffect(() => {
     async function populatePresets() {
       if (userID){
 
@@ -46,7 +46,7 @@ const Presets = ({userID, onStationLogoClick}) => {
     }    
 
     populatePresets()
-  }, [userID])
+  }, [userID]) */
 
 
 
@@ -59,6 +59,7 @@ const Presets = ({userID, onStationLogoClick}) => {
         {presets.map((station) => (
           <div className='preset__entry' key={station.id}  onClick ={onStationLogoClick}>
             <img
+              id={station.id}
               className="preset__logo"
               name={station.name}
               src={station.favicon}

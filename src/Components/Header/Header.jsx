@@ -2,7 +2,7 @@ import React from "react";
 
 import Login from "./Login";
 
-import rp_logo from "../../../src/assets/img/radio_player.png"
+import rp_logo from "../../../src/assets/img/logo_radiogram_1.png"
 
 import "./header.css"
 

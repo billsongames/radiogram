@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import { filters } from '../../data/filters';
 
-import default_station_logo from "../../assets/img/station_no_logo.png"
+import default_station_logo from "../../assets/img/station_no_logo_2.png"
 
 import "./tuner.css"
 
@@ -132,6 +132,7 @@ const Tuner = ({onStationLogoClick}) => {
         {tunerDisplayData.map((station) => (
           <div className='carousel-entry' key={station.id}  onClick ={onStationLogoClick}>
             <img
+              id={station.id}
               className="tuner-station__logo"
               name={station.name}
               src={station.favicon}

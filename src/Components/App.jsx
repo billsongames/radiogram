@@ -5,7 +5,7 @@ import { React, useEffect, useState}  from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 //import {auth} from "../backend/firebase"
 
-import { collection, query,  where, getCountFromServer, doc, setDoc } from "firebase/firestore";
+import { collection, query,  where, getCountFromServer, doc, setDoc, getDocs } from "firebase/firestore";
 import {db} from "../backend/firebase"
 
 //############
@@ -37,13 +37,16 @@ staticPlayer.loop=(true)
 const App = () =>  {
 
   const [userID, setUserID] = useState("")
-  const [presets, setPresets] = useState([])
+  const [tuned, setTuned] = useState(false)
   const [currentStation, setCurrentStation] = useState(
     {
       name: "Select a station...",
       favicon: white_logo
     })
   const [newStation, setNewStation] = useState([])
+  const [presets, setPresets] = useState([])
+
+
 
   const handleLogin = () => {
     const provider = new GoogleAuthProvider();
@@ -80,23 +83,28 @@ const App = () =>  {
   }
 
   const  handleStationLogoClick = event => {
-    console.log(event.target.tags)
+    console.log(event.target.dataset.tags)
     if (event.target.id === currentStation.id){
       return
     } else {
         staticPlayer.play()
+        setTuned(false)
 //        staticIsPlaying = true
 
         setNewStation({
+          id: event.target.id,
           name: event.target.name,
           favicon: event.target.src,
-          urlResolved: event.target.dataset.urlresolved
+          urlResolved: event.target.dataset.urlresolved,
+          tags: event.target.dataset.tags
         })
 
         setCurrentStation({
+          id: event.target.id,
           name: "Tuning...",
           favicon : radio_antenna,
-          urlResolved: event.target.dataset.urlresolved
+          urlResolved: event.target.dataset.urlresolved,
+          tags: event.target.dataset.tags
         })
       }
   }
@@ -105,12 +113,29 @@ const App = () =>  {
     staticPlayer.pause()
 //    staticIsPlaying = false
     setCurrentStation(newStation)
+    setTuned(true)
     }
 
-  const handlePresetSaveClicked = () => {
-      alert("save clicked app")
+  const handlePresetSaveClicked = (event, stationInfo) => {
+    event.preventDefault()
+      const newSavedPreset = {
+        id: currentStation.id,
+        name: currentStation.name,
+        favicon: currentStation.favicon,
+        urlResolved: currentStation.urlResolved,
+        tags: currentStation.tags
+      }
+
+      setPresets([...presets, newSavedPreset])
+      writePresets()
     }  
 
+  const writePresets = async () => {
+    await setDoc(doc(db, "users", userID), {
+      presets: presets
+    })
+    alert("preset saved")
+  }
 
 
 
@@ -142,6 +167,30 @@ const App = () =>  {
   }, [userID])
 
 
+  useEffect(() => {
+    async function populatePresets() {
+      if (userID){
+
+// CREATE THE QUERY TO GET MATCHING DB ENTRIES
+
+        const coll = collection(db, "users");
+        const q = query(coll, where("userID", "==", `${userID}`))
+        
+// RUN THE QUERY
+
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach((doc) => {
+          setPresets(doc.data().presets);
+        })
+      }
+    }    
+
+    populatePresets()
+  }, [userID])
+
+
+
+
 
 
 
@@ -157,9 +206,12 @@ const App = () =>  {
         />
         <Tuner onStationLogoClick = {handleStationLogoClick}/>
         <RadioPlayer
+          tuned={tuned}
+          userID={userID}
           currentStation = {currentStation}
           onStationTuned = {handleStationTuned}
           onPresetSaveClicked={handlePresetSaveClicked}
+          presets={presets}
         />
         {userID
         ?
@@ -174,7 +226,8 @@ const App = () =>  {
         {userID
         ?
         <Presets
-          userID={userID}
+//          userID={userID}
+          presets={presets}
           onStationLogoClick={handleStationLogoClick}
           onPresetSaveClicked={handlePresetSaveClicked}
           />
