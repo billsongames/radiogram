@@ -5,7 +5,7 @@ import { React, useEffect, useState}  from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 //import {auth} from "../backend/firebase"
 
-import { collection, query,  where, getCountFromServer, doc, setDoc, getDocs } from "firebase/firestore";
+import { collection, get, query,  where, getCountFromServer, doc, setDoc, getDocs, documentId } from "firebase/firestore";
 import {db} from "../backend/firebase"
 
 //############
@@ -116,7 +116,7 @@ const App = () =>  {
     setTuned(true)
     }
 
-  const handlePresetSaveClicked = (event, stationInfo) => {
+  const handlePresetSaveClicked = async (event, stationInfo) => {
     event.preventDefault()
       const newSavedPreset = {
         id: currentStation.id,
@@ -127,27 +127,21 @@ const App = () =>  {
       }
 
       setPresets([...presets, newSavedPreset])
-      writePresets()
-    }  
+  }  
 
-  const writePresets = async () => {
-    await setDoc(doc(db, "users", userID), {
-      presets: presets
-    })
-    alert("preset saved")
-  }
+  
 
 
 
 
   useEffect(() => {
     async function checkIfUserExists() {
-      if (userID){
+      if (userID) {
 
 // CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
 
-        const coll = collection(db, "users");
-        const q = query(coll, where("userID", "==", `${userID}`))
+        const coll = collection(db, "users")
+        const q = query(coll, where(documentId(), "==", `${userID}`))
         
 // RUN THE QUERY
 
@@ -155,26 +149,26 @@ const App = () =>  {
 
         if (querySnapshot.data().count === 0) {
           console.log("No user exists")
-          await setDoc(doc(coll), {
-            userID: `${userID}`,
-            presets: [api_test_data[0],api_test_data[1],api_test_data[2]]
+          await setDoc(doc(coll, `${userID}`), {
+            presets: [api_test_data[0]]
           })
         }
       }
-    }    
+    }  
 
     checkIfUserExists()
   }, [userID])
 
 
   useEffect(() => {
-    async function populatePresets() {
-      if (userID){
+    const timer = setTimeout(() => {
+      async function populatePresets() {
+        if (userID){
 
 // CREATE THE QUERY TO GET MATCHING DB ENTRIES
 
         const coll = collection(db, "users");
-        const q = query(coll, where("userID", "==", `${userID}`))
+        const q = query(coll, `${userID}`)
         
 // RUN THE QUERY
 
@@ -186,8 +180,33 @@ const App = () =>  {
     }    
 
     populatePresets()
+  }, 500)
+  return () => clearTimeout(timer)
   }, [userID])
 
+
+
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      async function writePresets() {
+        if (userID){
+
+          // CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
+          
+          const coll = collection(db, "users");
+          const q = query(coll, `${userID}`)
+                  
+          // RUN THE QUERY
+          await setDoc(doc(coll, `${userID}`), {
+            presets: presets
+          })
+        }
+      }
+      writePresets()
+    }, 1000)
+    return () => clearTimeout(timer)
+    },[userID, presets])
 
 
 
