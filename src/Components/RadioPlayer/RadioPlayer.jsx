@@ -8,7 +8,7 @@ import "./radio-player.css"
 import 'react-h5-audio-player/lib/styles.css'
 
 
-const RadioPlayer = ({ tuned, userID, currentStation, onStationTuned, presets, onPresetSaveClicked }) => {
+const RadioPlayer = ({ tuned, userID, currentStation, onStationTuned, onPaused, presets, onPresetSaveClicked }) => {
 
   return(
     <div className="radio-player">
@@ -39,6 +39,7 @@ const RadioPlayer = ({ tuned, userID, currentStation, onStationTuned, presets, o
             ]}
           customProgressBarSection = {[]}
           onPlaying = {onStationTuned}
+          onPause={onPaused}
         />        
       </div>  
     </div>  

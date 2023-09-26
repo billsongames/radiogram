@@ -27,12 +27,13 @@ import white_logo from "../assets/img/white.png"
 import './App.css';
 import { api_test_data } from '../data/api_test_data';
 import Joint_800px from './Joints/Joint800px';
+import EQ from './DisplayStation/EQ';
 
 const staticPlayer = new Audio(tuning_static)
 staticPlayer.loop=(true)
 
-//let staticIsPlaying = false
-
+const defaultFirstAnimValue = 2
+const zeroFirstAnimValue = 0
 
 
 
@@ -48,7 +49,7 @@ const App = () =>  {
   const [newStation, setNewStation] = useState([])
   const [presets, setPresets] = useState([])
 
-
+  const r = document.querySelector(':root');
 
   const handleLogin = () => {
     const provider = new GoogleAuthProvider();
@@ -91,6 +92,7 @@ const App = () =>  {
     } else {
         staticPlayer.play()
         setTuned(false)
+        r.style.setProperty("--first-anim-value", `${zeroFirstAnimValue}s`)
 //        staticIsPlaying = true
 
         setNewStation({
@@ -116,7 +118,12 @@ const App = () =>  {
 //    staticIsPlaying = false
     setCurrentStation(newStation)
     setTuned(true)
+    r.style.setProperty("--first-anim-value", `${defaultFirstAnimValue}s`)
     }
+
+  const handlePaused = () => {
+    r.style.setProperty("--first-anim-value", `${zeroFirstAnimValue}s`)
+  }
 
   const handlePresetSaveClicked = async (event, stationInfo) => {
     event.preventDefault()
@@ -229,14 +236,28 @@ const App = () =>  {
 
         <Joint800px/>
 
-        <RadioPlayer
-          tuned={tuned}
-          userID={userID}
-          currentStation = {currentStation}
-          onStationTuned = {handleStationTuned}
-          onPresetSaveClicked={handlePresetSaveClicked}
-          presets={presets}
-        />
+        <div className='middle-section'>
+          <div className='eq_graph'>
+            <EQ/>
+          </div>
+
+          <RadioPlayer
+            tuned={tuned}
+            userID={userID}
+            currentStation = {currentStation}
+            onStationTuned = {handleStationTuned}
+            onPaused = {handlePaused}
+            onPresetSaveClicked={handlePresetSaveClicked}
+            presets={presets}
+          />
+
+          <div className='eq_graph'>
+            <EQ/>
+          </div>
+
+        </div>
+
+
       </div>
 
       <Joint800px/>
