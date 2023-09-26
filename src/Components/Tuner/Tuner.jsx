@@ -80,7 +80,7 @@ const Tuner = ({onStationLogoClick}) => {
   };
 
   const api = new RadioBrowserApi("BG Radio App")
-  api.setBaseUrl('https://at1.api.radio-browser.info/')
+  api.setBaseUrl('https://de1.api.radio-browser.info/')
 
   const setupAPI = useCallback(async (stationFilter) => {
     return api.searchStations(stationFilter)
@@ -97,7 +97,27 @@ const Tuner = ({onStationLogoClick}) => {
 
 
   return (
-    <div className='tuner'>
+    <div className='tuner__container'>
+      <div className='tuner__title'>
+        <div>
+          RADIOGRAM STEREO TUNER - 150620
+        </div>
+        <div>
+        <form className='tuner__search-form' onSubmit={handleSearchByNameSubmit}>
+          <input
+            className='search-form__input'
+            type='text'
+            placeholder='Search station names...'
+            value={searchByNameFilter}
+            onChange={handleSearchByNameInput}
+          />
+          <button className='search-form__button' type='submit'>Go</button>  
+        </form>
+      </div>
+        
+      </div>
+      <div className='tuner__main'>
+
 
 {/* ### FILTERS ###   */}
 
@@ -149,25 +169,8 @@ const Tuner = ({onStationLogoClick}) => {
         ))}
         </Carousel>
       </div>
-
-
-
-{/* #### SEARCH BY NAME ####   */}
-
-      <div>
-        <form className='search-form' onSubmit={handleSearchByNameSubmit}>
-          <input
-            className='search-form__input'
-            type='text'
-            placeholder='Search station names...'
-            value={searchByNameFilter}
-            onChange={handleSearchByNameInput}
-          />
-          <button className='search-form__button' type='submit'>Search</button>  
-        </form>
-      </div>
     </div>
-
+    </div>
   )
 }
 

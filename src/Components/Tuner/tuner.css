@@ -1,23 +1,55 @@
-.tuner {
+.tuner__container {
+  width: 1000px;
+  margin: auto;
+  background-image: url("../../assets/img/bg_tuner.png");
+  border: 4px;
+  border-style: solid;
+  border-radius: 12px;
+
+}
+
+.tuner__main {
+  width: 1000px;
+  margin: auto;
   padding: 6px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.tuner__title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1000px;
+  margin: auto;
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 4px;
+  color: whitesmoke;
+}
+
+.tuner__search-form{
+  padding: 4px
+}
+
 .tuner-carousel {
   margin: auto;
-  width: 60%;
+  width: 1000px;
   height: 140px;
 }
 
 .carousel-entry {
+  width: 120px;
+  height: 120px;
   padding: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   z-index: 32;
+  cursor: pointer;
 }
 
 .carousel-entry:hover{
@@ -26,14 +58,15 @@
 }
 
 .tuner-station__logo {
-  padding: 4px;
   width: 80px;
   height: 80px;
   object-fit: contain;
+  border-radius: 8px;  
 }
 
 .tuner-station__name {
-  font-size: 12px;
+  font-size: 14px;
+  color: whitesmoke;
 }
 
 .tuner-filter__container {
@@ -45,6 +78,9 @@
 }
 
 .tuner-filter__item {
+  font-size: 14px;
+  color: whitesmoke;
   padding: 4px 10px;
+  cursor: pointer
 }
 
