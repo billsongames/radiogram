@@ -1,5 +1,7 @@
 import { React, useState, useEffect } from "react";
 
+import EQ from "./EQ"
+
 import {api_test_data} from "../../data/api_test_data"
 
 import "./display-station.css"
@@ -67,7 +69,7 @@ const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, pr
 
 
   return(
-    <div className="display-station">
+    <div className="display-station-container">      
       <div>
         <img className="display-station__logo" id={currentStation.id} src={currentStation.favicon} alt={currentStation.name}/>
       </div>
@@ -75,9 +77,8 @@ const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, pr
         <div>
           {currentStation.name}          
         </div>
-        <div>
-          tags
-        </div>
+        
+
         <div>
           {save_info_jsx}
         </div>

@@ -14,6 +14,7 @@ import Header from './Header/Header';
 import Tuner from './Tuner/Tuner';
 import Presets from './Presets/Presets';
 import RadioPlayer from './RadioPlayer/RadioPlayer';
+import Joint800px from './Joints/Joint800px'
 
 //############
 
@@ -25,6 +26,7 @@ import white_logo from "../assets/img/white.png"
 
 import './App.css';
 import { api_test_data } from '../data/api_test_data';
+import Joint_800px from './Joints/Joint800px';
 
 const staticPlayer = new Audio(tuning_static)
 staticPlayer.loop=(true)
@@ -150,7 +152,7 @@ const App = () =>  {
         if (querySnapshot.data().count === 0) {
           console.log("No user exists")
           await setDoc(doc(coll, `${userID}`), {
-            presets: [api_test_data[0]]
+            presets: []
           })
         }
       }
@@ -224,6 +226,9 @@ const App = () =>  {
           handleStationLogoClick={handleStationLogoClick}
         />
         <Tuner onStationLogoClick = {handleStationLogoClick}/>
+
+        <Joint800px/>
+
         <RadioPlayer
           tuned={tuned}
           userID={userID}
@@ -232,15 +237,9 @@ const App = () =>  {
           onPresetSaveClicked={handlePresetSaveClicked}
           presets={presets}
         />
-        {userID
-        ?
-        <div className="presets__title">
-          PRESETS
-        </div>
-        :
-        <></>          
-        }
       </div>
+
+      <Joint800px/>
 
         {userID
         ?

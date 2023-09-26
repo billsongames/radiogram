@@ -55,6 +55,9 @@ const Presets = ({userID, onStationLogoClick, presets}) => {
   
   return(
     <div className='presets-container'>
+      <div className="presets__title">
+        PRESETS
+      </div>
       <div className="presets__grid" >
         {presets.map((station) => (
           <div className='preset__entry' key={station.id}  onClick ={onStationLogoClick}>
@@ -81,7 +84,6 @@ const Presets = ({userID, onStationLogoClick, presets}) => {
 
       </div>
     </div>
-
   )
 }
 

@@ -137,7 +137,11 @@ const Tuner = ({onStationLogoClick}) => {
               })                
             }
           >
-            {filter}  
+            <button type="button" className="filter__button">
+              <div className="filter__button-top">{filter} </div>
+              <div className="filter__button-bottom"></div>
+              <div className="filter__button-base"></div>
+            </button> 
           </div>
           ))}
       </div>
@@ -163,13 +167,18 @@ const Tuner = ({onStationLogoClick}) => {
               onError={SetDefaultSrc}            
             />
             <div className='tuner-station__name'>
-              {station.name}
+              {station.name.length > 28
+              ?
+              `${station.name.substring(0,28)}...`
+              :
+              station.name}
             </div>
           </div>
         ))}
         </Carousel>
       </div>
     </div>
+    
     </div>
   )
 }
