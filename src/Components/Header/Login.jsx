@@ -1,15 +1,20 @@
-import React from "react";
-import FacebookLogin from 'react-facebook-login';
+import { React } from "react";
 
-//970142087432030
+import GoogleButton from 'react-google-button'
+
+
+
 
 import "./login.css"
 
-import saved_stations from "../../data/api_test_data"
+
+//####################
+
+const Login = ({ userID, onLogin, onLogout}) => {
 
 
 
-const Login = ({userID, onLogin, onLogout}) => {
+  
   return(
     <div className="login">
       {userID
@@ -19,16 +24,8 @@ const Login = ({userID, onLogin, onLogout}) => {
           logged in
         </div>
       </>  
-
-      :    
-      <FacebookLogin
-        appId="970142087432030"
-        autoLoad={false}
-        fields="name,email,picture"
-        callback={onLogin}
-        cssClass="my-facebook-button-class"
-        cookie={true}
-      />
+      :
+      <GoogleButton onClick={onLogin} />
     }
   </div>
   )

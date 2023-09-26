@@ -1,5 +1,5 @@
 {
-  "name": "radioplayer",
+  "name": "radiogram-150620",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,12 +7,15 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@tippyjs/react": "^4.2.6",
+    "firebase": "^10.4.0",
+    "firebase-admin": "^11.10.1",
     "interweave": "^13.1.0",
     "node-fetch": "^3.3.1",
     "radio-browser-api": "^6.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-facebook-login": "^4.1.1",
+    "react-google-button": "^0.7.2",
     "react-h5-audio-player": "^3.8.6",
     "react-icons": "^4.10.1",
     "react-multi-carousel": "^2.8.4",
@@ -24,7 +27,8 @@
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "nodemon src/server/server.js"
   },
   "eslintConfig": {
     "extends": [

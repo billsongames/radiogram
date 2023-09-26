@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import { filters } from '../../data/filters';
 
-import default_station_logo from "../../assets/img/station_no_logo.png"
+import default_station_logo from "../../assets/img/station_no_logo_2.png"
 
 import "./tuner.css"
 
@@ -59,9 +59,6 @@ const Tuner = ({onStationLogoClick}) => {
 		event.target.src = default_station_logo
 	};
 
-
-
-
   const handleSearchByNameInput = (event) => {
     setSearchByNameFilter(event.target.value);
   };
@@ -83,7 +80,7 @@ const Tuner = ({onStationLogoClick}) => {
   };
 
   const api = new RadioBrowserApi("BG Radio App")
-  api.setBaseUrl('https://at1.api.radio-browser.info/')
+  api.setBaseUrl('https://de1.api.radio-browser.info/')
 
   const setupAPI = useCallback(async (stationFilter) => {
     return api.searchStations(stationFilter)
@@ -93,7 +90,6 @@ const Tuner = ({onStationLogoClick}) => {
   useEffect(() => {
     setupAPI(stationFilter)
     .then((data) => setTunerDisplayData(data))
-    .then(console.log(tunerDisplayData))
     .catch(error => {console.log(error)})
   }, [setupAPI, stationFilter])
 
@@ -101,7 +97,27 @@ const Tuner = ({onStationLogoClick}) => {
 
 
   return (
-    <div className='tuner'>
+    <div className='tuner__container'>
+      <div className='tuner__title'>
+        <div>
+          RADIOGRAM STEREO TUNER - 150620
+        </div>
+        <div>
+        <form className='tuner__search-form' onSubmit={handleSearchByNameSubmit}>
+          <input
+            className='search-form__input'
+            type='text'
+            placeholder='Search station names...'
+            value={searchByNameFilter}
+            onChange={handleSearchByNameInput}
+          />
+          <button className='search-form__button' type='submit'>Go</button>  
+        </form>
+      </div>
+        
+      </div>
+      <div className='tuner__main'>
+
 
 {/* ### FILTERS ###   */}
 
@@ -134,14 +150,15 @@ const Tuner = ({onStationLogoClick}) => {
           >
 
         {tunerDisplayData.map((station) => (
-          <div className='carousel-entry' key={station.urlResolved}  onClick ={onStationLogoClick}>
+          <div className='carousel-entry' key={station.id}  onClick ={onStationLogoClick}>
             <img
+              id={station.id}
               className="tuner-station__logo"
-              id={station.urlResolved}
               name={station.name}
               src={station.favicon}
+              data-urlresolved={station.urlResolved}
               alt={station.name}
-              tags={station.tags}
+              data-tags={station.tags}              
               
               onError={SetDefaultSrc}            
             />
@@ -152,25 +169,8 @@ const Tuner = ({onStationLogoClick}) => {
         ))}
         </Carousel>
       </div>
-
-
-
-{/* #### SEARCH BY NAME ####   */}
-
-      <div>
-        <form className='search-form' onSubmit={handleSearchByNameSubmit}>
-          <input
-            className='search-form__input'
-            type='text'
-            placeholder='Search station names...'
-            value={searchByNameFilter}
-            onChange={handleSearchByNameInput}
-          />
-          <button className='search-form__button' type='submit'>Search</button>  
-        </form>
-      </div>
     </div>
-
+    </div>
   )
 }
 

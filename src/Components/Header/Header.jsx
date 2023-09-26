@@ -1,10 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import Login from "./Login";
-import SavedStations from "./SavedStations";
 
-import rp_logo from "../../../src/assets/img/radio_player.png"
+import rp_logo from "../../../src/assets/img/logo_radiogram_1.png"
 
 import "./header.css"
 
@@ -15,7 +13,7 @@ const months=["January", "February", "March", "April", "May", "June", "July", "A
 
 const dateString = `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
 
-const Header = ({ userID, handleLogin, handleLogout, handleStationLogoClick }) => {
+const Header = ({ userID, handleLogin, handleLogout }) => {
   return(
     <div className="header-container">
 
