@@ -32,8 +32,9 @@ import EQ from './DisplayStation/EQ';
 const staticPlayer = new Audio(tuning_static)
 staticPlayer.loop=(true)
 
-const defaultFirstAnimValue = 2
-const zeroFirstAnimValue = 0
+const defaultAnimValue = 2
+const tuningAnimValue = 0.4
+const zeroAnimValue = 0
 
 
 
@@ -48,8 +49,10 @@ const App = () =>  {
     })
   const [newStation, setNewStation] = useState([])
   const [presets, setPresets] = useState([])
-
+  
   const r = document.querySelector(':root');
+
+
 
   const handleLogin = () => {
     const provider = new GoogleAuthProvider();
@@ -92,7 +95,7 @@ const App = () =>  {
     } else {
         staticPlayer.play()
         setTuned(false)
-        r.style.setProperty("--first-anim-value", `${zeroFirstAnimValue}s`)
+        r.style.setProperty("--first-anim-value", `${tuningAnimValue}s`)
 //        staticIsPlaying = true
 
         setNewStation({
@@ -118,11 +121,11 @@ const App = () =>  {
 //    staticIsPlaying = false
     setCurrentStation(newStation)
     setTuned(true)
-    r.style.setProperty("--first-anim-value", `${defaultFirstAnimValue}s`)
+    r.style.setProperty("--first-anim-value", `${defaultAnimValue}s`)
     }
 
   const handlePaused = () => {
-    r.style.setProperty("--first-anim-value", `${zeroFirstAnimValue}s`)
+    r.style.setProperty("--first-anim-value", `${zeroAnimValue}s`)
   }
 
   const handlePresetSaveClicked = async (event, stationInfo) => {
@@ -136,7 +139,17 @@ const App = () =>  {
       }
 
       setPresets([...presets, newSavedPreset])
-  }  
+  }
+
+  const handlePresetRemoveClicked =(event) => {
+    event.preventDefault()
+    const indexOfPreset = presets.findIndex(preset =>
+      preset.id === event.target.id)
+    
+    setPresets(prev => {
+      return prev.filter((_, i) => i !== indexOfPreset)
+    })  
+  }
 
   
 
@@ -248,6 +261,7 @@ const App = () =>  {
             onStationTuned = {handleStationTuned}
             onPaused = {handlePaused}
             onPresetSaveClicked={handlePresetSaveClicked}
+            onPresetRemoveClicked={handlePresetRemoveClicked}
             presets={presets}
           />
 

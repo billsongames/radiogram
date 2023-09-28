@@ -9,7 +9,7 @@ import saved_preset from "../../assets/img/heart-solid.png"
 import not_saved_preset from "../../assets/img/heart-regular.png"
 
 
-const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, presets}) => {
+const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, onPresetRemoveClicked, presets}) => {
   const [alreadyPreset, setAlreadyPreset] = useState(0)
 
 /*   let tagWords = (currentStation.tags)
@@ -48,10 +48,12 @@ const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, pr
   } else if (userID && tuned === true && alreadyPreset >= 0) {
     save_info_jsx = (
       <img
+        id={currentStation.id}
         className= "display-station__hearticon"
         src={saved_preset}
         alt = "Station saved as preset"
-//        onClick={onPresetSaveClicked}
+        data-alreadyPreset = {currentStation.id}
+        onClick={onPresetRemoveClicked}
       />
     )  
   } else if (userID && tuned === false) {

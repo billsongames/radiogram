@@ -77,6 +77,7 @@ const Presets = ({userID, onStationLogoClick, presets}) => {
             <div className='preset__name'>
               {station.name}
             </div>
+
           </div>
         ))}
 
