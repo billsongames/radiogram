@@ -12,20 +12,12 @@ import not_saved_preset from "../../assets/img/heart-regular.png"
 const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, onPresetRemoveClicked, presets}) => {
   const [alreadyPreset, setAlreadyPreset] = useState(0)
 
-/*   let tagWords = (currentStation.tags)
-  console.log(tagWords)
-
-  for (let i=0; i<tagWords.length; i++) {
-    tagWords[i] = tagWords[i][0].toUpperCase() + tagWords[i].substring(1)
-  }
-
-  const tags = tagWords.join(", ") */
   const stationInfo = {
     id: currentStation.id,
     name: currentStation.name,
     favicon: currentStation.favicon,
     urlResolved: currentStation.urlResolved,
-    tags: currentStation.tags
+//    tags: currentStation.tags
   }
 
   useEffect(() => {
@@ -52,7 +44,7 @@ const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, on
         className= "display-station__hearticon"
         src={saved_preset}
         alt = "Station saved as preset"
-        data-alreadyPreset = {currentStation.id}
+//        data-alreadypreset = {currentStation.id}
         onClick={onPresetRemoveClicked}
       />
     )  
@@ -76,7 +68,7 @@ const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, on
         <img className="display-station__logo" id={currentStation.id} src={currentStation.favicon} alt={currentStation.name}/>
       </div>
       <div className="display-station__info">
-        <div>
+        <div className="display-station__name">
           {currentStation.name}          
         </div>
         

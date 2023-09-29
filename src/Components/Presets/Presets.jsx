@@ -22,37 +22,7 @@ const Presets = ({userID, onStationLogoClick, presets}) => {
 
   
 
-/* const markupContent = `
-  <span class="saved-station__entry">Helloooo</span>
-  <span class="saved-station__entry">Helloooo</span>
-  ` */
 
-/*   useEffect(() => {
-    async function populatePresets() {
-      if (userID){
-
-// CREATE THE QUERY TO GET MATCHING DB ENTRIES
-
-        const coll = collection(db, "users");
-        const q = query(coll, where("userID", "==", `${userID}`))
-        
-// RUN THE QUERY
-
-        const querySnapshot = await getDocs(q)
-        querySnapshot.forEach((doc) => {
-          setPresets(doc.data().presets);
-        })
-      }
-    }    
-
-    populatePresets()
-  }, [userID]) */
-
-
-
-
-
-  
   return(
     <div className='presets-container'>
       <div className="presets__title">
@@ -60,22 +30,25 @@ const Presets = ({userID, onStationLogoClick, presets}) => {
       </div>
       <div className="presets__grid" >
         {presets.map((station) => (
-          <div className='preset__entry' key={station.id}  onClick ={onStationLogoClick}>
+          <div className='preset__entry' key={station.id}>
             <img
               id={station.id}
               className="preset__logo"
               name={station.name}
               src={station.favicon}
               data-urlresolved={station.urlResolved}
-              alt={station.name}
-//              tags={station.tags}              
-              
-              draggable="true"
+              alt={station.name}           
+              draggable="false"
+              onClick ={onStationLogoClick}
               
               onError={SetDefaultSrc}            
             />
             <div className='preset__name'>
-              {station.name}
+              {station.name.length > 28
+              ?
+              `${station.name.substring(0,28)}...`
+              :
+              station.name}
             </div>
 
           </div>

@@ -28,7 +28,7 @@
 }
 
 .tuner__search-form{
-  padding: 4px
+  padding: 0px 10px
 }
 
 .tuner-carousel {
@@ -40,14 +40,14 @@
 
 .carousel-entry {
   width: 100px;
-  height: 120px;
+  height: 125px;
   padding: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   z-index: 32;
-  cursor: pointer;
+
 }  
 
 .carousel-entry:hover{
@@ -59,7 +59,8 @@
   width: 80px;
   height: 80px;
   object-fit: contain;
-  border-radius: 8px;  
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .tuner-station__name {

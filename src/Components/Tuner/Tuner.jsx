@@ -80,7 +80,9 @@ const Tuner = ({onStationLogoClick}) => {
   };
 
   const api = new RadioBrowserApi("BG Radio App")
-  api.setBaseUrl('https://de1.api.radio-browser.info/')
+//api.setBaseUrl('https://de1.api.radio-browser.info/')
+//api.setBaseUrl('https://at1.api.radio-browser.info')
+  api.setBaseUrl('https://nl1.api.radio-browser.info')
 
   const setupAPI = useCallback(async (stationFilter) => {
     return api.searchStations(stationFilter)
@@ -154,7 +156,7 @@ const Tuner = ({onStationLogoClick}) => {
           >
 
         {tunerDisplayData.map((station) => (
-          <div className='carousel-entry' key={station.id}  onClick ={onStationLogoClick}>
+          <div className='carousel-entry' key={station.id}>
             <img
               id={station.id}
               className="tuner-station__logo"
@@ -162,7 +164,8 @@ const Tuner = ({onStationLogoClick}) => {
               src={station.favicon}
               data-urlresolved={station.urlResolved}
               alt={station.name}
-              data-tags={station.tags}              
+//              data-tags={station.tags}
+              onClick ={onStationLogoClick}           
               
               onError={SetDefaultSrc}            
             />

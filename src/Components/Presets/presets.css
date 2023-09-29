@@ -18,19 +18,18 @@
   margin: auto;
   width: 900px;
   display: grid;
-  grid-template-columns: repeat(6, 150px);
-  grid-template-rows: repeat(2, 100px);
+  grid-template-columns: repeat(8, 110px);
+  grid-template-rows: repeat(2, 80px);
   justify-content: center;
 }
 
 .preset__entry {
-  width: 150px;
-  height: 100px;
+  width: 100px;
+  height: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  cursor: pointer
 }
 
 .preset__entry:hover{
@@ -44,6 +43,7 @@
   height: 40px;
   object-fit: contain;
   border-radius: 8px;
+  cursor: pointer
 }
 
 .preset__name {

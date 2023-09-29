@@ -27,8 +27,17 @@
   font-size: 14px;
 }
 
+.display-station__name {
+  font-weight: bold;
+}
+
 .display-station__hearticon {
   height: 32px;
   width: 32px;
   object-fit: contain;
 }
+
+.display-station__hearticon:hover {
+  scale: 1.2;
+  transition-duration: 0.5s;
+}  
