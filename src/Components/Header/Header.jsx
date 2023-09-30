@@ -2,7 +2,7 @@ import React from "react";
 
 import Login from "./Login";
 
-import rp_logo from "../../../src/assets/img/logo_radiogram_1.png"
+import rp_logo from "../../../src/assets/img/logo_radiogram_1_40pc.png"
 
 import "./header.css"
 
@@ -17,9 +17,9 @@ const Header = ({ userID, handleLogin, handleLogout }) => {
   return(
     <div className="header-container">
 
-      <div className="header__date">
+{/*       <div className="header__date">
         {dateString}
-      </div>
+      </div> */}
 
       <div className="header__logo">        
         <img src={rp_logo} alt="RadioPlayer logo"/>

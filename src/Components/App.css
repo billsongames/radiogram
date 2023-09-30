@@ -5,8 +5,8 @@
 
 .middle-section {
   width: 950px;
-  height: 288px;
-  background-image: url("../assets/img/bg_tuner-surround.png");
+  height: 250px;
+  background-image: url("../assets/img/bg_tuner-surround_2.png");
   margin: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);

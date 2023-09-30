@@ -1,6 +1,7 @@
 .header-container {
   margin: auto;
   width: 900px;
+  height: 50px;
   padding: 4px;
   display: grid;
   grid-auto-flow: column;
@@ -12,8 +13,7 @@
 }
 
 .header__logo {
-  margin: auto;
-  scale: 60%
+  scale: 100%
 }
 
 .header__login {

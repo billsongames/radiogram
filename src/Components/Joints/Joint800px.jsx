@@ -1,5 +1,5 @@
 import React from "react";
-import joint800px from "../../assets/img/bg_joint_800px.png"
+import joint800px from "../../assets/img/joint/bg_joint_800px.png"
 
 import "./joints.css"
 
