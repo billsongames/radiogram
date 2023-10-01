@@ -154,7 +154,7 @@ const App = () =>  {
     })  
   }
 
-  const handleError = () => {
+  const handleTuningError = () => {
     staticPlayer.pause()
     setCurrentStation({
       name: "ERROR TUNING STATION...",
@@ -265,9 +265,28 @@ const App = () =>  {
           handleLogout={handleLogout}
           handleStationLogoClick={handleStationLogoClick}
         />
+
+        <Joint800px/>
+
         <Tuner onStationLogoClick = {handleStationLogoClick}/>
 
         <Joint800px/>
+
+        {userID
+        ?
+        <>
+        <Presets
+//          userID={userID}
+          presets={presets}
+          onStationLogoClick={handleStationLogoClick}
+          onPresetSaveClicked={handlePresetSaveClicked}
+          />
+
+          <Joint800px/>
+          </>
+        :
+        <></>
+        }
 
         <div className='middle-section'>
           <div className='eq_graph'>
@@ -280,7 +299,7 @@ const App = () =>  {
             currentStation = {currentStation}
             onStationTuned = {handleStationTuned}
             onPaused = {handlePaused}
-            onError = {handleError}
+            onError = {handleTuningError}
             onPresetSaveClicked={handlePresetSaveClicked}
             onPresetRemoveClicked={handlePresetRemoveClicked}
             presets={presets}
@@ -295,19 +314,6 @@ const App = () =>  {
 
       </div>
 
-      <Joint800px/>
-
-        {userID
-        ?
-        <Presets
-//          userID={userID}
-          presets={presets}
-          onStationLogoClick={handleStationLogoClick}
-          onPresetSaveClicked={handlePresetSaveClicked}
-          />
-        :
-        <></>
-        }
     </div>
     
   );
