@@ -2,10 +2,9 @@ import {React, useEffect, useState} from "react";
 import { Markup } from 'interweave';
 
 import { collection, query,  where, getCountFromServer, getDocs, setDoc } from "firebase/firestore";
-import {db} from "../../backend/firebase"
+import {db} from "../../../backend/firebase"
 
-import { api_test_data } from "../../data/api_test_data";
-import default_station_logo from "../../assets/img/station_no_logo.png"
+import default_station_logo from "../../../assets/img/station_no_logo.png"
 
 import "./presets.css"
 

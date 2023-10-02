@@ -1,9 +1,10 @@
 .App {
+  padding: 4px
 }
 
 
 
-.middle-section {
+.eq-player-section {
   width: 950px;
   height: 250px;
   background-image: url("../assets/img/bg_tuner-surround_2.png");

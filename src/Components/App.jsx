@@ -11,9 +11,9 @@ import {db} from "../backend/firebase"
 //############
 
 import Header from './Header/Header';
-import Tuner from './Tuner/Tuner';
-import Presets from './Presets/Presets';
-import RadioPlayer from './RadioPlayer/RadioPlayer';
+import Tuner from './Radio/Tuner/Tuner';
+import Presets from './Radio/Presets/Presets';
+import RadioPlayer from './Radio/RadioPlayer/RadioPlayer';
 import Joint800px from './Joints/Joint800px'
 
 //############
@@ -28,7 +28,7 @@ import white_logo from "../assets/img/white.png"
 import './App.css';
 import { api_test_data } from '../data/api_test_data';
 import Joint_800px from './Joints/Joint800px';
-import EQ from './DisplayStation/EQ';
+import EQ from './Radio/DisplayStation/EQ';
 
 const staticPlayer = new Audio(tuning_static)
 staticPlayer.loop=(true)
@@ -268,27 +268,8 @@ const App = () =>  {
 
         <Joint800px/>
 
-        <Tuner onStationLogoClick = {handleStationLogoClick}/>
-
-        <Joint800px/>
-
-        {userID
-        ?
-        <>
-        <Presets
-//          userID={userID}
-          presets={presets}
-          onStationLogoClick={handleStationLogoClick}
-          onPresetSaveClicked={handlePresetSaveClicked}
-          />
-
-          <Joint800px/>
-          </>
-        :
-        <></>
-        }
-
-        <div className='middle-section'>
+        <div className='eq-player-section'>
+          
           <div className='eq_graph'>
             <EQ/>
           </div>
@@ -310,6 +291,32 @@ const App = () =>  {
           </div>
 
         </div>
+
+        <Joint800px/>
+
+        <Tuner onStationLogoClick = {handleStationLogoClick}/>
+
+        <Joint800px/>
+
+        {userID
+        ?
+        <>
+        <Presets
+//          userID={userID}
+          presets={presets}
+          onStationLogoClick={handleStationLogoClick}
+          onPresetSaveClicked={handlePresetSaveClicked}
+          />
+
+          <Joint800px/>
+          </>
+        :
+        <></>
+        }
+
+
+
+
 
 
       </div>

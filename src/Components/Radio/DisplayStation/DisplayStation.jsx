@@ -2,11 +2,9 @@ import { React, useState, useEffect } from "react";
 
 import EQ from "./EQ"
 
-import {api_test_data} from "../../data/api_test_data"
-
 import "./display-station.css"
-import saved_preset from "../../assets/img/heart-solid.png"
-import not_saved_preset from "../../assets/img/heart-regular.png"
+import saved_preset from "../../../assets/img/heart-solid.png"
+import not_saved_preset from "../../../assets/img/heart-regular.png"
 
 
 const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, onPresetRemoveClicked, presets}) => {

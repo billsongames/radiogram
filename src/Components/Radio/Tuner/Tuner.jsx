@@ -4,9 +4,9 @@ import { RadioBrowserApi } from "radio-browser-api";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import { filters } from '../../data/filters';
+import { filters } from '../../../data/filters';
 
-import default_station_logo from "../../assets/img/station_no_logo_2.png"
+import default_station_logo from "../../../assets/img/station_no_logo_2.png"
 
 import "./tuner.css"
 
