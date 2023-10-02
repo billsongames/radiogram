@@ -11,13 +11,15 @@ import {db} from "../backend/firebase"
 //############
 
 import Header from './Header/Header';
-import Tuner from './Tuner/Tuner';
-import Presets from './Presets/Presets';
-import RadioPlayer from './RadioPlayer/RadioPlayer';
+import Tuner from './Radio/Tuner/Tuner';
+import Presets from './Radio/Presets/Presets';
+import RadioPlayer from './Radio/RadioPlayer/RadioPlayer';
+import Joint800px from './Joints/Joint800px'
 
 //############
 
 import radio_antenna from "../assets/img/radio_antenna.png"
+import error_tuning from "../assets/img/error_tuning.png"
 import tuning_static from "../assets/audio/tuning-radio-7150.mp3"
 import white_logo from "../assets/img/white.png"
 
@@ -25,12 +27,15 @@ import white_logo from "../assets/img/white.png"
 
 import './App.css';
 import { api_test_data } from '../data/api_test_data';
+import Joint_800px from './Joints/Joint800px';
+import EQ from './Radio/DisplayStation/EQ';
 
 const staticPlayer = new Audio(tuning_static)
 staticPlayer.loop=(true)
 
-//let staticIsPlaying = false
-
+const defaultAnimValue = 2
+const tuningAnimValue = 0.4
+const zeroAnimValue = 0
 
 
 
@@ -44,7 +49,10 @@ const App = () =>  {
       favicon: white_logo
     })
   const [newStation, setNewStation] = useState([])
+  const [backupStation, setBackupStation] = useState([])
   const [presets, setPresets] = useState([])
+  
+  const r = document.querySelector(':root');
 
 
 
@@ -78,17 +86,18 @@ const App = () =>  {
   }
 
   const handleLogout = () => {
-    window.FB.logout()
+    alert("logged out")
     setUserID("")
   }
 
-  const  handleStationLogoClick = event => {
-    console.log(event.target.dataset.tags)
+  const  handleStationLogoClick = (event) => {
+    event.preventDefault()
     if (event.target.id === currentStation.id){
       return
     } else {
         staticPlayer.play()
         setTuned(false)
+        r.style.setProperty("--first-anim-value", `${tuningAnimValue}s`)
 //        staticIsPlaying = true
 
         setNewStation({
@@ -96,7 +105,7 @@ const App = () =>  {
           name: event.target.name,
           favicon: event.target.src,
           urlResolved: event.target.dataset.urlresolved,
-          tags: event.target.dataset.tags
+//          tags: event.target.dataset.tags
         })
 
         setCurrentStation({
@@ -104,7 +113,7 @@ const App = () =>  {
           name: "Tuning...",
           favicon : radio_antenna,
           urlResolved: event.target.dataset.urlresolved,
-          tags: event.target.dataset.tags
+//          tags: event.target.dataset.tags
         })
       }
   }
@@ -113,8 +122,14 @@ const App = () =>  {
     staticPlayer.pause()
 //    staticIsPlaying = false
     setCurrentStation(newStation)
+    setBackupStation(newStation)
     setTuned(true)
+    r.style.setProperty("--first-anim-value", `${defaultAnimValue}s`)
     }
+
+  const handlePaused = () => {
+    r.style.setProperty("--first-anim-value", `${zeroAnimValue}s`)
+  }
 
   const handlePresetSaveClicked = async (event, stationInfo) => {
     event.preventDefault()
@@ -123,11 +138,36 @@ const App = () =>  {
         name: currentStation.name,
         favicon: currentStation.favicon,
         urlResolved: currentStation.urlResolved,
-        tags: currentStation.tags
+//        tags: currentStation.tags
       }
 
       setPresets([...presets, newSavedPreset])
-  }  
+  }
+
+  const handlePresetRemoveClicked =(event) => {
+    event.preventDefault()
+    const indexOfPreset = presets.findIndex(preset =>
+      preset.id === event.target.id)
+    
+    setPresets(prev => {
+      return prev.filter((_, i) => i !== indexOfPreset)
+    })  
+  }
+
+  const handleTuningError = () => {
+    staticPlayer.pause()
+    setCurrentStation({
+      name: "ERROR TUNING STATION...",
+      favicon : error_tuning,
+    })
+/*     const timer = setTimeout(() => {
+      setTuned(true)
+      setCurrentStation(backupStation)
+      console.log(backupStation)
+
+    },1000)
+    return () => clearTimeout(timer) */
+  }
 
   
 
@@ -150,7 +190,7 @@ const App = () =>  {
         if (querySnapshot.data().count === 0) {
           console.log("No user exists")
           await setDoc(doc(coll, `${userID}`), {
-            presets: [api_test_data[0]]
+            presets: []
           })
         }
       }
@@ -205,7 +245,9 @@ const App = () =>  {
       }
       writePresets()
     }, 1000)
+    console.log(presets)
     return () => clearTimeout(timer)
+
     },[userID, presets])
 
 
@@ -223,36 +265,62 @@ const App = () =>  {
           handleLogout={handleLogout}
           handleStationLogoClick={handleStationLogoClick}
         />
-        <Tuner onStationLogoClick = {handleStationLogoClick}/>
-        <RadioPlayer
-          tuned={tuned}
-          userID={userID}
-          currentStation = {currentStation}
-          onStationTuned = {handleStationTuned}
-          onPresetSaveClicked={handlePresetSaveClicked}
-          presets={presets}
-        />
-        {userID
-        ?
-        <div className="presets__title">
-          PRESETS
+
+        <Joint800px/>
+
+        <div className='eq-player-section'>
+          
+          <div className='eq_graph'>
+            <EQ/>
+          </div>
+
+          <RadioPlayer
+            tuned={tuned}
+            userID={userID}
+            currentStation = {currentStation}
+            onStationTuned = {handleStationTuned}
+            onPaused = {handlePaused}
+            onError = {handleTuningError}
+            onPresetSaveClicked={handlePresetSaveClicked}
+            onPresetRemoveClicked={handlePresetRemoveClicked}
+            presets={presets}
+          />
+
+          <div className='eq_graph'>
+            <EQ/>
+          </div>
+
         </div>
-        :
-        <></>          
-        }
-      </div>
+
+        <Joint800px/>
+
+        <Tuner onStationLogoClick = {handleStationLogoClick}/>
+
+        <Joint800px/>
 
         {userID
         ?
+        <>
         <Presets
 //          userID={userID}
           presets={presets}
           onStationLogoClick={handleStationLogoClick}
           onPresetSaveClicked={handlePresetSaveClicked}
           />
+
+          <Joint800px/>
+          </>
         :
         <></>
         }
+
+
+
+
+
+
+      </div>
+
     </div>
     
   );

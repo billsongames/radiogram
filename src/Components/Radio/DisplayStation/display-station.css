@@ -1,0 +1,43 @@
+.display-station {
+  width: 950px;
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+}
+
+.display-station-container{
+  width: 300px;
+  display: grid;
+  grid-template-columns: 120px 180px;
+  padding: 0px 0px 6px 0px
+}
+
+.display-station__logo {
+  border-radius: 8px;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.display-station__info {
+  margin: 0px 10px 0px 10px;
+  height: 100px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  color: whitesmoke;
+  font-size: 14px;
+}
+
+.display-station__name {
+  font-weight: bold;
+}
+
+.display-station__hearticon {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+}
+
+.display-station__hearticon:hover {
+  scale: 1.2;
+  transition-duration: 0.5s;
+}  

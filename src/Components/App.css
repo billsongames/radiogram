@@ -1,14 +1,14 @@
-/* body {
-  background-image: url("../../src/assets/img/bg_radio.png");
-  background-repeat: no-repeat;
-  background-position: center top;
-} */
 .App {
-  margin: auto;
+  padding: 4px
 }
 
-.top-section{
-  position: sticky;
-  top: 0;
-  background-color: white;
+
+
+.eq-player-section {
+  width: 950px;
+  height: 250px;
+  background-image: url("../assets/img/bg_tuner-surround_2.png");
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }

@@ -1,0 +1,19 @@
+.radio-player {
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.audioplayer-container {
+  margin: 0px 0px;
+  width: 300px;
+}
+
+.audioplayer {
+  margin: auto;
+  width: 300px;
+
+}
