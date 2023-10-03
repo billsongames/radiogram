@@ -10,7 +10,7 @@ import "./presets.css"
 
 
 
-const Presets = ({userID, onStationLogoClick, presets}) => {
+const Presets = ({ presets, onStationLogoClick }) => {
 
 //  const [presets, setPresets] = useState([])
 

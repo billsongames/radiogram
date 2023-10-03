@@ -20,7 +20,7 @@
 }
 
 .header__logo {
-  padding: 0px 10px;
+  padding: 0px 10px
 }
 
 .header__login {
@@ -57,7 +57,7 @@
   position: relative;
   border-width: 0;
   padding: 0 4px 4px;
-  width: 80px;
+  width: 110px;
   box-sizing: border-box;
   background: transparent;
   font: inherit;

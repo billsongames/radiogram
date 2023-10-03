@@ -1,6 +1,10 @@
 export const sources = 
   [
-    "Tuner",
-    "Spotify",
-    "Deezer"
+    "Radio",
+    "Deezer",
+//    "Spotify",
+//    "Amazon Music",
+//    "Soundcloud"
   ]
+
+
