@@ -1,5 +1,4 @@
 import {React, useEffect, useState} from "react";
-import { Markup } from 'interweave';
 
 import { collection, query,  where, getCountFromServer, getDocs, setDoc } from "firebase/firestore";
 import {db} from "../../../backend/firebase"
