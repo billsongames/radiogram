@@ -41,8 +41,6 @@ const Header = ({ userID, handleLogin, handleLogout }) => {
             key={source}
             id={source}
             className="header__source-item"
-
-            onClick={() => console.log("clicked")}
           >
             <Link to ={`./${source.toLowerCase()}`}>
               <button type="button" className="source__button">

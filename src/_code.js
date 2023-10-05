@@ -1,48 +1,35 @@
-<div>
-<div className='eq-player-section'>
-  <div className='eq_graph'>
-    <EQ/>
-  </div>
+useEffect(() => {
 
-  <RadioPlayer
-    tuned={tuned}
-    userID={userID}
-    currentStation = {currentStation}
-    onStationTuned = {handleStationTuned}
-    onPaused = {handlePaused}
-    onError = {handleTuningError}
+  async function getArtist() {
+    let response = () => {
+      return new Promise(function(resolve, reject) {
+        fetch("https://api.deezer.com/artist/1/top?limit=5")
+      
+      .then(response => {
+        resolve(response)
+      })
+    })
+    }
+    let responseData = await response()
+    console.log(responseData.data);
+  }
+  
+    getArtist()
+},[])
 
 
-onPresetSaveClicked={handlePresetSaveClicked}
-onPresetRemoveClicked={handlePresetRemoveClicked}
-presets={presets}
-/>
+useEffect(() => {
 
-<div className='eq_graph'>
-<EQ/>
-</div>
+  async function getArtist() {
+    axios
+    .get("https://api.deezer.com/artist/1/top?limit=5", cors(corsOptions))
+    .then(function(response) {
+      console.log(response)
+      })
+    .catch((error) => {
+      console.log(error)
+    })
+    }
 
-</div>
-
-<Joint800px/>
-
-<Tuner onStationLogoClick = {handleStationLogoClick}/>
-
-<Joint800px/>
-
-{userID
-?
-<>
-<Presets
-//          userID={userID}
-presets={presets}
-onStationLogoClick={handleStationLogoClick}
-onPresetSaveClicked={handlePresetSaveClicked}
-/>
-
-<Joint800px/>
-</>
-:
-<></>
-}
-</div>
+  getArtist()
+},[])

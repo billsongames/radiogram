@@ -13,7 +13,8 @@ import {db} from "../backend/firebase"
 import Header from './Header/Header';
 import Joint800px from './Joints/Joint800px';
 import Radio from './Radio/Radio';
-import Deezer from './Deezer/Deezer';
+import DeezerComponent from './Deezer/DeezerComponent';
+import SpotifyComponent from './Spotify/SpotifyComponent';
 
 //############
 
@@ -125,7 +126,10 @@ const App = () =>  {
             </>
           }/>
           <Route path = "/deezer" element = {
-            <Deezer/>
+            <DeezerComponent/>
+          }/>
+          <Route path = "/spotify" element = {
+            <SpotifyComponent/>
           }/>
         </Routes>  
         
