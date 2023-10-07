@@ -1,0 +1,15 @@
+.radio-container {
+  display: grid;
+/*   grid-template-columns: repeat(3, 500px); */
+}
+
+.eq-player-section {
+  margin: auto;
+  width: 1500px;
+  height: 250px;
+  background-image: url("../../assets/img/bg_tuner-surround_2.png");
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-content: center;
+}

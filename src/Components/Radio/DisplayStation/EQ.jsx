@@ -5,11 +5,6 @@ import "./eq.css"
 const EQ = () => {
 
   return(
-    <div className='eq-container'>
-      
-
- 
-  
   <div className="equaliser-container">
     <ol className="equaliser-column">
       <li className="colour-bar"></li>
@@ -132,7 +127,6 @@ const EQ = () => {
       <li className="led-mask"></li>
     </ol>
   </div>
-    </div>
   )
 }
 

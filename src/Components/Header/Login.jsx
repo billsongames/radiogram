@@ -18,8 +18,7 @@ const Login = ({ userID, onLogin, onLogout}) => {
   
   return(
     <div className="login">
-      {userID
-      ?
+      {userID ?
       <>
         <div>
           logged in

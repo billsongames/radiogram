@@ -1,6 +1,6 @@
 .header-container {
   margin: auto;
-  width: 950px;
+  width: 1500px;
   height: 110px;
   background-image: url("../../assets/img/bg_tuner-surround_2.png");
 }
@@ -31,10 +31,6 @@
   color: whitesmoke;
 }
 
-
-
-
-
 .header__source-container {
   margin: auto;
   padding: 4px 0px 4px 0px;
@@ -57,7 +53,7 @@
   position: relative;
   border-width: 0;
   padding: 0 4px 4px;
-  width: 110px;
+  width: 120px;
   box-sizing: border-box;
   background: transparent;
   font: inherit;

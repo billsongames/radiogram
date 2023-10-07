@@ -20,6 +20,7 @@ const SpotifyComponent = () => {
   const [token, setToken] = useState("")
   const [searchQuery, setSearchQuery] = useState("elvis")
   const [responseData,setResponseData] = useState([])
+  const [responseDataTracks, setResponseDataTracks] = useState([])
 
   useEffect(() => {
     const hash = window.location.hash
@@ -58,8 +59,11 @@ const SpotifyComponent = () => {
       console.log(data.artists.items)
       console.log(data.albums.items)
       console.log(data.tracks.items)
-/*       setResponseData(data.artists.items) */
+      setResponseDataTracks(data.tracks.items)
+
   }
+
+
 
 
 
@@ -83,30 +87,63 @@ const SpotifyComponent = () => {
 
   return(
     <div className="spotify-container">
-      Spotify
 
-      {!token ?
-        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
+      <div className="spotify__header">
+        <div className="spotify-title">
+          SPOTIFY
+        </div>
+        {token ?
+        <>
+        <div className="spotify__search">
+          <input className="spotify__search-form" type="text" onChange={event => setSearchQuery(event.target.value)} placeholder = "Search..."/>
+          <button type="submit" className="spotify__search-button" onClick={searchArtists}>GO</button>
+        </div>
+
+        <div className="spotify__logout">
+          <button className="spotify__logout-button" onClick={logout}>LOG OUT</button>
+        </div>
+        </>
         :
-        <button onClick={logout}>Logout</button>
-      }
+        <></>
+        }  
+      </div>
 
       {token ?
-        <form onSubmit={searchArtists}>
-          <input type="text" onChange={event => setSearchQuery(event.target.value)}/>
-          <button type={"submit"}>Search</button>
-        </form>
-        :
-        <h2>Please login</h2>
+      <></>
+      :
+      <div className="spotify__login">
+        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
+          <button className="spotify__login-button">LOG IN TO SPOTIFY</button>
+        </a> 
+      </div>
       }
 
-      <div>
-{/*         {artists.map(album => (
-          <div key={album.id}>
-            {album.images.length ? <img width={"100px"} src={album.images[0].url} alt=""/> : <div>No Image</div>}
-            {album.name}
+
+
+      <div className="spotify__responseData-tracks">
+        <div className="spotify__tracks-title">
+          <h3>SONGS</h3>
+        </div>
+        
+        
+        <div className="spotify__response-results">
+          {responseDataTracks.map(track => (
+          <div key={track.id} className="spotify__response-entry">
+            <div className="spotify__response-entry-image">
+              {track.album.images.length ? <img width={"100px"} src={track.album.images[0].url} alt=""/> : <div>No Image</div>}
+            </div>
+            <div className="spotify__response-entry-info">
+              <div className="spotify__response-entry-trackTitle">
+                {track.name}
+              </div>
+              <div className="spotify__response-entry-artistName">
+                {track.artists[0].name}
+              </div>  
+            </div>  
           </div>
-      ))} */}
+          ))}
+        </div>
+
       </div>
 
     </div>

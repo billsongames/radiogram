@@ -9,6 +9,8 @@ import Joint800px from '../Joints/Joint800px';
 import { collection, query, doc, setDoc, getDocs, updateDoc } from "firebase/firestore";
 import {db} from "../../backend/firebase"
 
+import "./radio.css"
+
 
 import radio_antenna from "../../assets/img/radio_antenna.png"
 import error_tuning from "../../assets/img/error_tuning.png"
@@ -228,7 +230,7 @@ const Radio = ({ userID }) => {
 
 
     return (
-    <div>
+    <div className='radio-container'>
       <div className="eq-player-section">
 
         <div className="eq_graph">
