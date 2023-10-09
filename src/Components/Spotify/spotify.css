@@ -1,7 +1,7 @@
 .spotify-container {
   margin: auto;
   width: 1500px;
-  height: 800px;
+  height: 1200px;
   background-image: url("../../assets/img/bg_tuner-surround_2.png");
   color: whitesmoke
 }
@@ -9,24 +9,23 @@
 .spotify__header {
   padding: 8px;
   display: grid;
-  align-items: top;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  grid-template-columns: repeat(2, 750px);
   height: 50px;
   margin: auto;
+}
+
+.spotify__title {
   text-align: left;
   font-size: 1em;
   font-weight: bold;
-  padding: 8px;
   color: whitesmoke;
 }
 
 .spotify__login {
-  height: 75%;
+  padding: 8px;
   display: flex;
   flex-direction: row;
-  align-items:center;
-  justify-content: center;
+  justify-content: end;
   font-size: 20px;
   color: whitesmoke;
 }
@@ -39,13 +38,16 @@
   padding: 18px 48px 18px;
   border-width: 0;
   border-radius: 250px;
-  width: 500px
+  width: 300px
 }
 
 .spotify__logout {
+  padding: 8px;
   display: flex;
   flex-direction: row;
   justify-content: end;
+  font-size: 20px;
+  color: whitesmoke;
 }
 
 .spotify__logout-button {
@@ -53,11 +55,10 @@
   background-color: #1ed760;
   font-size: 20px;
   font-weight: bold;
-  padding: 8px;
+  padding: 18px 48px 18px;
   border-width: 0;
-  border-radius: 100px;
-  width: 200px;
-  height: 50px
+  border-radius: 250px;
+  width: 300px
 }
 
 .spotify__search {
@@ -93,6 +94,12 @@
   padding: 12px
 }
 
+.spotify__responseData {
+  display: grid;
+  grid-template-columns: repeat(33, 500px);
+
+}
+
 .spotify__response-results {
   display: flex;
   flex-direction: column;
@@ -114,12 +121,20 @@
   flex-direction: column;
 }
 
-.spotify__response-entry-trackTitle {
+.spotify__response-entry-Title {
   font-size: 20px;
   font-weight: bold;
 }
 
-.spotify__response-entry-artistName {
+.spotify__response-entry-Name {
   font-size: 16px;
   font-weight: bold;
+}
+
+.spotify__player {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+
 }

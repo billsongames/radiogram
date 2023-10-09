@@ -4,8 +4,6 @@ import axios from "axios";
 import {spotify_api} from "../../api/api"
 
 import "./spotify.css"
-
-import SpotifyLogin from "./SpotifyLogin";
 import SpotifyPlayer from "./SpotifyPlayer";
 
 
@@ -27,27 +25,38 @@ const SpotifyComponent = () => {
   const [player, setPlayer] = useState(undefined);
 
   useEffect(() => {
-    
+    const hash = window.location.hash
     let token = window.localStorage.getItem("token")
+
+    if (!token && hash) {
+      token = hash.substring(1).split("&").find(element => element.startsWith("access_token")).split("=")[1]
+
+      window.location.hash = ""
+      window.localStorage.setItem("token", token)
+    }
+
     setToken(token)
   
   }, [])
 
+  const logout = () => {
+    setToken("")
+    window.localStorage.removeItem("token")
+}
 
+useEffect(() => {
 
-  useEffect(() => {
+  const script = document.createElement("script");
+  script.src = "https://sdk.scdn.co/spotify-player.js";
+  script.async = true;
 
-    const script = document.createElement("script");
-    script.src = "https://sdk.scdn.co/spotify-player.js";
-    script.async = true;
+  document.body.appendChild(script);
 
-    document.body.appendChild(script);
-
-    window.onSpotifyWebPlaybackSDKReady = () => {
+  window.onSpotifyWebPlaybackSDKReady = () => {
 
       const player = new window.Spotify.Player({
           name: 'Web Playback SDK',
-          getOAuthToken: cb => { cb(token); },
+          getOAuthToken: cb => { cb(`${token}`); },
           volume: 0.5
       });
 
@@ -111,15 +120,22 @@ const SpotifyComponent = () => {
 
 
   return(
-    <>
-      {token === "" ?
-      <>
-        <SpotifyPlayer token={token}/>
-      </>
+    <div className="spotify-container">
+      
+      <div className="spotify__header">
+        <div className="spotify-title">
+          SPOTIFY
+        </div>
+      </div>  
+    
+      {token ?
+        <div className="spotify__logout">
+          <button className="spotify__logout-button" onClick={logout}>LOG OUT</button>
+        </div>
       :
-        <SpotifyLogin />
-      }  
-    </>
+      <></>
+      }
+    </div>  
   )
 }
 export default SpotifyComponent
