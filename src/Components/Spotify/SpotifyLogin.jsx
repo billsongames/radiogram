@@ -17,6 +17,7 @@ const SpotifyLogin = () => {
   const REDIRECT_URI = "https://localhost:3000/spotify"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
+  const SCOPE = "streaming,user-read-private,user-read-email,user-read-playback-state,user-modify-playback-state"
 
   const [token, setToken] = useState("")
   const [searchQuery, setSearchQuery] = useState("elvis")
@@ -36,6 +37,7 @@ const SpotifyLogin = () => {
     }
 
     setToken(token)
+    console.log(token)
   
   }, [])
 
@@ -57,7 +59,7 @@ return (
       </div>
       :
       <div className="spotify__login">
-        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
+        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>
           <button className="spotify__login-button">LOG IN TO SPOTIFY</button>
         </a>
       </div>

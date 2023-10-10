@@ -1,0 +1,166 @@
+[
+  {
+      "external_urls": {
+          "spotify": "https://open.spotify.com/artist/2DaxqgrOhkeH0fpeiQq2f4"
+      },
+      "followers": {
+          "href": null,
+          "total": 9266916
+      },
+      "genres": [
+          "beatlesque",
+          "britpop",
+          "madchester",
+          "permanent wave",
+          "rock"
+      ],
+      "href": "https://api.spotify.com/v1/artists/2DaxqgrOhkeH0fpeiQq2f4",
+      "id": "2DaxqgrOhkeH0fpeiQq2f4",
+      "images": [
+          {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab6761610000e5eba572b3112ccbf374488fed58",
+              "width": 640
+          },
+          {
+              "height": 320,
+              "url": "https://i.scdn.co/image/ab67616100005174a572b3112ccbf374488fed58",
+              "width": 320
+          },
+          {
+              "height": 160,
+              "url": "https://i.scdn.co/image/ab6761610000f178a572b3112ccbf374488fed58",
+              "width": 160
+          }
+      ],
+      "name": "Oasis",
+      "popularity": 75,
+      "type": "artist",
+      "uri": "spotify:artist:2DaxqgrOhkeH0fpeiQq2f4"
+  },
+
+
+
+
+
+  {
+      "external_urls": {
+          "spotify": "https://open.spotify.com/artist/7MhMgCo0Bl0Kukl93PZbYS"
+      },
+      "followers": {
+          "href": null,
+          "total": 3087564
+      },
+      "genres": [
+          "alternative rock",
+          "britpop",
+          "madchester",
+          "permanent wave",
+          "rock"
+      ],
+      "href": "https://api.spotify.com/v1/artists/7MhMgCo0Bl0Kukl93PZbYS",
+      "id": "7MhMgCo0Bl0Kukl93PZbYS",
+      "images": [
+          {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab6761610000e5eb00620d736644d2359ce99430",
+              "width": 640
+          },
+          {
+              "height": 320,
+              "url": "https://i.scdn.co/image/ab6761610000517400620d736644d2359ce99430",
+              "width": 320
+          },
+          {
+              "height": 160,
+              "url": "https://i.scdn.co/image/ab6761610000f17800620d736644d2359ce99430",
+              "width": 160
+          }
+      ],
+      "name": "Blur",
+      "popularity": 69,
+      "type": "artist",
+      "uri": "spotify:artist:7MhMgCo0Bl0Kukl93PZbYS"
+  },
+
+
+
+
+
+
+  {
+      "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1HON4xJAWJNuUpb6G64bNr"
+      },
+      "followers": {
+          "href": null,
+          "total": 354
+      },
+      "genres": [],
+      "href": "https://api.spotify.com/v1/artists/1HON4xJAWJNuUpb6G64bNr",
+      "id": "1HON4xJAWJNuUpb6G64bNr",
+      "images": [
+          {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab6761610000e5ebf53d23333fc1a34f0d50e71a",
+              "width": 640
+          },
+          {
+              "height": 320,
+              "url": "https://i.scdn.co/image/ab67616100005174f53d23333fc1a34f0d50e71a",
+              "width": 320
+          },
+          {
+              "height": 160,
+              "url": "https://i.scdn.co/image/ab6761610000f178f53d23333fc1a34f0d50e71a",
+              "width": 160
+          }
+      ],
+      "name": "Soothing Oasis",
+      "popularity": 62,
+      "type": "artist",
+      "uri": "spotify:artist:1HON4xJAWJNuUpb6G64bNr"
+  },
+
+
+
+
+
+
+  {
+      "external_urls": {
+          "spotify": "https://open.spotify.com/artist/644swZfx5CWX5B1g3njvr1"
+      },
+      "followers": {
+          "href": null,
+          "total": 33
+      },
+      "genres": [
+          "color noise",
+          "white noise"
+      ],
+      "href": "https://api.spotify.com/v1/artists/644swZfx5CWX5B1g3njvr1",
+      "id": "644swZfx5CWX5B1g3njvr1",
+      "images": [
+          {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273864b12ff84587fe1f97b2c73",
+              "width": 640
+          },
+          {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02864b12ff84587fe1f97b2c73",
+              "width": 300
+          },
+          {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851864b12ff84587fe1f97b2c73",
+              "width": 64
+          }
+      ],
+      "name": "Oasis Magna",
+      "popularity": 39,
+      "type": "artist",
+      "uri": "spotify:artist:644swZfx5CWX5B1g3njvr1"
+  }
+]

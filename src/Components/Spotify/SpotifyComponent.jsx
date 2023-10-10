@@ -5,8 +5,7 @@ import {spotify_api} from "../../api/api"
 
 import "./spotify.css"
 
-import SpotifyLogin from "./SpotifyLogin";
-import SpotifyPlayer from "./SpotifyPlayer";
+import SpotifyMusicPlayer from "./SpotifyMusicPlayer";
 
 
 
@@ -24,48 +23,27 @@ const SpotifyComponent = () => {
   const [searchQuery, setSearchQuery] = useState("elvis")
   const [responseData,setResponseData] = useState([])
   const [responseDataTracks, setResponseDataTracks] = useState([])
-  const [player, setPlayer] = useState(undefined);
 
   useEffect(() => {
-    
+    const hash = window.location.hash
     let token = window.localStorage.getItem("token")
+
+    if (!token && hash) {
+      token = hash.substring(1).split("&").find(element => element.startsWith("access_token")).split("=")[1]
+
+      window.location.hash = ""
+      window.localStorage.setItem("token", token)
+    }
+
     setToken(token)
+    console.log(`Logged in. Token = ${token}`)
   
   }, [])
 
-
-
-  useEffect(() => {
-
-    const script = document.createElement("script");
-    script.src = "https://sdk.scdn.co/spotify-player.js";
-    script.async = true;
-
-    document.body.appendChild(script);
-
-    window.onSpotifyWebPlaybackSDKReady = () => {
-
-      const player = new window.Spotify.Player({
-          name: 'Web Playback SDK',
-          getOAuthToken: cb => { cb(token); },
-          volume: 0.5
-      });
-
-      setPlayer(player);
-
-      player.addListener('ready', ({ device_id }) => {
-          console.log('Ready with Device ID', device_id);
-      });
-
-      player.addListener('not_ready', ({ device_id }) => {
-          console.log('Device ID has gone offline', device_id);
-      });
-
-
-      player.connect();
-
-  };
-}, []);
+  const logout = () => {
+    setToken("")
+    window.localStorage.removeItem("token")
+    }  
 
   const searchArtists = async (event) => {
     event.preventDefault()
@@ -89,37 +67,32 @@ const SpotifyComponent = () => {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return(
-    <>
-      {token === "" ?
-      <>
-        <SpotifyPlayer token={token}/>
-      </>
+    <div className="spotify-container">
+
+      <div className="spotify__header">
+        <div className="spotify-title">
+          SPOTIFY
+        </div>
+        {(token === "") ?
+        <div className="spotify__login">
+          <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
+            <button className="spotify__login-button">LOG IN TO SPOTIFY</button>
+          </a> 
+        </div>
+        :
+        <div className="spotify__logout">
+          <button className="spotify__logout-button" onClick={logout}>LOG OUT</button>
+        </div>
+        }
+      </div>
+      {(token === "") ?
+      <></>
       :
-        <SpotifyLogin />
-      }  
-    </>
+      <SpotifyMusicPlayer />
+      }
+    
+    </div>
   )
 }
 export default SpotifyComponent

@@ -7,15 +7,14 @@
 }
 
 .spotify__header {
-  padding: 8px;
   display: grid;
-  grid-template-columns: repeat(2, 750px);
-  height: 50px;
-  margin: auto;
+  align-items: top;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  padding: 8px
 }
 
 .spotify__title {
-  text-align: left;
   font-size: 1em;
   font-weight: bold;
   color: whitesmoke;
@@ -61,11 +60,19 @@
   width: 300px
 }
 
+.spotify-player__main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}  
+
+
 .spotify__search {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 8px
 }
 
 .spotify__search-form {
@@ -90,6 +97,14 @@
   cursor: pointer;
 }
 
+.spotify-filter-container {
+  margin: auto;
+  padding: 4px 0px 4px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .spotify__tracks-title {
   padding: 12px
 }
@@ -101,8 +116,8 @@
 }
 
 .spotify__response-results {
-  display: flex;
-  flex-direction: column;
+
+  padding: 8px
 }
 
 .spotify__response-entry {
@@ -113,7 +128,8 @@
 }
 
 .spotify__response-entry-image {
-  padding: 8px
+  padding: 8px;
+  cursor: pointer
 }
 
 .spotify__response-entry-info {
@@ -131,10 +147,16 @@
   font-weight: bold;
 }
 
-.spotify__player {
+#spotify__iframe{
+  width: 600px;
+  height: 800px;
+  padding: 8px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-
+  justify-items: end;
+  align-items: end;
+  background-color: black;
 
 }
+
+

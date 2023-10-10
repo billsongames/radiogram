@@ -4,7 +4,7 @@ import { RadioBrowserApi } from "radio-browser-api";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import { filters } from '../../../data/filters';
+import { radio_search_filters } from '../../../data/filters';
 
 import default_station_logo from "../../../assets/img/station_no_logo_2.png"
 
@@ -124,7 +124,7 @@ const Tuner = ({onStationLogoClick}) => {
 {/* ### FILTERS ###   */}
 
       <div className="tuner-filter__container">
-        {filters.map((filter) => (
+        {radio_search_filters.map((filter) => (
           <div
             key={filter}
             id={filter}

@@ -47,7 +47,7 @@ const Radio = ({ userID }) => {
 
   
 
-    const  handleStationLogoClick = (event) => {
+    const handleStationLogoClick = (event) => {
       event.preventDefault()
       if (event.target.id === currentStation.id){
         return

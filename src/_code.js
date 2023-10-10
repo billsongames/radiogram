@@ -1,3 +1,15 @@
+const {data} = await axios
+.get("https://api.spotify.com/v1/search", {
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  params: {
+    q: searchQuery,
+    type: "track",//, artist, playlist, track, show, episode, audiobook",
+    limit: 4
+  }
+})
+
 <div className="spotify-container">
 
 <div className="spotify__header">
