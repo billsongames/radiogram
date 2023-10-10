@@ -169,22 +169,17 @@ const SpotifyMusicPlayer = () => {
                 :
                 <div>No Image</div>}
             </div>
-            <div className="spotify__response-entry-info">
-              <div className="spotify__response-entry-Name">
-                {artist.name}
-              </div>
-            </div>
-          </div>
+          </div> 
         ))}
       </div>
-    )
-  } else if (responseDataAlbums.length  && responseType === "albums") {
+      )
+  } else if (responseType === "Albums") {
     responseJSX = (
       <div>
         <h2>ALBUMS</h2>
-        {responseDataAlbums.map(album => (
+          {responseDataAlbums.map(album => (
           <div key={album.id} className="spotify__response-entry">
-
+            
             <div className="spotify__response-entry-image">
               {album.images.length ?
                 <img
@@ -197,50 +192,40 @@ const SpotifyMusicPlayer = () => {
                 :
                 <div>No Image</div>}
             </div>
-            <div className="spotify__response-entry-info">
-              <div className="spotify__response-entry-Title">
-                {album.name}
-              </div>
-              <div className="spotify__response-entry-Name">
-                {album.artists[0].name}
-              </div>
-            </div>
           </div>
         ))}
       </div>
-    )
-  } else if (responseDataTracks.length  && responseType === "tracks") {
+      )
+  } else if (responseType === "Artists") {
     responseJSX = (
       <div>
-        <h2>TRACKS</h2>
-        {responseDataTracks.map(track => (
-          <div key={track.id} className="spotify__response-entry">
-
+        <h2>ARTISTS</h2>
+          {responseDataArtists.map(artist => (
+          <div key={artist.id} className="spotify__response-entry">
+            
             <div className="spotify__response-entry-image">
-              {track.album.images.length ?
+              {artist.images.length ?
                 <img
                   width={"100px"}
-                  src={track.album.images[0].url}
+                  src={artist.images[0].url}
                   alt=""
-                  data-uri={track.id}
-                  onClick={() => setIFrameURI(track.id)}
+                  data-uri={artist.id}
+                  onClick={() => setIFrameURI(artist.id)}
                 />
                 :
                 <div>No Image</div>}
             </div>
             <div className="spotify__response-entry-info">
-              <div className="spotify__response-entry-Title">
-                {track.name}
-              </div>
+
               <div className="spotify__response-entry-Name">
-                {track.artists[0].name}
-              </div>
-            </div>
+                {artist.name}
+              </div>  
+            </div>  
           </div>
         ))}
       </div>
-    )
-  }
+      )
+    }
 
 
 
