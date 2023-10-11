@@ -66,12 +66,11 @@ const SpotifyComponent = () => {
 
   }
 
-
   return(
     <div className="spotify-container">
 
       <div className="spotify__header">
-        <div className="spotify-title">
+        <div className="spotify__title">
           SPOTIFY
         </div>
         {(token === "") ?

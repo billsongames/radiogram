@@ -44,7 +44,7 @@ const Header = ({ userID, handleLogin, handleLogout }) => {
           >
             <Link to ={`./${source.toLowerCase()}`}>
               <button type="button" className="source__button">
-                <div className="source__button-top">{source}</div>
+                <div className="source__button-top">{source.toUpperCase()}</div>
                 <div className="source__button-bottom"></div>
                 <div className="source__button-base"></div>
               </button>

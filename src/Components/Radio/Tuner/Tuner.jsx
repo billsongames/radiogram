@@ -140,7 +140,7 @@ const Tuner = ({onStationLogoClick}) => {
             }
           >
             <button type="button" className="filter__button">
-              <div className="filter__button-top">{filter}</div>
+              <div className="filter__button-top">{filter.toUpperCase()}</div>
               <div className="filter__button-bottom"></div>
               <div className="filter__button-base"></div>
             </button> 

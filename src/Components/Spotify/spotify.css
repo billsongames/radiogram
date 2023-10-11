@@ -15,7 +15,8 @@
 }
 
 .spotify__title {
-  font-size: 1em;
+  text-align: left;
+  font-size: 18px;
   font-weight: bold;
   color: whitesmoke;
 }
@@ -116,7 +117,6 @@
 }
 
 .spotify__response-results {
-
   padding: 8px
 }
 

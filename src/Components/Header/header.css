@@ -40,7 +40,8 @@
 }
 
 .header__source-item {
-  font-size: 10px;
+  font-size: 14px;
+  font-weight: bold;
   color: whitesmoke;
   padding: 4px 10px;
   cursor: pointer
@@ -53,7 +54,7 @@
   position: relative;
   border-width: 0;
   padding: 0 4px 4px;
-  width: 120px;
+  width: 200px;
   box-sizing: border-box;
   background: transparent;
   font: inherit;

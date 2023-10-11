@@ -12,7 +12,7 @@ export const radio_search_filters =
 
 export const spotify_response_filters =
   [
-    "Artists",
-    "Albums",
-    "Tracks"
+    "artists",
+    "albums",
+    "tracks"
   ]  

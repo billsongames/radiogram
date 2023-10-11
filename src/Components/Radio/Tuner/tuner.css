@@ -20,7 +20,7 @@
   justify-content: space-between;
   margin: auto;
   text-align: left;
-  font-size: 1em;
+  font-size: 18px;
   font-weight: bold;
   padding: 8px;
   color: whitesmoke;
@@ -75,7 +75,8 @@
 }
 
 .tuner-filter__item {
-  font-size: 10px;
+  font-size: 14px;
+  font-weight: bold;
   color: whitesmoke;
   padding: 4px 10px;
   cursor: pointer
