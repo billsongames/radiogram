@@ -45,26 +45,7 @@ const SpotifyComponent = () => {
     window.localStorage.removeItem("token")
     }  
 
-  const searchArtists = async (event) => {
-    event.preventDefault()
 
-    const {data} = await axios
-      .get("https://api.spotify.com/v1/search", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        params: {
-          q: searchQuery,
-          type: "artist,album,track",//, artist, playlist, track, show, episode, audiobook",
-          limit: 4
-        }
-      })
-      console.log(data.artists.items)
-      console.log(data.albums.items)
-      console.log(data.tracks.items)
-      setResponseDataTracks(data.tracks.items)
-
-  }
 
   return(
     <div className="spotify-container">
@@ -88,7 +69,7 @@ const SpotifyComponent = () => {
       {(token === "") ?
       <></>
       :
-      <SpotifyMusicPlayer />
+      <SpotifyMusicPlayer token={token}/>
       }
     
     </div>
