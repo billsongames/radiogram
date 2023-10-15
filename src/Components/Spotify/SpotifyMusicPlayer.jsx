@@ -8,8 +8,6 @@ import SpotifyStatus from "./sdkComponents/SpotifyStatus";
 
 //import SpotifyIFrame from "./SpotifyIFrame";
 
-import { spotify_api } from "../../api/api"
-
 import { spotify_response_filters } from "../../data/filters"
 
 import "./spotify.css"

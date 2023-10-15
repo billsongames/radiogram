@@ -118,7 +118,7 @@ const App = () =>  {
             />
         </div>  
 
-        <Routes>
+ {/*        <Routes>
           <Route path = "/radio" element = {
             <>
             <Radio
@@ -132,7 +132,7 @@ const App = () =>  {
           <Route path = "/spotify" element = {
             <SpotifyComponent/>
           }/>
-        </Routes>  
+        </Routes>  */} 
         
       
     </div>  

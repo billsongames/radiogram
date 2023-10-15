@@ -1,8 +1,6 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
 
-import {spotify_api} from "../../api/api"
-
 import "./spotify.css"
 import SpotifyPlayer from "./SpotifyPlayer";
 
