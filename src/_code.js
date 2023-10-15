@@ -1,77 +1,125 @@
-for (let i=0; i<response.length; i++) {
-  let stationLogo
-  let stationName
-
-  if (response[i].favicon === "") {
-    stationLogo = no_image
-  } else {
-    stationLogo = (response[i].favicon)
+const {data} = await axios
+.get("https://api.spotify.com/v1/search", {
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  params: {
+    q: searchQuery,
+    type: "track",//, artist, playlist, track, show, episode, audiobook",
+    limit: 4
   }
-  stationName = (response[i].name)
+})
 
-  info.push({favicon: stationLogo, name: stationName})
+<div className="spotify-container">
+
+<div className="spotify__header">
+  <div className="spotify-title">
+    SPOTIFY
+  </div>
+  {token ?
+  <>
+  <div className="spotify__search">
+    <input className="spotify__search-form" type="text" onChange={event => setSearchQuery(event.target.value)} placeholder = "Search..."/>
+    <button type="submit" className="spotify__search-button" onClick={searchArtists}>GO</button>
+  </div>
+
+  <div className="spotify__logout">
+    <button className="spotify__logout-button" onClick={logout}>LOG OUT</button>
+  </div>
+  </>
+  :
+  <></>
+  }  
+</div>
+
+{token ?
+<></>
+:
+<div className="spotify__login">
+  <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
+    <button className="spotify__login-button">LOG IN TO SPOTIFY</button>
+  </a> 
+</div>
 }
 
 
+{token ?
+<>
+<div className="spotify__responseData">
+  <div className="spotify__responseSection">
+    <h3>SONGS</h3>
 
-const apiSearchbyCountry = async () => {
-
-
-  let tunerDisplayData=[]
-  const results = await api.searchStations({
-    countryCode: "GB",
-    limit: 10,
-    offset: 0 // this is the default - can be omited
-  })
-
-  for (let i=0; i<results.length; i++) {
-    let stationLogo
-    let stationName
-    let stationUrlResolved
-
-    if (results[i].favicon === "") {
-      stationLogo = no_image
-    } else {
-      stationLogo = (results[i].favicon)
-    }
-
-    stationName = (results[i].name)
-    stationUrlResolved = (results[i].urlResolved)
-
-    tunerDisplayData.push({favicon: stationLogo,
-                      name: stationName,
-                      urlResolved: stationUrlResolved
-                          })
-    }
-
-    return tunerDisplayData
-}
-
-
-      <Tippy
-        interactive={true}
-        placement="right"
-        content={
-          <div className="saved-stations">
-            {api_test_data.map((saved_station) => (
-              <div className="saved-station__entry" key={saved_station.urlResolved} onClick ={onStationLogoClick}>
-                <img
-                  className="saved-station__logo"
-                  id={saved_station.urlResolved}
-                  name={saved_station.name}
-                  src={saved_station.favicon}
-                  alt={saved_station.name}
-                  tags={saved_station.tags}
-
-                  onError={SetDefaultSrc}                  
-                />
-                <div className="saved-station__name">
-                  {saved_station.name}
-                </div>
-                
-              </div>
-            ))}
+  
+    <div className="spotify__response-results">
+      {responseDataTracks.map(track => (
+      <div key={track.id} className="spotify__response-entry">
+        <div className="spotify__response-entry-image">
+          {track.album.images.length ? <img width={"100px"} src={track.album.images[0].url} alt=""/> : <div>No Image</div>}
+        </div>
+        <div className="spotify__response-entry-info">
+          <div className="spotify__response-entry-Title">
+            {track.name}
           </div>
-        }>
-        <button>Saved stations</button>
-      </Tippy>
+          <div className="spotify__response-entry-Name">
+            {track.artists[0].name}
+          </div>  
+        </div>  
+      </div>
+      ))}
+    </div>
+  </div>  
+
+  <div className="spotify__responseSection">
+    <h3>ALBUMS</h3>
+  
+    <div className="spotify__response-results">
+      {responseDataTracks.map(track => (
+      <div key={track.id} className="spotify__response-entry">
+        <div className="spotify__response-entry-image">
+          {track.album.images.length ? <img width={"100px"} src={track.album.images[0].url} alt=""/> : <div>No Image</div>}
+        </div>
+        <div className="spotify__response-entry-info">
+          <div className="spotify__response-entry-Title">
+            {track.name}
+          </div>
+          <div className="spotify__response-entry-Name">
+            {track.artists[0].name}
+          </div>  
+        </div>  
+      </div>
+      ))}
+    </div>
+  </div>
+
+  <div className="spotify__responseSection">
+    <h3>ARTISTS</h3>
+  
+    <div className="spotify__response-results">
+      {responseDataTracks.map(track => (
+      <div key={track.id} className="spotify__response-entry">
+        <div className="spotify__response-entry-image">
+          {track.album.images.length ? <img width={"100px"} src={track.album.images[0].url} alt=""/> : <div>No Image</div>}
+        </div>
+        <div className="spotify__response-entry-info">
+          <div className="spotify__response-entry-Title">
+            {track.name}
+          </div>
+          <div className="spotify__response-entry-Name">
+            {track.artists[0].name}
+          </div>  
+        </div>  
+      </div>
+      ))}
+    </div>
+  </div>  
+</div>
+</>
+:
+<></>
+    }
+
+
+
+
+
+</div>

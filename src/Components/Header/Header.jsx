@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Clock from 'react-live-clock';
 import Login from "./Login";
+import Joint800px from "../Joints/Joint800px";
 
 import rp_logo from "../../../src/assets/img/logo_radiogram_1_40pc.png"
 import { sources } from '../../data/sources';
@@ -39,14 +41,14 @@ const Header = ({ userID, handleLogin, handleLogout }) => {
             key={source}
             id={source}
             className="header__source-item"
-
-            onClick={() => console.log("clicked")}
           >
-            <button type="button" className="source__button">
-              <div className="source__button-top">{source}</div>
-              <div className="source__button-bottom"></div>
-              <div className="source__button-base"></div>
-            </button>
+            <Link to ={`./${source.toLowerCase()}`}>
+              <button type="button" className="source__button">
+                <div className="source__button-top">{source.toUpperCase()}</div>
+                <div className="source__button-bottom"></div>
+                <div className="source__button-base"></div>
+              </button>
+            </Link>  
           </div>            
         ))}
       </div>

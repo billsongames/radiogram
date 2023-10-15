@@ -1,4 +1,10 @@
+.equaliser-container {
+  min-height:100%;
+  width:270px;
+  margin: auto;
 
+  position:relative;
+}
 
 .clearfix {
 	zoom: 1;
@@ -15,13 +21,7 @@
 }
 
 
-.equaliser-container {
-  min-height:100%;
-  max-width:160px;
-  margin:0 auto;
-  padding:32px 0 0 0;
-  position:relative;
-}
+
 .colour-bar {
   position:absolute;
   left:0;
@@ -31,7 +31,7 @@
   background: #AEED25;
 }
 .equaliser-column {
-  width:20px;
+  width:40px;
   float:left;
   margin:0 6px;
   padding:0;

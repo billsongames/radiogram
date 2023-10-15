@@ -1,14 +1,14 @@
 .display-station {
-  width: 950px;
+  width: 1500px;
   display: grid;
   grid-template-columns: repeat(3, 300px);
 }
 
 .display-station-container{
-  width: 300px;
+  width: 500px;
   display: grid;
-  grid-template-columns: 120px 180px;
-  padding: 0px 0px 6px 0px
+  grid-template-columns: 120px 380px;
+  padding: 0px 0px 6px 0px;
 }
 
 .display-station__logo {
@@ -24,7 +24,7 @@
   display: grid;
   grid-template-rows: 1fr 1fr;
   color: whitesmoke;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .display-station__name {

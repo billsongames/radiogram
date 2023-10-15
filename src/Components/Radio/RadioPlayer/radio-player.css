@@ -1,5 +1,12 @@
 .radio-player {
   margin: auto;
+  width: 500px;
+  background-color: rgb(32, 32, 32);
+  border-color: rgb(32, 32, 32);
+  border-radius: 8px;
+  border-width: 4px;
+  border-style: solid;
+  padding: 12px;
 
   display: flex;
   flex-direction: column;
@@ -9,7 +16,7 @@
 
 .audioplayer-container {
   margin: 0px 0px;
-  width: 300px;
+  width: 500px;
 }
 
 .audioplayer {

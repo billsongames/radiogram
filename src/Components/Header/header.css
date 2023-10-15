@@ -1,8 +1,9 @@
 .header-container {
   margin: auto;
-  width: 950px;
+  width: 1500px;
   height: 110px;
   background-image: url("../../assets/img/bg_tuner-surround_2.png");
+  border-radius: 8px;
 }
 
 .header__top-row { 
@@ -20,7 +21,7 @@
 }
 
 .header__logo {
-  padding: 0px 10px;
+  padding: 0px 10px
 }
 
 .header__login {
@@ -31,10 +32,6 @@
   color: whitesmoke;
 }
 
-
-
-
-
 .header__source-container {
   margin: auto;
   padding: 4px 0px 4px 0px;
@@ -44,7 +41,8 @@
 }
 
 .header__source-item {
-  font-size: 10px;
+  font-size: 14px;
+  font-weight: bold;
   color: whitesmoke;
   padding: 4px 10px;
   cursor: pointer
@@ -57,7 +55,7 @@
   position: relative;
   border-width: 0;
   padding: 0 4px 4px;
-  width: 80px;
+  width: 200px;
   box-sizing: border-box;
   background: transparent;
   font: inherit;

@@ -1,27 +1,27 @@
 .tuner__container {
-  width: 950px;
+  width: 1500px;
   height: 250px;
   margin: auto;
   background-image: url("../../../assets/img/bg_tuner-surround_2.png");
+  border-radius: 8px;
 }
 
 .tuner__main {
-  width: 900px;
+  width: 1500px;
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4px
+  padding: 4px;
 }
 
 .tuner__title {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 900px;
   margin: auto;
   text-align: left;
-  font-size: 1em;
+  font-size: 18px;
   font-weight: bold;
   padding: 8px;
   color: whitesmoke;
@@ -32,14 +32,14 @@
 
 .tuner-carousel {
   margin: auto;
-  width: 900px;
+  width: 1400px;
   height: 140px;
   
 }
 
 .carousel-entry {
-  width: 100px;
-  height: 130px;
+  width: 120px;
+  height: 140px;
   padding: 4px;
   display: flex;
   flex-direction: column;
@@ -76,7 +76,8 @@
 }
 
 .tuner-filter__item {
-  font-size: 10px;
+  font-size: 14px;
+  font-weight: bold;
   color: whitesmoke;
   padding: 4px 10px;
   cursor: pointer
@@ -89,7 +90,7 @@
   position: relative;
   border-width: 0;
   padding: 0 4px 4px;
-  width: 80px;
+  width: 120px;
   box-sizing: border-box;
   background: transparent;
   font: inherit;
