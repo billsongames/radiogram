@@ -3,6 +3,8 @@
   width: 1500px;
   height: 250px;
   background-image: url("../../../assets/img/bg_tuner-surround_2.png");
+  border-radius: 8px;
+
 }
 
 .presets__title {
