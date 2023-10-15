@@ -12,8 +12,8 @@ import SpotifyPlayer from "./SpotifyPlayer";
 
 
 const SpotifyLogin = () => {
-  const CLIENT_ID = process.env.SPOTIFY_API_ID
-  const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET
+  const CLIENT_ID = process.env.REACT_APP_SPOTIFY_API_ID
+  const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET
   const REDIRECT_URI = "https://localhost:3000/spotify"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
@@ -27,13 +27,13 @@ const SpotifyLogin = () => {
 
   useEffect(() => {
     const hash = window.location.hash
-    let token = window.localStorage.getItem("token")
+    let token = window.localStorage.getItem("spotify_token")
 
     if (!token && hash) {
       token = hash.substring(1).split("&").find(element => element.startsWith("access_token")).split("=")[1]
 
       window.location.hash = ""
-      window.localStorage.setItem("token", token)
+      window.localStorage.setItem("spotify_token", token)
     }
 
     setToken(token)
@@ -42,7 +42,7 @@ const SpotifyLogin = () => {
 
   const logout = () => {
     setToken("")
-    window.localStorage.removeItem("token")
+    window.localStorage.removeItem("spotify_token")
 }
 
 return (

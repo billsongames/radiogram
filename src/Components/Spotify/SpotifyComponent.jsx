@@ -13,8 +13,8 @@ import SpotifyMusicPlayer from "./SpotifyMusicPlayer";
 
 
 const SpotifyComponent = () => {
-  const CLIENT_ID = spotify_api[0].SPOTIFY_API_ID
-  const CLIENT_SECRET = spotify_api[1].SPOTIFY_CLIENT_SECRET
+  const CLIENT_ID = process.env.REACT_APP_SPOTIFY_API_ID
+  const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET
   const REDIRECT_URI = "https://localhost:3000/spotify"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
