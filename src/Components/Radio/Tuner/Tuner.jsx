@@ -1,6 +1,10 @@
 import { React, useCallback, useEffect, useState } from 'react';
 import { RadioBrowserApi } from "radio-browser-api";
 
+import { IconContext } from "react-icons";
+import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
+
+
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -14,7 +18,7 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 1201 },
-    items: 10,
+    items: 8,
     partialVisibilityGutter: 0
   },
   desktop: {
@@ -95,6 +99,17 @@ const Tuner = ({onStationLogoClick}) => {
     .catch(error => {console.log(error)})
   }, [setupAPI, stationFilter])
 
+  const ButtonGroup = ({ next, previous}) => {
+    return (
+      <div className="tuner__ButtonGroup">
+        <IconContext.Provider value={{ color: "whitesmoke", size: "36px", padding: "8px"}}>
+          <BsArrowLeftSquareFill className="tuner__button" onClick={() => previous()}/>
+          <BsArrowRightSquareFill className="tuner__button" onClick={() => next()}/>
+        </IconContext.Provider>
+      </div>
+    )
+  }
+
 
 
 
@@ -152,7 +167,11 @@ const Tuner = ({onStationLogoClick}) => {
         <Carousel
           responsive={responsive}
           infinite={true}
-          slidesToSlide = {6}
+          slidesToSlide = {8}
+          renderButtonGroupOutside={true}
+          customButtonGroup={<ButtonGroup/>}
+          arrows={false}
+          showDots
           >
 
         {tunerDisplayData.map((station) => (
@@ -164,7 +183,7 @@ const Tuner = ({onStationLogoClick}) => {
               src={station.favicon}
               data-urlresolved={station.urlResolved}
               alt={station.name}
-//              data-tags={station.tags}
+              draggable="false"
               onClick ={onStationLogoClick}           
               
               onError={SetDefaultSrc}            

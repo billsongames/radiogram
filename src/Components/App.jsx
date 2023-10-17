@@ -61,7 +61,6 @@ const App = () =>  {
   }
 
   const handleLogout = () => {
-    alert("logged out")
     setUserID("")
   }
 

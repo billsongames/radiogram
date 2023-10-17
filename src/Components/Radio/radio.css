@@ -1,16 +1,20 @@
-.radio-container {
-  display: grid;
-/*   grid-template-columns: repeat(3, 500px); */
-}
+
 
 .eq-player-section {
   margin: auto;
-  width: 1500px;
+  width: 1200px;
   height: 250px;
   background-image: url("../../assets/img/bg_tuner-surround_2.png");
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 325px 550px 325px;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+}
+
+.eq_graph {
+  width: 325px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center
 }

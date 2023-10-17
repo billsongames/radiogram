@@ -1,3 +1,16 @@
 .login {
+ 
+  display:flex;
+  align-content: end;
   right: 4px;
+}
+
+.login__text {
+   font-size: 20px;
+   font-weight: bold;
+   padding: 0px 12px
+}
+
+.login__button {
+  cursor: pointer;
 }

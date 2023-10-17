@@ -5,6 +5,8 @@ import EQ from "./EQ"
 import "./display-station.css"
 import saved_preset from "../../../assets/img/heart-solid.png"
 import not_saved_preset from "../../../assets/img/heart-regular.png"
+import { IconContext } from "react-icons";
+import { BsHeartFill, BsHeart } from "react-icons/bs";
 
 
 const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, onPresetRemoveClicked, presets}) => {
@@ -25,6 +27,41 @@ const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, on
 
 
   let save_info_jsx
+
+  if (userID && tuned === true && alreadyPreset === -1) {
+    save_info_jsx = (
+      <IconContext.Provider value={{ color: "red", size: "36px" }}>
+        <BsHeart
+//          id={currentStation.id}
+          className= "display-station__hearticon"
+          alt = "Station not saved as preset"
+          onClick={onPresetSaveClicked}
+        />
+      </IconContext.Provider>
+    )
+  } else if (userID && tuned === true && alreadyPreset >= 0) {
+    save_info_jsx = (
+      <IconContext.Provider value={{ color: "red", size: "36px"}}>
+        <BsHeartFill
+          id={currentStation.id}
+          className= "display-station__hearticon"
+          alt = "Station saved as preset"
+          onClick={onPresetRemoveClicked}
+        />
+      </IconContext.Provider>
+
+    )  
+  } else if (userID && tuned === false) {
+    save_info_jsx = (
+      <></>
+    )
+  } else {
+    save_info_jsx = (
+      <>Log in to save presets</>
+    )
+  }
+
+/*   let save_info_jsx
 
   if (userID && tuned === true && alreadyPreset === -1) {
     save_info_jsx = (
@@ -54,9 +91,7 @@ const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, on
     save_info_jsx = (
       <>Log in to save presets</>
     )
-  }
-
-
+  } */
 
 
 
