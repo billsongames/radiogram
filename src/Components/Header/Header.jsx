@@ -35,7 +35,7 @@ const Header = ({ userID, handleLogin, handleLogout }) => {
         </div>
       </div>
 
-      <div className="header__source-container">
+{/*       <div className="header__source-container">
         {sources.map((source) => (
           <div
             key={source}
@@ -51,7 +51,7 @@ const Header = ({ userID, handleLogin, handleLogout }) => {
             </Link>  
           </div>            
         ))}
-      </div>
+      </div> */}
     </div>
 
 
