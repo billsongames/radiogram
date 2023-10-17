@@ -5,14 +5,18 @@ import {db} from "../../../backend/firebase"
 
 import default_station_logo from "../../../assets/img/station_no_logo.png"
 
+import { IconContext } from "react-icons";
+import { BsXCircleFill, BsXSquareFill } from "react-icons/bs";
+
 import "./presets.css"
 
 
 
 
-const Presets = ({ presets, onStationLogoClick }) => {
+const Presets = ({ presets, onStationLogoClick, onPresetRemoveClicked }) => {
 
 //  const [presets, setPresets] = useState([])
+
 
   const SetDefaultSrc = (event) => {
 		event.target.src = default_station_logo
@@ -28,7 +32,7 @@ const Presets = ({ presets, onStationLogoClick }) => {
       </div>
       <div className="presets__grid" >
         {presets.map((station) => (
-          <div className='preset__entry' key={station.id}>
+          <div className='preset__entry' key={station.id} id={station.id}>
             <img
               id={station.id}
               className="preset__logo"
@@ -48,7 +52,15 @@ const Presets = ({ presets, onStationLogoClick }) => {
               :
               station.name}
             </div>
-
+            <div>
+            <IconContext.Provider value={{ color: "red", size: "20px"}}>
+              <BsXCircleFill
+                id={station.id}
+                className="preset__remove-button"                
+                onClick={onPresetRemoveClicked}
+              />
+            </IconContext.Provider>
+            </div>
           </div>
         ))}
 

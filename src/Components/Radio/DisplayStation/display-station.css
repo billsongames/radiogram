@@ -1,8 +1,8 @@
-.display-station {
-  width: 1500px;
+/* .display-station {
+  width: 500px;
   display: grid;
   grid-template-columns: repeat(3, 300px);
-}
+} */
 
 .display-station-container{
   width: 500px;
@@ -35,6 +35,7 @@
   height: 32px;
   width: 32px;
   object-fit: contain;
+  cursor: pointer;
 }
 
 .display-station__hearticon:hover {

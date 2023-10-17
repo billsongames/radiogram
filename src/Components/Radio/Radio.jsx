@@ -41,10 +41,11 @@ const Radio = ({ userID }) => {
     const [backupStation, setBackupStation] = useState([])
 
     const [presets, setPresets] = useState([])
+    const [presetsLength, setPresetsLength] = useState(0)
     
     const r = document.querySelector(':root');
 
-
+    const presets_max = 16
   
 
     const handleStationLogoClick = (event) => {
@@ -88,23 +89,27 @@ const Radio = ({ userID }) => {
       r.style.setProperty("--first-anim-value", `${zeroAnimValue}s`)
     }
   
-    const handlePresetSaveClicked = async (event, stationInfo) => {
+    const handlePresetSaveClicked = async (event) => {
       event.preventDefault()
+
+      if (presets.length === presets_max) return
+      else {
         const newSavedPreset = {
           id: currentStation.id,
           name: currentStation.name,
           favicon: currentStation.favicon,
           urlResolved: currentStation.urlResolved,
-  //        tags: currentStation.tags
-        }
-  
+        }  
         setPresets([...presets, newSavedPreset])
+
+      }
     }
   
     const handlePresetRemoveClicked =(event) => {
       event.preventDefault()
+
       const indexOfPreset = presets.findIndex(preset =>
-        preset.id === event.target.id)
+        preset.id === event.currentTarget.id)
       
       setPresets(prev => {
         return prev.filter((_, i) => i !== indexOfPreset)
@@ -119,21 +124,7 @@ const Radio = ({ userID }) => {
       })
     }
 
-/*   useEffect(() => {
-    async function getDefaultStation() {
-      if (userID) {
-        const coll = collection(db, "users");
-        const q = query(coll, `${userID}`)
 
-        const querySnapshot = await getDocs(q)
-        querySnapshot.forEach((doc) => {
-          setCurrentStation(doc.data().defaultStation);
-        })
-      }
-    }
-    getDefaultStation()
-  
-  }, [userID]) */
 
 
   useEffect(() => {
@@ -153,8 +144,7 @@ const Radio = ({ userID }) => {
           setPresets(doc.data().presets);
         })
       }
-    }    
-
+    }
     populatePresets()
   }, 500)
   return () => clearTimeout(timer)
@@ -187,46 +177,6 @@ const Radio = ({ userID }) => {
     },[userID, presets])
 
 
-/*     useEffect(() => {
-      const timer = setTimeout(() => {
-        async function writeDefaultStation() {
-          if (userID){
-  
-            // CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
-            
-            const coll = collection(db, "users");
-            const q = query(coll, `${userID}`)
-                    
-            // RUN THE QUERY
-            await updateDoc(doc(coll, `${userID}`), {
-              defaultStation: newStation
-            })
-          }
-        }
-        writeDefaultStation()
-      }, 1000)
-
-      return () => clearTimeout(timer)
-  
-      },[userID, newStation]) */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     return (
@@ -254,10 +204,9 @@ const Radio = ({ userID }) => {
       {userID ? (
         <>
           <Presets
-
             presets={presets}
             onStationLogoClick={handleStationLogoClick}
-//            onPresetSaveClicked={handlePresetSaveClicked}
+            onPresetRemoveClicked={handlePresetRemoveClicked} 
           />
 
 

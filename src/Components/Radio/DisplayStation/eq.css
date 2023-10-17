@@ -1,9 +1,12 @@
 .equaliser-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   min-height:100%;
-  width:270px;
+  width:300px;
   margin: auto;
 
-  position:relative;
+
 }
 
 .clearfix {
@@ -30,8 +33,9 @@
   height:18px;
   background: #AEED25;
 }
+
 .equaliser-column {
-  width:40px;
+  width:32px;
   float:left;
   margin:0 6px;
   padding:0;
