@@ -1,28 +1,18 @@
-import {React, useEffect, useState} from "react";
-
-import { collection, query,  where, getCountFromServer, getDocs, setDoc } from "firebase/firestore";
-import {db} from "../../../backend/firebase"
+import {React} from "react";
 
 import default_station_logo from "../../../assets/img/station_no_logo.png"
 
 import { IconContext } from "react-icons";
-import { BsXCircleFill, BsXSquareFill } from "react-icons/bs";
+import { BsXCircleFill } from "react-icons/bs";
 
 import "./presets.css"
 
 
-
-
 const Presets = ({ presets, onStationLogoClick, onPresetRemoveClicked }) => {
-
-//  const [presets, setPresets] = useState([])
-
 
   const SetDefaultSrc = (event) => {
 		event.target.src = default_station_logo
-	};
-
-  
+	};  
 
 
   return(
@@ -41,14 +31,13 @@ const Presets = ({ presets, onStationLogoClick, onPresetRemoveClicked }) => {
               data-urlresolved={station.urlResolved}
               alt={station.name}           
               draggable="false"
-              onClick ={onStationLogoClick}
-              
+              onClick ={onStationLogoClick}              
               onError={SetDefaultSrc}            
             />
             <div className='preset__name'>
-              {station.name.length > 28
+              {station.name.length > 24
               ?
-              `${station.name.substring(0,28)}...`
+              `${station.name.substring(0,24)}...`
               :
               station.name}
             </div>
@@ -63,9 +52,6 @@ const Presets = ({ presets, onStationLogoClick, onPresetRemoveClicked }) => {
             </div>
           </div>
         ))}
-
-
-
       </div>
     </div>
   )

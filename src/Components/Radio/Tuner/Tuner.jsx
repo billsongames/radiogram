@@ -1,12 +1,10 @@
 import { React, useCallback, useEffect, useState } from 'react';
 import { RadioBrowserApi } from "radio-browser-api";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 import { IconContext } from "react-icons";
 import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
-
-
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 
 import { radio_search_filters } from '../../../data/filters';
 
@@ -41,15 +39,12 @@ const responsive = {
     items: 4,
     partialVisibilityGutter: 0
     }
-
-    
 };
 
 
 const Tuner = ({onStationLogoClick}) => {
 
   const [countryCode, setCountryCode] = useState("GB")
-
   const [searchByNameFilter, setSearchByNameFilter] = useState("")
   const [stationFilter, setStationFilter] = useState({
     countryCode: `${countryCode}`,
@@ -92,7 +87,6 @@ const Tuner = ({onStationLogoClick}) => {
     return api.searchStations(stationFilter)
   },[])
 
-
   useEffect(() => {
     setupAPI(stationFilter)
     .then((data) => setTunerDisplayData(data))
@@ -109,8 +103,6 @@ const Tuner = ({onStationLogoClick}) => {
       </div>
     )
   }
-
-
 
 
   return (
@@ -143,8 +135,7 @@ const Tuner = ({onStationLogoClick}) => {
           <div
             key={filter}
             id={filter}
-            className="tuner-filter__item"
-              
+            className="tuner-filter__item"              
             onClick={() => setStationFilter({
               countryCode: `${countryCode}`,
               limit: 50,
@@ -184,14 +175,13 @@ const Tuner = ({onStationLogoClick}) => {
               data-urlresolved={station.urlResolved}
               alt={station.name}
               draggable="false"
-              onClick ={onStationLogoClick}           
-              
+              onClick ={onStationLogoClick}
               onError={SetDefaultSrc}            
             />
             <div className='tuner-station__name'>
-              {station.name.length > 28
+              {station.name.length > 24
               ?
-              `${station.name.substring(0,28)}...`
+              `${station.name.substring(0,24)}...`
               :
               station.name}
             </div>
@@ -199,9 +189,8 @@ const Tuner = ({onStationLogoClick}) => {
         ))}
         </Carousel>
       </div>
-    </div>
-    
-    </div>
+    </div>    
+  </div>
   )
 }
 
