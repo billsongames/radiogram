@@ -4,8 +4,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //############
 
 //import {auth} from "../backend/firebase"
+
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
-import { collection, writeBatch, get, query,  where, getCountFromServer, doc, setDoc, getDocs, documentId } from "firebase/firestore";
+import { collection, query,  where, getCountFromServer, doc, setDoc, documentId } from "firebase/firestore";
 import {db} from "../backend/firebase"
 
 //############
@@ -32,7 +33,6 @@ const App = () =>  {
   const [defaultStation, setDefaultStation] = useState([])
 
   const handleLogin = () => {
-    console.log(userID)
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     signInWithPopup(auth, provider)
@@ -41,7 +41,7 @@ const App = () =>  {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       // The signed-in user info.
-      const user = result
+
       setUserID(result.user.email)
 
 
@@ -90,8 +90,10 @@ const App = () =>  {
 
         if (querySnapshot.data().count === 0) {
           const fieldData = {
-            presets: [],
-            defaultStation: []
+            email: `${userID}`,
+            defaultStation: [],
+            presets: []
+
           }
 
           await setDoc(doc(coll, `${userID}`),

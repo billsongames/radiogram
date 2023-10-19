@@ -6,7 +6,7 @@ import Tuner from "./Tuner/Tuner"
 import Presets from "./Presets/Presets"
 import Joint800px from '../Joints/Joint800px';
 
-import { collection, query, doc, setDoc, getDocs, updateDoc } from "firebase/firestore";
+import { collection, query, where, doc, setDoc, getDocs, updateDoc, documentId } from "firebase/firestore";
 import {db} from "../../backend/firebase"
 
 import "./radio.css"
@@ -135,7 +135,7 @@ const Radio = ({ userID }) => {
 // CREATE THE QUERY TO GET MATCHING DB ENTRIES
 
         const coll = collection(db, "users");
-        const q = query(coll, `${userID}`)
+        const q = query(coll, where(documentId(), "==", `${userID}`))
         
 // RUN THE QUERY
 
@@ -161,7 +161,7 @@ const Radio = ({ userID }) => {
           // CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
           
           const coll = collection(db, "users");
-          const q = query(coll, `${userID}`)
+//          const q = query(coll, where(documentId(), "==", `${userID}`))
                   
           // RUN THE QUERY
           await updateDoc(doc(coll, `${userID}`), {
