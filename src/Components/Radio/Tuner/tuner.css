@@ -1,6 +1,6 @@
 .tuner__container {
   width: 1200px;
-  height: 340px;
+  height: 360px;
   margin: auto;
   background-image: url("../../../assets/img/bg_tuner-surround_2.png");
   border-radius: 8px;
@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4px;
+
 }
 
 .tuner__title {
@@ -34,14 +34,14 @@
   margin: auto;
   width: 1200px;
   height: 160px;
-  padding: 24px 0px 0px
+  padding: 20px 0px 0px
   
 }
 
 .carousel-entry {
-  width: 120px;
+  width: 150px;
   height: 140px;
-  padding: 4px;
+  padding: 4px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -175,7 +175,7 @@
 }
 
 .tuner__ButtonGroup {
-  padding: 12px 0px;
+  padding: 32px 0px;
   position: absolute;
   width: 1200px;
   display: flex;
