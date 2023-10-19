@@ -1,7 +1,5 @@
 import { React } from "react";
 
-import GoogleButton from 'react-google-button'
-
 import { IconContext } from "react-icons";
 import { BiSolidLogIn, BiSolidLogOut } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
@@ -15,9 +13,6 @@ import "./login.css"
 //####################
 
 const Login = ({ userID, onLogin, onLogout}) => {
-
-
-
   
   return(
     <div className="login">

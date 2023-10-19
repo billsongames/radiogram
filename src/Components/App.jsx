@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //############
 
 //import {auth} from "../backend/firebase"
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { collection, writeBatch, get, query,  where, getCountFromServer, doc, setDoc, getDocs, documentId } from "firebase/firestore";
 import {db} from "../backend/firebase"
 
@@ -32,6 +32,7 @@ const App = () =>  {
   const [defaultStation, setDefaultStation] = useState([])
 
   const handleLogin = () => {
+    console.log(userID)
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     signInWithPopup(auth, provider)
@@ -61,7 +62,15 @@ const App = () =>  {
   }
 
   const handleLogout = () => {
-    setUserID("")
+    const auth = getAuth();
+    signOut(auth)
+    .then(() => {
+      setUserID("")
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+    
   }
 
 
