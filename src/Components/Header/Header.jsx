@@ -1,14 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 import Clock from 'react-live-clock';
 import Login from "./Login";
-import Joint800px from "../Joints/Joint800px";
+
 
 import rp_logo from "../../../src/assets/img/logo_radiogram_1_40pc.png"
-import { sources } from '../../data/sources';
+//import { sources } from '../../data/sources';
 
 import "./header.css"
+
 
 const Header = ({ userID, handleLogin, handleLogout }) => {
   return(
