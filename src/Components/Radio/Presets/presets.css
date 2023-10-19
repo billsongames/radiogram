@@ -1,7 +1,7 @@
 .presets-container {
   margin: auto;
   width: 1200px;
-  height: 340px;
+  height: 360px;
   background-image: url("../../../assets/img/bg_tuner-surround_2.png");
   border-radius: 8px;
 
@@ -11,8 +11,8 @@
   width: 1500px;
   margin: auto;
   text-align: left;
-  padding: 12px;
-  font-size: 1em;
+  padding: 8px;
+  font-size: 18px;
   font-weight:bold;
   color: whitesmoke;
 }
@@ -22,18 +22,17 @@
   margin: auto;
   width: 1200px;
   display: grid;
-  grid-template-columns: repeat(8, 140px);
-  grid-template-rows: repeat(2, 140px);
+  grid-template-columns: repeat(8, 150px);
+  grid-template-rows: repeat(2, 160px);
   justify-content: center;
 }
 
 .preset__entry {
-  width: 120px;
-  height: 180px;
   display: flex;
-  padding: 10px;
   flex-direction: column;
   align-items: center;
+  width: 140px;
+  height: 180px;
   text-align: center;
 }
 
@@ -43,9 +42,8 @@
 } */
 
 .preset__logo {
-  padding: 4px;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   border-radius: 8px;
   cursor: pointer
@@ -65,3 +63,4 @@
   scale: 1.4;
   transition-duration: 0.5s;
 }
+

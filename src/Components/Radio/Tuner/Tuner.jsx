@@ -189,9 +189,9 @@ const Tuner = ({onStationLogoClick}) => {
               onError={SetDefaultSrc}            
             />
             <div className='tuner-station__name'>
-              {station.name.length > 28
+              {station.name.length > 24
               ?
-              `${station.name.substring(0,28)}...`
+              `${station.name.substring(0,24)}...`
               :
               station.name}
             </div>
