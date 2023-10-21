@@ -11,7 +11,6 @@ import {db} from "../../backend/firebase"
 
 import "./radio.css"
 
-
 import radio_antenna from "../../assets/img/radio_antenna.png"
 import error_tuning from "../../assets/img/error_tuning.png"
 import tuning_static from "../../assets/audio/tuning-radio-7150.mp3"
@@ -25,10 +24,7 @@ const tuningAnimValue = 0.4
 const zeroAnimValue = 0
 
 
-
-
 const Radio = ({ userID }) => {
-
 
     const [tuned, setTuned] = useState(false)
     const [currentStation, setCurrentStation] = useState(
@@ -45,8 +41,7 @@ const Radio = ({ userID }) => {
     
     const r = document.querySelector(':root');
 
-    const presets_max = 16
-  
+    const presets_max = 16  
 
     const handleStationLogoClick = (event) => {
       event.preventDefault()
@@ -101,7 +96,6 @@ const Radio = ({ userID }) => {
           urlResolved: currentStation.urlResolved,
         }  
         setPresets([...presets, newSavedPreset])
-
       }
     }
   
@@ -123,9 +117,6 @@ const Radio = ({ userID }) => {
         favicon : error_tuning,
       })
     }
-
-
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -149,9 +140,6 @@ const Radio = ({ userID }) => {
   }, 500)
   return () => clearTimeout(timer)
   }, [userID])
-
-
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -177,8 +165,6 @@ const Radio = ({ userID }) => {
     },[userID, presets])
 
 
-
-
     return (
     <div className='radio-container'>
       <div className="eq-player-section">
@@ -192,7 +178,6 @@ const Radio = ({ userID }) => {
         <div className="eq_graph">
           <EQ />
         </div>
-
       </div>
 
       <Joint800px />
@@ -208,8 +193,6 @@ const Radio = ({ userID }) => {
             onStationLogoClick={handleStationLogoClick}
             onPresetRemoveClicked={handlePresetRemoveClicked} 
           />
-
-
         </>
       ) : (
         <></>

@@ -30,7 +30,7 @@
   margin: auto;
   width: 1200px;
   height: 160px;
-  padding: 24px 0px 0px
+  padding: 20px 0px 0px
   
 }
 
@@ -42,8 +42,8 @@
   align-items: center;
   text-align: center;
   z-index: 32;
-
 }  
+ 
 
 /* .carousel-entry:hover{
   background-color: grey;
@@ -72,7 +72,7 @@
 }
 
 .tuner-filter__item {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   color: whitesmoke;
   padding: 4px 10px;
@@ -86,7 +86,7 @@
   position: relative;
   border-width: 0;
   padding: 0 4px 4px;
-  width: 120px;
+  width: 100px;
   box-sizing: border-box;
   background: transparent;
   font: inherit;

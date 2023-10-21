@@ -1,16 +1,11 @@
 import { React } from "react";
 
 import { IconContext } from "react-icons";
-import { BiSolidLogIn, BiSolidLogOut } from "react-icons/bi";
+import { BiSolidLogOut } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
-
-
-
 
 import "./login.css"
 
-
-//####################
 
 const Login = ({ userID, onLogin, onLogout}) => {
   

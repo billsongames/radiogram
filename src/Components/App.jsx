@@ -1,11 +1,8 @@
 import { React, useEffect, useState}  from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+//import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-//############
-
-//import {auth} from "../backend/firebase"
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
-import { collection, writeBatch, get, query,  where, getCountFromServer, doc, setDoc, getDocs, documentId } from "firebase/firestore";
+import { collection, query,  where, getCountFromServer, doc, setDoc, documentId } from "firebase/firestore";
 import {db} from "../backend/firebase"
 
 import CookieConsent from 'react-cookie-consent';
@@ -15,37 +12,25 @@ import CookieConsent from 'react-cookie-consent';
 import Header from './Header/Header';
 import Joint800px from './Joints/Joint800px';
 import Radio from './Radio/Radio';
-import DeezerComponent from './Deezer/DeezerComponent';
-import SpotifyComponent from './Spotify/SpotifyComponent';
-
-//############
-
-
-
-//############
 
 import './App.css';
 
 
-
-
 const App = () =>  {
   const [userID, setUserID] = useState("")
-  const [defaultStation, setDefaultStation] = useState([])
+//  const [defaultStation, setDefaultStation] = useState([])
 
   const handleLogin = () => {
-    console.log(userID)
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
+//      const credential = GoogleAuthProvider.credentialFromResult(result);
+//      const token = credential.accessToken;
       // The signed-in user info.
-      const user = result
-      setUserID(result.user.email)
 
+      setUserID(result.user.email)
 
       //const user = result
 
@@ -59,6 +44,11 @@ const App = () =>  {
         const email = error.customData.email;
         // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
+
+        console.log(errorCode)
+        console.log(errorMessage)
+        console.log(email)
+        console.log(credential)
         // ...
         });
   }
@@ -71,11 +61,8 @@ const App = () =>  {
     })
     .catch((error) => {
       console.log(error)
-    })
-    
+    })    
   }
-
-
 
   useEffect(() => {
     async function checkIfUserExists() {
@@ -92,10 +79,9 @@ const App = () =>  {
 
         if (querySnapshot.data().count === 0) {
           const fieldData = {
-            presets: [],
-            defaultStation: []
+            defaultStation: [],
+            presets: []
           }
-
           await setDoc(doc(coll, `${userID}`),
             fieldData)
         }
@@ -106,16 +92,10 @@ const App = () =>  {
   }, [userID])
 
 
-
-
-
-
-
-
   return (
-    <BrowserRouter>
+    <>
       <CookieConsent
-//        debug={true}
+        debug={true}
         location="bottom"
         buttonText="Rock on!"
         expires={365}
@@ -124,6 +104,7 @@ const App = () =>  {
         <a href='https://billsongames.weebly.com/privacy.html' target='blank'>Privacy policy</a>
         This website uses cookie to enhance the user experience.
       </CookieConsent>  
+
       <div className='App'>
         <div className="top-section">
 
@@ -136,30 +117,9 @@ const App = () =>  {
           <Radio
               userID={userID}
             />
-        </div>  
-
- {/*        <Routes>
-          <Route path = "/radio" element = {
-            <>
-            <Radio
-              userID={userID}
-            />
-            </>
-          }/>
-          <Route path = "/deezer" element = {
-            <DeezerComponent/>
-          }/>
-          <Route path = "/spotify" element = {
-            <SpotifyComponent/>
-          }/>
-        </Routes>  */} 
-        
-      
-    </div>  
-
-
-    </BrowserRouter>
-    
+        </div>       
+      </div>
+    </>  
   );
 }
 
