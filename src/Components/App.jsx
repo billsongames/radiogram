@@ -8,6 +8,8 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/
 import { collection, writeBatch, get, query,  where, getCountFromServer, doc, setDoc, getDocs, documentId } from "firebase/firestore";
 import {db} from "../backend/firebase"
 
+import CookieConsent from 'react-cookie-consent';
+
 //############
 
 import Header from './Header/Header';
@@ -111,7 +113,17 @@ const App = () =>  {
 
 
   return (
-    <BrowserRouter>    
+    <BrowserRouter>
+      <CookieConsent
+//        debug={true}
+        location="bottom"
+        buttonText="Rock on!"
+        expires={365}
+        overlay
+      >
+        <a href='https://billsongames.weebly.com/privacy.html' target='blank'>Privacy policy</a>
+        This website uses cookie to enhance the user experience.
+      </CookieConsent>  
       <div className='App'>
         <div className="top-section">
 
