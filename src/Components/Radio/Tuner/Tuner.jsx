@@ -171,8 +171,8 @@ const Tuner = ({onStationLogoClick}) => {
               id={station.id}
               className="tuner-station__logo"
               name={station.name}
-              src={station.favicon}
-              data-urlresolved={station.urlResolved}
+              src={station.favicon.replace("http:", "https:")}
+              data-urlresolved={station.urlResolved.replace("http:", "https:")}
               alt={station.name}
               draggable="false"
               onClick ={onStationLogoClick}

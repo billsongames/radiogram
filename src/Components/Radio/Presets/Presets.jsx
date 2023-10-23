@@ -27,8 +27,8 @@ const Presets = ({ presets, onStationLogoClick, onPresetRemoveClicked }) => {
               id={station.id}
               className="preset__logo"
               name={station.name}
-              src={station.favicon}
-              data-urlresolved={station.urlResolved}
+              src={station.favicon.replace("http:", "https:")}
+              data-urlresolved={station.urlResolved.replace("http:", "https:")}
               alt={station.name}           
               draggable="false"
               onClick ={onStationLogoClick}              
