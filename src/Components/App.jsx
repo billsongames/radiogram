@@ -37,10 +37,8 @@ const App = () =>  {
   const handleLogin = () => {
     console.log(allowCookies)
 
-    if (allowCookies === "false") {
-      alert("not acceoted cookies") 
-      return 
-    } else {
+    if (allowCookies === "false") return 
+      else {
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
       setPersistence(auth, browserLocalPersistence)
@@ -141,6 +139,7 @@ const App = () =>  {
         
       >
         This website uses cookies to improve your listening experience. {" "}
+        <a href="https://billsongames.weebly.com/privacy.html" target="blank" className='cookies__privacy-policy'>Privacy Policy</a>
       </CookieConsent>  
 
 

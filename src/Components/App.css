@@ -2,5 +2,15 @@
   padding: 4px
 }
 
+.cookies__privacy-polcy {
+  color: whitesmoke;
+  font-size: 24px;
+}
+
+.cookies__privacy-policy:visited {
+  color: whitesmoke;
+  font-size: 24px;
+}
+
 
 
