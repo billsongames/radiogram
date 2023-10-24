@@ -119,6 +119,18 @@ const App = () =>  {
 
 
   return (
+    <>
+      <CookieConsent
+        debug={true}
+        location="bottom"
+        buttonText="Rock on!"
+        expires={365}
+        overlay
+      >
+        <a href='https://billsongames.weebly.com/privacy.html' target='blank'>Privacy policy</a>
+        This website uses cookie to enhance the user experience.
+      </CookieConsent>  
+
       <div className='App'>
         <CookieConsent
           overlay
@@ -154,7 +166,8 @@ const App = () =>  {
               userID={userID}
             />
         </div>       
-      </div>    
+      </div>
+    </>  
   );
 }
 

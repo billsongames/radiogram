@@ -30,7 +30,7 @@
   margin: auto;
   width: 1200px;
   height: 160px;
-  padding: 24px 0px 0px
+  padding: 20px 0px 0px
   
 }
 
@@ -42,8 +42,8 @@
   align-items: center;
   text-align: center;
   z-index: 32;
-
 }  
+ 
 
 /* .carousel-entry:hover{
   background-color: grey;
