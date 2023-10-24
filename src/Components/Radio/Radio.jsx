@@ -45,8 +45,10 @@ const Radio = ({ userID }) => {
 
     const handleStationLogoClick = (event) => {
       event.preventDefault()
+
       if (event.target.id === currentStation.id){
         return
+       
       } else {
           staticPlayer.play()
           setTuned(false)
