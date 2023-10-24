@@ -37,8 +37,10 @@ const App = () =>  {
   const handleLogin = () => {
     console.log(allowCookies)
 
-    if (allowCookies === "false") return 
-    else {
+    if (allowCookies === "false") {
+      alert("not acceoted cookies") 
+      return 
+    } else {
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
       setPersistence(auth, browserLocalPersistence)
@@ -119,55 +121,42 @@ const App = () =>  {
 
 
   return (
-    <>
+    <div className='App'>
       <CookieConsent
-        debug={true}
-        location="bottom"
-        buttonText="Rock on!"
-        expires={365}
         overlay
+//          debug={true}
+        expires={365}
+        location="bottom"
+        cookieName="radiogram"
+        style={{ background: "#2B373B" ,fontSize: "24px" }}
+        buttonText="Understood"
+        buttonStyle={{ background: "whitesmoke" ,fontSize: "24px" }}
+        onAccept={() => setAllowCookies("true")}
+        enableDeclineButton
+        declineButtonText="No way!"
+        declineButtonStyle={{ background: "red" ,fontSize: "24px" }}
+        onDecline={() => setAllowCookies("false")}
+        setDeclineCookie={false}
+        flipButtons
+        
       >
-        <a href='https://billsongames.weebly.com/privacy.html' target='blank'>Privacy policy</a>
-        This website uses cookie to enhance the user experience.
+        This website uses cookies to improve your listening experience. {" "}
       </CookieConsent>  
 
-      <div className='App'>
-        <CookieConsent
-          overlay
-//          debug={true}
-          expires={365}
-          location="bottom"
-          cookieName="radiogram"
-          style={{ background: "#2B373B" ,fontSize: "24px" }}
-          buttonText="Understood"
-          buttonStyle={{ background: "whitesmoke" ,fontSize: "24px" }}
-          onAccept={() => setAllowCookies("true")}
-          enableDeclineButton
-          declineButtonText="No way!"
-          declineButtonStyle={{ background: "red" ,fontSize: "24px" }}
-          onDecline={() => setAllowCookies("false")}
-          setDeclineCookie={false}
-          flipButtons
-          
-        >
-          This website uses cookies to improve your listening experience. {" "}
-        </CookieConsent>  
 
+      <div className="top-section">
 
-        <div className="top-section">
-
-          <Header
+        <Header
+          userID={userID}
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+        />
+        <Joint800px/>
+        <Radio
             userID={userID}
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
           />
-          <Joint800px/>
-          <Radio
-              userID={userID}
-            />
-        </div>       
-      </div>
-    </>  
+      </div>       
+    </div>
   );
 }
 
