@@ -151,6 +151,7 @@ const Radio = ({ userID }) => {
           // CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
           
           const coll = collection(db, "users");
+          const q = query(coll, where(documentId(), "==", `${userID}`))
                   
           // RUN THE QUERY
           await updateDoc(doc(coll, `${userID}`), {
