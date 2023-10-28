@@ -51,6 +51,7 @@ const Radio = ({ userID }) => {
        
       } else {
           staticPlayer.play()
+          window.parent.document.title = "Tuning..."
           setTuned(false)
           r.style.setProperty("--first-anim-value", `${tuningAnimValue}s`)
   //        staticIsPlaying = true
@@ -80,6 +81,7 @@ const Radio = ({ userID }) => {
       setDefaultStation(newStation)
       setTuned(true)
       r.style.setProperty("--first-anim-value", `${defaultAnimValue}s`)
+      window.parent.document.title = `${newStation.name}`
       }
   
     const handlePaused = () => {
