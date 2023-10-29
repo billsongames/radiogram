@@ -16,6 +16,7 @@ import './App.css';
 
 const App = () =>  {
   const [userID, setUserID] = useState("")
+  const [userInfo, setUserInfo] = useState({displayName: "", photoURL: ""})
   const [allowCookies, setAllowCookies] = useState(getCookieConsentValue("radiogram"))
 
 
@@ -44,9 +45,8 @@ const App = () =>  {
 //        const token = credential.accessToken;
         // The signed-in user info.
 
-
-
         setUserID(result.user.email)
+        setUserInfo({displayName: result.user.displayName, photoURL: result.user.photoURL})
 
       //const user = result
 
@@ -76,6 +76,7 @@ const App = () =>  {
     signOut(auth)
     .then(() => {
       setUserID("")
+      setUserInfo({displayName: "", photoURL: ""})
     })
     .catch((error) => {
       console.log(error)
@@ -141,23 +142,27 @@ const App = () =>  {
 
           <Header
             userID={userID}
+            userInfo={userInfo}
             handleLogin={handleLogin}
             handleLogout={handleLogout}
           />
           <Joint800px/>
+          <Radio
+                userID={userID}
+              />
 
-          <Routes>
+{/*           <Routes>
             <Route path = "/radio" element = {
  
               <Radio
                 userID={userID}
               />
             }/>
-{/*               <Route path = "/deezer" element = {
+              <Route path = "/deezer" element = {
                 <DeezerComponent/>
-              }/> */}
+              }/>
 
-          </Routes>
+          </Routes> */}
 
         </div>       
       </div>

@@ -14,3 +14,8 @@
 .login__button {
   cursor: pointer;
 }
+
+.login__userProfilePicture {
+  width: 36px;
+  border-radius: 50%;
+}

@@ -11,7 +11,7 @@ import { sources } from '../../data/sources';
 import "./header.css"
 
 
-const Header = ({ userID, handleLogin, handleLogout }) => {
+const Header = ({ userID, userInfo, handleLogin, handleLogout }) => {
   return(
     <div className="header-container">
       <div className="header__top-row">
@@ -29,12 +29,14 @@ const Header = ({ userID, handleLogin, handleLogout }) => {
           <div>
             <Login
               userID={userID}
+              userInfo={userInfo}
               onLogin={handleLogin}
               onLogout={handleLogout}
             />
           </div>  
         </div>
       </div>
+
 
 {/*       <div className="header__source-container">
         {sources.map((source) => (

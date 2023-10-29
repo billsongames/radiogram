@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import "./login.css"
 
 
-const Login = ({ userID, onLogin, onLogout}) => {
+const Login = ({ userID, userInfo, onLogin, onLogout}) => {
   
   return(
     <div className="login">
@@ -23,6 +23,7 @@ const Login = ({ userID, onLogin, onLogout}) => {
           onClick={onLogout}
         />
       </IconContext.Provider>
+      <img className="login__userProfilePicture" src={userInfo.photoURL} alt="user profile picture" />
       </>  
       :
       <>
