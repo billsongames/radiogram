@@ -1,5 +1,5 @@
 import { React, useEffect, useState}  from 'react';
-//import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { GoogleAuthProvider, browserLocalPersistence, getAuth, setPersistence, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
 import { collection, query,  where, getCountFromServer, doc, setDoc, documentId } from "firebase/firestore";
@@ -111,43 +111,57 @@ const App = () =>  {
 
 
   return (
-    <div className='App'>
-      <CookieConsent
-        overlay
-//          debug={true}
-        expires={365}
-        location="bottom"
-        cookieName="radiogram"
-        style={{ background: "#2B373B" ,fontSize: "24px" }}
-        buttonText="Understood"
-        buttonStyle={{ background: "whitesmoke" ,fontSize: "24px" }}
-        onAccept={() => setAllowCookies("true")}
-        enableDeclineButton
-        declineButtonText="No way!"
-        declineButtonStyle={{ background: "red" ,fontSize: "24px" }}
-        onDecline={() => setAllowCookies("false")}
-        setDeclineCookie={false}
-        flipButtons
-        
-      >
-        This website uses cookies to improve your listening experience. {" "}
-        <a href="https://billsongames.weebly.com/privacy.html" target="blank" className='cookies__privacy-policy'>Privacy Policy</a>
-      </CookieConsent>  
+    <BrowserRouter>
+
+      <div className='App'>
+        <CookieConsent
+          overlay
+  //          debug={true}
+          expires={365}
+          location="bottom"
+          cookieName="radiogram"
+          style={{ background: "#2B373B" ,fontSize: "24px" }}
+          buttonText="Understood"
+          buttonStyle={{ background: "whitesmoke" ,fontSize: "24px" }}
+          onAccept={() => setAllowCookies("true")}
+          enableDeclineButton
+          declineButtonText="No way!"
+          declineButtonStyle={{ background: "red" ,fontSize: "24px" }}
+          onDecline={() => setAllowCookies("false")}
+          setDeclineCookie={false}
+          flipButtons
+          
+        >
+          This website uses cookies to improve your listening experience. {" "}
+          <a href="https://billsongames.weebly.com/privacy.html" target="blank" className='cookies__privacy-policy'>Privacy Policy</a>
+        </CookieConsent>  
 
 
-      <div className="top-section">
+        <div className="top-section">
 
-        <Header
-          userID={userID}
-          handleLogin={handleLogin}
-          handleLogout={handleLogout}
-        />
-        <Joint800px/>
-        <Radio
+          <Header
             userID={userID}
+            handleLogin={handleLogin}
+            handleLogout={handleLogout}
           />
-      </div>       
-    </div>
+          <Joint800px/>
+
+          <Routes>
+            <Route path = "/radio" element = {
+ 
+              <Radio
+                userID={userID}
+              />
+            }/>
+{/*               <Route path = "/deezer" element = {
+                <DeezerComponent/>
+              }/> */}
+
+          </Routes>
+
+        </div>       
+      </div>
+    </BrowserRouter>  
   );
 }
 
