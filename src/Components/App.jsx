@@ -26,7 +26,10 @@ const App = () =>  {
   
   onAuthStateChanged(auth, (user) => {
     
-    if (user && allowCookies === "true") setUserID(user.email)
+    if (user && allowCookies === "true") {
+      setUserID(user.email)
+      setUserInfo({displayName: user.displayName, photoURL: user.photoURL})
+    }  
   })
 
 
