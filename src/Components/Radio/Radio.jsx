@@ -30,7 +30,7 @@ const Radio = ({ userID }) => {
     const [currentStation, setCurrentStation] = useState(
       {
         name: "Select a station...",
-        favicon: white_logo
+        favicon: white_logo,
       })
     const [defaultStation, setDefaultStation] = useState([])
     const [newStation, setNewStation] = useState([])
@@ -98,10 +98,37 @@ const Radio = ({ userID }) => {
           name: currentStation.name,
           favicon: currentStation.favicon,
           urlResolved: currentStation.urlResolved,
-        }  
+        }
+
         setPresets([...presets, newSavedPreset])
-      }
+
+        const timer = setTimeout(() => {
+        async function writePresets() {
+          if (userID){
+  
+            // CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
+            
+            const coll = collection(db, "users");
+            const q = query(coll, where(documentId(), "==", `${userID}`))
+                    
+            // RUN THE QUERY
+            await updateDoc(doc(coll, `${userID}`), {
+              presets: [...presets, newSavedPreset]
+            })
+          }
+        }
+        writePresets()
+      }, 1000)
+  
+      return () => clearTimeout(timer)
     }
+      }
+    
+
+
+
+
+    
   
     const handlePresetRemoveClicked =(event) => {
       event.preventDefault()
@@ -111,7 +138,27 @@ const Radio = ({ userID }) => {
       
       setPresets(prev => {
         return prev.filter((_, i) => i !== indexOfPreset)
-      })  
+      })
+
+      const timer = setTimeout(() => {
+        async function writePresets() {
+          if (userID){
+  
+            // CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
+            
+            const coll = collection(db, "users");
+            const q = query(coll, where(documentId(), "==", `${userID}`))
+                    
+            // RUN THE QUERY
+            await updateDoc(doc(coll, `${userID}`), {
+              presets: presets.filter((_, i) => i !== indexOfPreset)
+            })
+          }
+        }
+        writePresets()
+      }, 1000)
+  
+      return () => clearTimeout(timer)
     }
   
     const handleTuningError = () => {
@@ -120,53 +167,31 @@ const Radio = ({ userID }) => {
         name: "ERROR TUNING STATION...",
         favicon : error_tuning,
       })
+      window.parent.document.title = "ERROR TUNING STATION..."
     }
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      async function populatePresets() {
-        if (userID){
-
-// CREATE THE QUERY TO GET MATCHING DB ENTRIES
-
-        const coll = collection(db, "users");
-        const q = query(coll, where(documentId(), "==", `${userID}`))
-        
-// RUN THE QUERY
-
-        const querySnapshot = await getDocs(q)
-        querySnapshot.forEach((doc) => {
-          setPresets(doc.data().presets);
-        })
-      }
-    }
-    populatePresets()
-  }, 500)
-  return () => clearTimeout(timer)
-  }, [userID])
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      async function writePresets() {
-        if (userID){
-
-          // CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
-          
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        async function populatePresets() {
+          if (userID){
+  
+  // CREATE THE QUERY TO GET MATCHING DB ENTRIES
+  
           const coll = collection(db, "users");
           const q = query(coll, where(documentId(), "==", `${userID}`))
-                  
-          // RUN THE QUERY
-          await updateDoc(doc(coll, `${userID}`), {
-            presets: presets
+          
+  // RUN THE QUERY
+  
+          const querySnapshot = await getDocs(q)
+          querySnapshot.forEach((doc) => {
+            setPresets(doc.data().presets);
           })
         }
       }
-      writePresets()
-    }, 1000)
-
+      populatePresets()
+    }, 500)
     return () => clearTimeout(timer)
-
-    },[userID, presets])
+    }, [userID])
 
 
     return (

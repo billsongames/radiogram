@@ -78,7 +78,7 @@ const Tuner = ({onStationLogoClick}) => {
     }
   };
 
-  const api = new RadioBrowserApi("BG Radio App")
+  const api = new RadioBrowserApi("radiogram")
 //api.setBaseUrl('https://de1.api.radio-browser.info/')
 //api.setBaseUrl('https://at1.api.radio-browser.info')
   api.setBaseUrl('https://nl1.api.radio-browser.info')
