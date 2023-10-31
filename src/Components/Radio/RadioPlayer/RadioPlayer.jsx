@@ -23,7 +23,7 @@ const RadioPlayer = ({ tuned, userID, currentStation, onStationTuned, onPaused, 
       </div>
       <div className="audioplayer-container">
         <AudioPlayer
-          autoplay = {false}
+          autoplay = {true}
           src = {currentStation.urlResolved}
           autoPlayAfterSrcChange = {true}
           layout = "stacked-reverse"

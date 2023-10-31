@@ -5,7 +5,7 @@ import Clock from 'react-live-clock';
 import Login from "./Login";
 
 
-import rp_logo from "../../../src/assets/img/logo_radiogram_1_40pc.png"
+import rp_logo from "../../../src/assets/img/logo_radiogram_2.png"
 import { sources } from '../../data/sources';
 
 import "./header.css"
@@ -16,13 +16,13 @@ const Header = ({ userID, userInfo, handleLogin, handleLogout }) => {
     <div className="header-container">
       <div className="header__top-row">
 
-        <div className="header__logo">        
-          <img src={rp_logo} alt="RadioPlayer logo"/>
-        </div>
-        
         <div className="header__clock">
           <Clock
             ticking={true}/>
+        </div>
+
+        <div className="header__logo">        
+          <img  src={rp_logo} alt="RadioPlayer logo"/>
         </div>
 
         <div className="header__login">
