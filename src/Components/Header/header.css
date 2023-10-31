@@ -22,14 +22,13 @@
 .header__clock {
   font-family: alarm_clock, serif;
   padding: 0px 16px;
-  text-align: left;
+  text-align: center;
   font-size: 36px;
   color: whitesmoke;
 }
 
 .header__logo {
   padding: 0px 10px;
-  margin: auto
 }
 
 .header__logo > img {
