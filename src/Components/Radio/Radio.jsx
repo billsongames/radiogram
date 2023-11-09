@@ -119,7 +119,8 @@ const Radio = ({ userID }) => {
         }
         writePresets()
       }, 1000)
-  
+
+      console.log("preset saved")  
       return () => clearTimeout(timer)
     }
       }
@@ -157,8 +158,10 @@ const Radio = ({ userID }) => {
         }
         writePresets()
       }, 1000)
-  
+      
+      console.log("preset removed")
       return () => clearTimeout(timer)
+      
     }
   
     const handleTuningError = () => {
@@ -186,16 +189,20 @@ const Radio = ({ userID }) => {
           querySnapshot.forEach((doc) => {
             setPresets(doc.data().presets);
           })
+        } else {
+          setPresets([])
         }
       }
       populatePresets()
     }, 500)
+
+    console.log("presets populated")  
     return () => clearTimeout(timer)
     }, [userID])
 
 
     return (
-    <div className='radio-container'>
+    <div>
       <div className="eq-player-section">
 
         <div className="eq_graph">
@@ -215,7 +222,13 @@ const Radio = ({ userID }) => {
 
       <Joint800px />
 
-      {userID ? (
+      <Presets
+        presets={presets}
+        onStationLogoClick={handleStationLogoClick}
+        onPresetRemoveClicked={handlePresetRemoveClicked} 
+      />
+
+{/*       {userID ? (
         <>
           <Presets
             presets={presets}
@@ -225,7 +238,7 @@ const Radio = ({ userID }) => {
         </>
       ) : (
         <></>
-      )}
+      )} */}
     </div>
   );
 };

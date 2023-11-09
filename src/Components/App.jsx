@@ -141,7 +141,7 @@ const App = () =>  {
         </CookieConsent>
 
 
-        <div className="top-section">
+        <div>
 
           <Header
             userID={userID}
