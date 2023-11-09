@@ -1,5 +1,10 @@
 .App {
-  padding: 4px
+  margin: auto;
+  padding: 4px;
+}
+
+.top-section {
+  width: 100%
 }
 
 .cookies__privacy-polcy {

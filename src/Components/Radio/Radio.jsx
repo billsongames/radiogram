@@ -41,14 +41,14 @@ const Radio = ({ userID }) => {
     
     const r = document.querySelector(':root');
 
-    const presets_max = 16  
+    const presets_max = 24
 
     const handleStationLogoClick = (event) => {
       event.preventDefault()
 
       if (event.target.id === currentStation.id){
         return
-       
+
       } else {
           staticPlayer.play()
           window.parent.document.title = "Tuning..."
