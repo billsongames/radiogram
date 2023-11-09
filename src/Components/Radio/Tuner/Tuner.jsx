@@ -109,7 +109,7 @@ const Tuner = ({onStationLogoClick}) => {
     <div className='tuner__container'>
       <div className='tuner__title'>
         <div>
-          RADIOGRAM STEREO TUNER
+          STEREO TUNER
         </div>
         <div>
         <form className='tuner__search-form' onSubmit={handleSearchByNameSubmit}>

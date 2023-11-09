@@ -7,7 +7,7 @@
 .display-station-container{
   width: 500px;
   display: grid;
-  grid-template-columns: 120px 380px;
+  grid-template-columns: 100px auto;
   padding: 0px 0px 6px 0px;
 }
 
@@ -22,7 +22,7 @@
   margin: 0px 10px 0px 10px;
   height: 60px;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto;
   color: whitesmoke;
   font-size: 18px;
 }
@@ -32,6 +32,7 @@
 }
 
 .display-station__hearticon {
+  padding: 2px;
   height: 32px;
   width: 32px;
   object-fit: contain;
@@ -41,14 +42,26 @@
 .display-station__hearticon:hover {
   scale: 1.4;
   transition-duration: 0.5s;
-}  
+}
 
+.save_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
 
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+/* ################################################################
+                                                                  #
+  MEDIA QUERIES                                                   # 
+                                                                  #
+  ################################################################
+   */
+
+@media only screen and (max-width: 480px) {
   .display-station-container{
-    width: 420px;
+    width: 100%;
     display: grid;
-    grid-template-columns: 80px auto;
+    grid-template-columns: 60px auto;
     padding: 0px 0px 6px 0px;
   }
   
@@ -63,7 +76,92 @@
     margin: 0px 10px 0px 10px;
     height: 60px;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto;
+    color: whitesmoke;
+    font-size: 14px;
+  }
+  
+  .display-station__name {
+    font-weight: bold;
+  }
+  
+  .display-station__hearticon {
+    height: 20px;
+    width: 20px;
+    object-fit: contain;
+    cursor: pointer;
+  }
+  
+  .display-station__hearticon:hover {
+    scale: 1.4;
+    transition-duration: 0.5s;
+  }  
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .display-station-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60px auto;
+    padding: 0px 0px 6px 0px;
+  }
+  
+  .display-station__logo {
+    border-radius: 8px;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  
+  .display-station__info {
+    margin: 0px 10px 0px 10px;
+    height: 60px;
+    display: grid;
+    grid-template-rows: auto;
+    color: whitesmoke;
+    font-size: 14px;
+  }
+  
+  .display-station__name {
+    font-weight: bold;
+  }
+  
+  .display-station__hearticon {
+    height: 24px;
+    width: 24px;
+    object-fit: contain;
+    cursor: pointer;
+  }
+  
+  .display-station__hearticon:hover {
+    scale: 1.4;
+    transition-duration: 0.5s;
+  }  
+}
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .display-station-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 80px auto;
+    padding: 0px 0px 6px 0px;
+  }
+  
+  .display-station__logo {
+    border-radius: 8px;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+  
+  .display-station__info {
+    margin: 0px 10px 0px 10px;
+    height: 80px;
+    display: grid;
+    grid-template-rows: auto;
     color: whitesmoke;
     font-size: 14px;
   }

@@ -51,7 +51,7 @@
 
 .preset__name {
   height: 40px;
-  font-size: 14px;
+  font-size: 16px;
   color: whitesmoke;
 }
 
@@ -62,6 +62,72 @@
 .preset__remove-button:hover {
   scale: 1.4;
   transition-duration: 0.5s;
+}
+
+/* ################################################################
+                                                                  #
+  MEDIA QUERIES                                                   # 
+                                                                  #
+  ################################################################
+   */
+
+
+@media only screen and (max-width: 480px) {
+  .presets-container {
+    margin: auto;
+    width: 100%;
+    height: 980px;
+    background-image: url("../../../assets/img/bg_tuner-surround_2.png");
+    border-radius: 8px;
+  
+  }
+  
+  .presets__title {
+    width: 100%;
+    margin: auto;
+    text-align: left;
+    padding: 8px;
+    font-size: 14px;
+    font-weight:bold;
+    color: whitesmoke;
+  }  
+  
+  .presets__grid {
+    margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(6, 160px);
+    justify-content: center;
+  }
+  
+  .preset__entry {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    height: 160px;
+    text-align: center;
+  }
+  
+  /* .preset__entry:hover{
+    background-color: grey;
+    transition-duration: 0.5s;
+  } */
+  
+  .preset__logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: pointer
+  }
+  
+  .preset__name {
+    height: 40px;
+    font-size: 12px;
+    color: whitesmoke;
+  }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -118,10 +184,74 @@
   
   .preset__name {
     height: 40px;
-    font-size: 12px;
+    font-size: 14px;
     color: whitesmoke;
   }
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .presets-container {
+    margin: auto;
+    width: 100%;
+    height: 680px;
+    background-image: url("../../../assets/img/bg_tuner-surround_2.png");
+    border-radius: 8px;
+  
+  }
+  
+  .presets__title {
+    width: 100%;
+    margin: auto;
+    text-align: left;
+    padding: 8px;
+    font-size: 14px;
+    font-weight:bold;
+    color: whitesmoke;
+  }
+  
+  
+  .presets__grid {
+    margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 160px);
+    justify-content: center;
+  }
+  
+  .preset__entry {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    height: 160px;
+    text-align: center;
+  }
+  
+  /* .preset__entry:hover{
+    background-color: grey;
+    transition-duration: 0.5s;
+  } */
+  
+  .preset__logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: pointer
+  }
+  
+  .preset__name {
+    height: 40px;
+    font-size: 12px;
+    color: whitesmoke;
+  }
+  
+
+
+
+}
+
 
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
   .presets-container {

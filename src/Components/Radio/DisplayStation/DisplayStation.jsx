@@ -58,7 +58,7 @@ const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, on
         <div className="display-station__name">
           {currentStation.name}          
         </div>
-        <div>
+        <div className="save_info">
           {save_info_jsx}
         </div>
       </div>      

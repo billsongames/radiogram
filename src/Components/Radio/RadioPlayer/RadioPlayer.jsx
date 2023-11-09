@@ -11,16 +11,14 @@ const RadioPlayer = ({ tuned, userID, currentStation, onStationTuned, onPaused, 
 
   return(
     <div className="radio-player">
-      <div className="display-station-container">
-        <DisplayStation
-          tuned={tuned}
-          userID={userID}
-          currentStation={currentStation}
-          presets={presets}
-          onPresetSaveClicked={onPresetSaveClicked}
-          onPresetRemoveClicked={onPresetRemoveClicked}
-        />
-      </div>
+      <DisplayStation
+        tuned={tuned}
+        userID={userID}
+        currentStation={currentStation}
+        presets={presets}
+        onPresetSaveClicked={onPresetSaveClicked}
+        onPresetRemoveClicked={onPresetRemoveClicked}
+      />
       <div className="audioplayer-container">
         <AudioPlayer
           autoplay = {true}

@@ -22,11 +22,10 @@
 
 }
 
-
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+@media only screen and (max-width: 480px) {
   .radio-player {
     margin: auto;
-    width: 420px;  
+    width: 85%;  
     background-color: rgb(32, 32, 32);
     border-color: rgb(32, 32, 32);
     border-radius: 8px;
@@ -38,7 +37,7 @@
   
   .audioplayer-container {
     margin: 0px 0px;
-    width: 420px;
+    width: 100%;
     border-radius: 8px;
   }
   
@@ -49,4 +48,54 @@
   }
 
 
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .radio-player {
+    margin: auto;
+    width: 90%;  
+    background-color: rgb(32, 32, 32);
+    border-color: rgb(32, 32, 32);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 12px
+  }
+  
+  .audioplayer-container {
+    margin: 0px 0px;
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .audioplayer {
+    margin: auto;
+    width: 180px;  
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .radio-player {
+    margin: auto;
+    width: 95%;  
+    background-color: rgb(32, 32, 32);
+    border-color: rgb(32, 32, 32);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 12px
+  }
+  
+  .audioplayer-container {
+    margin: 0px 0px;
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .audioplayer {
+    margin: auto;
+    width: 180px;  
+  }
 }
