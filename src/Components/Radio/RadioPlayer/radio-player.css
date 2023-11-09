@@ -21,3 +21,32 @@
   width: 300px;
 
 }
+
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .radio-player {
+    margin: auto;
+    width: 420px;  
+    background-color: rgb(32, 32, 32);
+    border-color: rgb(32, 32, 32);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 12px
+  }
+  
+  .audioplayer-container {
+    margin: 0px 0px;
+    width: 420px;
+    border-radius: 8px;
+  }
+  
+  .audioplayer {
+    margin: auto;
+    width: 180px;
+  
+  }
+
+
+}

@@ -15,23 +15,23 @@ import "./tuner.css"
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 1201 },
+    breakpoint: { max: 4000, min: 1200 },
     items: 8,
     partialVisibilityGutter: 0
   },
   desktop: {
-    breakpoint: { max: 1200, min: 1025 },
+    breakpoint: { max: 1200, min: 1024 },
     items: 8,
     partialVisibilityGutter: 0
   },
   laptop: {
-    breakpoint: { max: 1024, min: 769 },
-    items: 8,
+    breakpoint: { max: 1024, min: 768 },
+    items: 6,
     partialVisibilityGutter: 0
   },  
   tablet: {
-    breakpoint: { max: 768, min: 481 },
-    items: 6,
+    breakpoint: { max: 768, min: 480 },
+    items: 4,
     partialVisibilityGutter: 0
   },
   mobile: {
@@ -109,7 +109,7 @@ const Tuner = ({onStationLogoClick}) => {
     <div className='tuner__container'>
       <div className='tuner__title'>
         <div>
-          RADIOGRAM STEREO TUNER - 150620
+          RADIOGRAM STEREO TUNER
         </div>
         <div>
         <form className='tuner__search-form' onSubmit={handleSearchByNameSubmit}>
@@ -129,7 +129,6 @@ const Tuner = ({onStationLogoClick}) => {
 
 
 {/* ### FILTERS ###   */}
-
       <div className="tuner-filter__container">
         {radio_search_filters.map((filter) => (
           <div
@@ -147,8 +146,8 @@ const Tuner = ({onStationLogoClick}) => {
           >
             <button type="button" className="filter__button">
               <div className="filter__button-top">{filter.toUpperCase()}</div>
-              <div className="filter__button-bottom"></div>
-              <div className="filter__button-base"></div>
+{/*               <div className="filter__button-bottom"></div>
+              <div className="filter__button-base"></div> */}
             </button> 
           </div>
           ))}
@@ -158,7 +157,7 @@ const Tuner = ({onStationLogoClick}) => {
         <Carousel
           responsive={responsive}
           infinite={true}
-          slidesToSlide = {8}
+          slidesToSlide = {4}
           renderButtonGroupOutside={true}
           customButtonGroup={<ButtonGroup/>}
           arrows={false}
