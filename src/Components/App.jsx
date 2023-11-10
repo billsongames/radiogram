@@ -19,24 +19,25 @@ import './App.css';
 const App = () =>  {
   const [userID, setUserID] = useState("")
   const [userInfo, setUserInfo] = useState({displayName: "", photoURL: ""})
-  const [allowCookies, setAllowCookies] = useState(getCookieConsentValue("radiogram"))
+//  const [allowCookies, setAllowCookies] = useState(getCookieConsentValue("radiogram"))
+  
 
 
 //  const [defaultStation, setDefaultStation] = useState([])
 
-  const handleCookiesAccept = () => {
+/*   const handleCookiesAccept = () => {
     setAllowCookies("true")
   }
 
   const handleCookiesDecline = () => {
     setAllowCookies("false")
-  }
+  } */
 
   const auth = getAuth();
   
   onAuthStateChanged(auth, (user) => {
     
-    if (user && allowCookies === "true") {
+    if (user && getCookieConsentValue("radiogram") === "true") {
       setUserID(user.email)
       setUserInfo({displayName: user.displayName, photoURL: user.photoURL})
     }  
@@ -44,7 +45,7 @@ const App = () =>  {
 
 
   const handleLogin = () => {
-    if (allowCookies === "false") return 
+    if (getCookieConsentValue("radiogram") !== "true") return 
       else {
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
@@ -156,10 +157,10 @@ const App = () =>  {
           </Routes> */}
 
         </div>
-{/*         <PopUp
-          onAccept={handleCookiesAccept}
-          onDecline={handleCookiesDecline}
-        />  */}      
+          <PopUp
+/*             onAccept={handleCookiesAccept}
+            onDecline={handleCookiesDecline} */
+          />
       </div>
   );
 }
