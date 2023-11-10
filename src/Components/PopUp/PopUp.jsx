@@ -14,11 +14,11 @@ const PopUp = ( {onAccept, onDecline} ) => {
         style={{ background: "#2B373B" ,fontSize: "24px" }}
         buttonText="Understood"
         buttonStyle={{ background: "whitesmoke" ,fontSize: "24px" }}
-        onAccept={onAccept}
+//        onAccept={onAccept}
         enableDeclineButton
         declineButtonText="No way!"
         declineButtonStyle={{ background: "red" ,fontSize: "24px" }}
-        onDecline={onDecline}
+//        onDecline={onDecline}
         setDeclineCookie={false}
         flipButtons
         hideOnAccept={true}
