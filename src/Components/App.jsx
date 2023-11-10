@@ -156,10 +156,10 @@ const App = () =>  {
           </Routes> */}
 
         </div>
-        <PopUp
+{/*         <PopUp
           onAccept={handleCookiesAccept}
           onDecline={handleCookiesDecline}
-        />       
+        />  */}      
       </div>
   );
 }
