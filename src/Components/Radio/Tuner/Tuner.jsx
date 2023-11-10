@@ -93,12 +93,13 @@ const Tuner = ({onStationLogoClick}) => {
     .catch(error => {console.log(error)})
   }, [setupAPI, stationFilter])
 
-  const ButtonGroup = ({ next, previous}) => {
+  const ButtonGroup = ({ next, previous, ...rest }) => {
     return (
+
       <div className="tuner__ButtonGroup">
         <IconContext.Provider value={{ color: "whitesmoke", size: "36px", padding: "8px"}}>
-          <BsArrowLeftSquareFill className="tuner__button" onClick={() => previous()}/>
-          <BsArrowRightSquareFill className="tuner__button" onClick={() => next()}/>
+          <BsArrowLeftSquareFill className="tuner__button" onClick={() => previous()} />
+          <BsArrowRightSquareFill className="tuner__button" onClick={() => next()} />
         </IconContext.Provider>
       </div>
     )
@@ -155,12 +156,13 @@ const Tuner = ({onStationLogoClick}) => {
 
       <div className='tuner-carousel'>
         <Carousel
+          removeArrowOnDeviceType={["tablet", "mobile"]}
           responsive={responsive}
           infinite={true}
           slidesToSlide = {4}
-          renderButtonGroupOutside={true}
-          customButtonGroup={<ButtonGroup/>}
-          arrows={false}
+//          renderButtonGroupOutside={true}
+  //        customButtonGroup={<ButtonGroup/>}
+          arrows={true}
           showDots
           >
 

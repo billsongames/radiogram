@@ -26,83 +26,83 @@ const zeroAnimValue = 0
 
 const Radio = ({ userID }) => {
 
-    const [tuned, setTuned] = useState(false)
-    const [currentStation, setCurrentStation] = useState(
-      {
-        name: "Select a station...",
-        favicon: white_logo,
-      })
-    const [defaultStation, setDefaultStation] = useState([])
-    const [newStation, setNewStation] = useState([])
-    const [backupStation, setBackupStation] = useState([])
+  const [tuned, setTuned] = useState(false)
+  const [currentStation, setCurrentStation] = useState(
+    {
+      name: "Select a station...",
+      favicon: white_logo,
+    })
+  const [defaultStation, setDefaultStation] = useState([])
+  const [newStation, setNewStation] = useState([])
+  const [backupStation, setBackupStation] = useState([])
 
-    const [presets, setPresets] = useState([])
-    const [presetsLength, setPresetsLength] = useState(0)
-    
-    const r = document.querySelector(':root');
-
-    const presets_max = 24
-
-    const handleStationLogoClick = (event) => {
-      event.preventDefault()
-
-      if (event.target.id === currentStation.id){
-        return
-
-      } else {
-          staticPlayer.play()
-          window.parent.document.title = "Tuning..."
-          setTuned(false)
-          r.style.setProperty("--first-anim-value", `${tuningAnimValue}s`)
-  //        staticIsPlaying = true
+  const [presets, setPresets] = useState([])
   
-          setNewStation({
-            id: event.target.id,
-            name: event.target.name,
-            favicon: event.target.src,
-            urlResolved: event.target.dataset.urlresolved,
-  //          tags: event.target.dataset.tags
-          })
-  
-          setCurrentStation({
-            id: event.target.id,
-            name: "Tuning...",
-            favicon : radio_antenna,
-            urlResolved: event.target.dataset.urlresolved,
-  //          tags: event.target.dataset.tags
-          })
-        }
-    }
+  const r = document.querySelector(':root');
 
-    const handleStationTuned = () => {
-      staticPlayer.pause()
-  //    staticIsPlaying = false
-      setCurrentStation(newStation)
-      setDefaultStation(newStation)
-      setTuned(true)
-      r.style.setProperty("--first-anim-value", `${defaultAnimValue}s`)
-      window.parent.document.title = `${newStation.name}`
+  const presets_max = 24
+
+  const handleStationLogoClick = (event) => {
+    event.preventDefault()
+
+    if (event.target.id === currentStation.id){
+      return
+
+    } else {
+        staticPlayer.play()
+        window.parent.document.title = "Tuning..."
+        setTuned(false)
+        r.style.setProperty("--first-anim-value", `${tuningAnimValue}s`)
+//        staticIsPlaying = true
+
+        setNewStation({
+          id: event.target.id,
+          name: event.target.name,
+          favicon: event.target.src,
+          urlResolved: event.target.dataset.urlresolved,
+//          tags: event.target.dataset.tags
+        })
+
+        setCurrentStation({
+          id: event.target.id,
+          name: "Tuning...",
+          favicon : radio_antenna,
+          urlResolved: event.target.dataset.urlresolved,
+//          tags: event.target.dataset.tags
+        })
       }
-  
-    const handlePaused = () => {
-      r.style.setProperty("--first-anim-value", `${zeroAnimValue}s`)
+  }
+
+  const handleStationTuned = () => {
+    staticPlayer.pause()
+//    staticIsPlaying = false
+    setCurrentStation(newStation)
+    setDefaultStation(newStation)
+    setTuned(true)
+    r.style.setProperty("--first-anim-value", `${defaultAnimValue}s`)
+    window.parent.document.title = `${newStation.name}`
     }
-  
-    const handlePresetSaveClicked = async (event) => {
-      event.preventDefault()
 
-      if (presets.length === presets_max) return
-      else {
-        const newSavedPreset = {
-          id: currentStation.id,
-          name: currentStation.name,
-          favicon: currentStation.favicon,
-          urlResolved: currentStation.urlResolved,
-        }
+  const handlePaused = () => {
+    r.style.setProperty("--first-anim-value", `${zeroAnimValue}s`)
+  }
 
-        setPresets([...presets, newSavedPreset])
+  const handlePresetSaveClicked = async (event) => {
+    event.preventDefault()
+    console.log("saved")
 
-        const timer = setTimeout(() => {
+    if (presets.length === presets_max) return
+    else {
+      const newSavedPreset = {
+        id: currentStation.id,
+        name: currentStation.name,
+        favicon: currentStation.favicon,
+        urlResolved: currentStation.urlResolved,
+      }
+
+      setPresets([...presets, newSavedPreset])
+
+      const timer = setTimeout(() => {
         async function writePresets() {
           if (userID){
   
@@ -117,116 +117,126 @@ const Radio = ({ userID }) => {
             })
           }
         }
-        writePresets()
+      writePresets()
       }, 1000)
-  
+
       return () => clearTimeout(timer)
     }
-      }
+  }
+  
+
+
+
+
+  
+
+  const handlePresetRemoveClicked =(event) => {
+    event.preventDefault()
+
+    const indexOfPreset = presets.findIndex(preset =>
+      preset.id === event.currentTarget.id)
     
+    setPresets(prev => {
+      return prev.filter((_, i) => i !== indexOfPreset)
+    })
 
+    const timer = setTimeout(() => {
+      async function writePresets() {
+        if (userID){
 
-
-
-    
-  
-    const handlePresetRemoveClicked =(event) => {
-      event.preventDefault()
-
-      const indexOfPreset = presets.findIndex(preset =>
-        preset.id === event.currentTarget.id)
-      
-      setPresets(prev => {
-        return prev.filter((_, i) => i !== indexOfPreset)
-      })
-
-      const timer = setTimeout(() => {
-        async function writePresets() {
-          if (userID){
-  
-            // CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
-            
-            const coll = collection(db, "users");
-            const q = query(coll, where(documentId(), "==", `${userID}`))
-                    
-            // RUN THE QUERY
-            await updateDoc(doc(coll, `${userID}`), {
-              presets: presets.filter((_, i) => i !== indexOfPreset)
-            })
-          }
-        }
-        writePresets()
-      }, 1000)
-  
-      return () => clearTimeout(timer)
-    }
-  
-    const handleTuningError = () => {
-      staticPlayer.pause()
-      setCurrentStation({
-        name: "ERROR TUNING STATION...",
-        favicon : error_tuning,
-      })
-      window.parent.document.title = "ERROR TUNING STATION..."
-    }
-
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        async function populatePresets() {
-          if (userID){
-  
-  // CREATE THE QUERY TO GET MATCHING DB ENTRIES
-  
+          // CREATE THE QUERY TO COUNT MATCHING DB ENTRIES
+          
           const coll = collection(db, "users");
           const q = query(coll, where(documentId(), "==", `${userID}`))
-          
-  // RUN THE QUERY
-  
-          const querySnapshot = await getDocs(q)
-          querySnapshot.forEach((doc) => {
-            setPresets(doc.data().presets);
+                  
+          // RUN THE QUERY
+          await updateDoc(doc(coll, `${userID}`), {
+            presets: presets.filter((_, i) => i !== indexOfPreset)
           })
         }
       }
-      populatePresets()
+      writePresets()
+    }, 1000)
+    
+    console.log("preset removed")
+    return () => clearTimeout(timer)    
+  }
+
+  const handleTuningError = () => {
+    staticPlayer.pause()
+    setCurrentStation({
+      name: "ERROR TUNING STATION...",
+      favicon : error_tuning,
+    })
+    window.parent.document.title = "ERROR TUNING STATION..."
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      async function populatePresets() {
+        if (userID){
+
+// CREATE THE QUERY TO GET MATCHING DB ENTRIES
+
+        const coll = collection(db, "users");
+        const q = query(coll, where(documentId(), "==", `${userID}`))
+        
+// RUN THE QUERY
+
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach((doc) => {
+          setPresets(doc.data().presets);
+        })
+        } else {
+          setPresets([])
+        }
+      }
+    populatePresets()
     }, 500)
+
     return () => clearTimeout(timer)
-    }, [userID])
+  }, [userID])
 
 
-    return (
-    <div className='radio-container'>
-      <div className="eq-player-section">
+  return (
+  <div>
+    <div className="eq-player-section">
 
-        <div className="eq_graph">
-          <EQ />
-        </div>
-
-        <RadioPlayer tuned={tuned} userID={userID} currentStation={currentStation} onStationTuned={handleStationTuned} onPaused={handlePaused} onError={handleTuningError} onPresetSaveClicked={handlePresetSaveClicked} onPresetRemoveClicked={handlePresetRemoveClicked} presets={presets} />
-
-        <div className="eq_graph">
-          <EQ />
-        </div>
+      <div className="eq_graph">
+        <EQ />
       </div>
 
-      <Joint800px />
+      <RadioPlayer tuned={tuned} userID={userID} currentStation={currentStation} onStationTuned={handleStationTuned} onPaused={handlePaused} onError={handleTuningError} onPresetSaveClicked={handlePresetSaveClicked} onPresetRemoveClicked={handlePresetRemoveClicked} presets={presets} />
 
-      <Tuner onStationLogoClick={handleStationLogoClick} />
-
-      <Joint800px />
-
-      {userID ? (
-        <>
-          <Presets
-            presets={presets}
-            onStationLogoClick={handleStationLogoClick}
-            onPresetRemoveClicked={handlePresetRemoveClicked} 
-          />
-        </>
-      ) : (
-        <></>
-      )}
+      <div className="eq_graph">
+        <EQ />
+      </div>
     </div>
+
+    <Joint800px />
+
+    <Tuner onStationLogoClick={handleStationLogoClick} />
+
+    <Joint800px />
+
+    <Presets
+      presets={presets}
+      onStationLogoClick={handleStationLogoClick}
+      onPresetRemoveClicked={handlePresetRemoveClicked} 
+    />
+
+{/*       {userID ? (
+      <>
+        <Presets
+          presets={presets}
+          onStationLogoClick={handleStationLogoClick}
+          onPresetRemoveClicked={handlePresetRemoveClicked} 
+        />
+      </>
+    ) : (
+      <></>
+    )} */}
+  </div>
   );
 };
 

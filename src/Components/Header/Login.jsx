@@ -23,7 +23,7 @@ const Login = ({ userID, userInfo, onLogin, onLogout}) => {
           onClick={onLogout}
         />
       </IconContext.Provider>
-      <img className="login__userProfilePicture" src={userInfo.photoURL} alt="user profile picture" />
+      <img className="login__userProfilePicture" src={userInfo.photoURL} alt="user profile" />
       </>  
       :
       <>
