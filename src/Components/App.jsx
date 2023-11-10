@@ -1,11 +1,13 @@
 import { React, useEffect, useState}  from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+//import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { GoogleAuthProvider, browserLocalPersistence, getAuth, setPersistence, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
 import { collection, query,  where, getCountFromServer, doc, setDoc, documentId } from "firebase/firestore";
 import {db} from "../backend/firebase"
 
-import CookieConsent, { Cookies, getCookieConsentValue } from "react-cookie-consent";
+import CookieConsent, { Cookies, getCookieConsentValue } from "react-cookie-consent"; 
+
+import PopUp from './PopUp/PopUp';
 
 import Header from './Header/Header';
 import Joint800px from './Joints/Joint800px';
@@ -21,6 +23,14 @@ const App = () =>  {
 
 
 //  const [defaultStation, setDefaultStation] = useState([])
+
+  const handleCookiesAccept = () => {
+    setAllowCookies("true")
+  }
+
+  const handleCookiesDecline = () => {
+    setAllowCookies("false")
+  }
 
   const auth = getAuth();
   
@@ -116,29 +126,7 @@ const App = () =>  {
 
   return (
       <div className='App'>
-        <CookieConsent
-          overlay
-          sameSite="strict"
-//          debug={true}
-          expires={365}
-          location="bottom"
-          cookieName="radiogram"
-          style={{ background: "#2B373B" ,fontSize: "24px" }}
-          buttonText="Understood"
-          buttonStyle={{ background: "whitesmoke" ,fontSize: "24px" }}
-          onAccept={() => setAllowCookies("true")}
-          enableDeclineButton
-          declineButtonText="No way!"
-          declineButtonStyle={{ background: "red" ,fontSize: "24px" }}
-          onDecline={() => setAllowCookies("false")}
-          setDeclineCookie={false}
-          flipButtons
-          hideOnAccept={true}
-          
-        >
-          This website uses cookies to improve your listening experience. {" "}
-          <a href="https://billsongames.weebly.com/privacy.html" target="blank" className='cookies__privacy-policy'>Privacy Policy</a>
-        </CookieConsent>
+        
 
 
         <div>
@@ -167,7 +155,11 @@ const App = () =>  {
 
           </Routes> */}
 
-        </div>       
+        </div>
+        <PopUp
+          onAccept={handleCookiesAccept}
+          onDecline={handleCookiesDecline}
+        />       
       </div>
   );
 }
