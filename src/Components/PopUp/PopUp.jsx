@@ -5,6 +5,7 @@ const PopUp = ( {onAccept, onDecline} ) => {
   return(
     <div>
       <CookieConsent
+        overlay
         sameSite="strict"
 //        debug={true}
         expires={365}
