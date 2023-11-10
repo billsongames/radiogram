@@ -115,12 +115,11 @@ const App = () =>  {
 
 
   return (
-    <BrowserRouter>
-
       <div className='App'>
         <CookieConsent
           overlay
-  //          debug={true}
+          sameSite="strict"
+//          debug={true}
           expires={365}
           location="bottom"
           cookieName="radiogram"
@@ -134,6 +133,7 @@ const App = () =>  {
           onDecline={() => setAllowCookies("false")}
           setDeclineCookie={false}
           flipButtons
+          hideOnAccept={true}
           
         >
           This website uses cookies to improve your listening experience. {" "}
@@ -151,12 +151,12 @@ const App = () =>  {
           />
           <Joint800px/>
           <Radio
-                userID={userID}
-              />
+            userID={userID}
+          />
 
 {/*           <Routes>
             <Route path = "/radio" element = {
- 
+
               <Radio
                 userID={userID}
               />
@@ -169,7 +169,6 @@ const App = () =>  {
 
         </div>       
       </div>
-    </BrowserRouter>  
   );
 }
 
