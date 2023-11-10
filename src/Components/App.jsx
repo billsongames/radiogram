@@ -143,24 +143,8 @@ const App = () =>  {
             userID={userID}
           />
 
-{/*           <Routes>
-            <Route path = "/radio" element = {
-
-              <Radio
-                userID={userID}
-              />
-            }/>
-              <Route path = "/deezer" element = {
-                <DeezerComponent/>
-              }/>
-
-          </Routes> */}
-
         </div>
-          <PopUp
-/*             onAccept={handleCookiesAccept}
-            onDecline={handleCookiesDecline} */
-          />
+          <PopUp />
       </div>
   );
 }

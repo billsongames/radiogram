@@ -161,7 +161,7 @@ const Tuner = ({onStationLogoClick}) => {
           infinite={true}
           slidesToSlide = {4}
 //          renderButtonGroupOutside={true}
-  //        customButtonGroup={<ButtonGroup/>}
+//          customButtonGroup={<ButtonGroup/>}
           arrows={true}
           showDots
           >

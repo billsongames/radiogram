@@ -1,11 +1,10 @@
 .joint800 {
   width: 100%;
   height: 8px;
-  margin: 
-  auto;
+  margin: auto;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 480px) {
   .joint800 {
     width: 100%;
     height: 2px;
