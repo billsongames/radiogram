@@ -19,6 +19,13 @@
   border-radius: 50%;
 }
 
+/* ################################################################
+                                                                  #
+  MEDIA QUERIES                                                   # 
+                                                                  #
+  #################################################################
+   */
+
 @media only screen and (max-width: 480px) {
   .login { 
     display:flex;
@@ -43,7 +50,7 @@
 }
 
 
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+@media only screen and (min-width: 480px) and (max-width: 768px) {
   .login { 
     display:flex;
     align-content: flex-end;
