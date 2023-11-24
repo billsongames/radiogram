@@ -24,4 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 
 /api
+/src/data/spotify
+/src/data/test_data
+/src/_code.js
 
