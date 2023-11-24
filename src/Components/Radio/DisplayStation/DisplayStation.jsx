@@ -20,6 +20,7 @@ const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, on
     save_info_jsx = (
       <IconContext.Provider value={{ color: "red", size: "36px" }}>
         <BsHeart
+          data-testid = "save_preset"
 //          id={currentStation.id}
           className= "display-station__hearticon"
           alt = "Station not saved as preset"
@@ -31,6 +32,7 @@ const  DisplayStation = ({tuned, userID, currentStation, onPresetSaveClicked, on
     save_info_jsx = (
       <IconContext.Provider value={{ color: "red", size: "36px"}}>
         <BsHeartFill
+          data-testid = "remove_preset"
           id={currentStation.id}
           className= "display-station__hearticon"
           alt = "Station saved as preset"

@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import App from "../../src/Components/App"
 
-xtest('renders text', () => {
-  render(<App />);
-  const textElement = screen.getByText("Station:");
-  expect(textElement).toBeInTheDocument();
-});
+describe("App render", () => {
+
+  xtest('App renders correctly', () => {
+    const { asFragment } =  render(<App />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+})

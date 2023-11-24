@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1 DisplayStation renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="display-station-container"
+  >
+    <div>
+      <img
+        class="display-station__logo"
+      />
+    </div>
+    <div
+      class="display-station__info"
+    >
+      <div
+        class="display-station__name"
+      />
+      <div
+        class="save_info"
+      >
+        Log in to save presets
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayStation renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="display-station-container"
+  >
+    <div>
+      <img
+        class="display-station__logo"
+      />
+    </div>
+    <div
+      class="display-station__info"
+    >
+      <div
+        class="display-station__name"
+      />
+      <div
+        class="save_info"
+      >
+        Log in to save presets
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
