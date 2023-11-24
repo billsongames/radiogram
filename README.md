@@ -1,12 +1,23 @@
+![Radiogram logo](src/assets/img/logo_radiogram_2.png)
 
-![Alt text](src/assets/img/logo_radiogram_2.png)
+# radiogram - for your listening pleasure
 
-radiogram
+### radiogram is an internet radio streaming application built using React, Javascript, HTML and CSS and features:
+
+- Google login to save and retrieve up to 24 station presets
+- Buttons to filter stations by genre
+- Search for stations by name
+- Responsive UI for different screen sizes
+- Retro hifi component style interface
+- EQ visualisation...sort of...
+- Built in clock - never be late for an important meeting again
+
+<img src="https://media.licdn.com/dms/image/D4E22AQFkA5JCv6HiXA/feedshare-shrink_1280/0/1699534672247?e=1703721600&v=beta&t=hXix6uQtFx9jYbCU3D3YSo9RU0GpZ0PwbvuOfP8Vul0" alt="Radiogram interface"/>
+
+<hr>
 
 
-
-
-# Getting Started with Create React App
+# Getting Started with Radiogram
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
