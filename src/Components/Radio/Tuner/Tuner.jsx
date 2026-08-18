@@ -79,8 +79,8 @@ const Tuner = ({ onStationLogoClick }) => {
   };
 
   const api = new RadioBrowserApi("radiogram")
-  api.setBaseUrl('http://de1.api.radio-browser.info/')
-  //api.setBaseUrl('https://at1.api.radio-browser.info')
+  //api.setBaseUrl('https://de1.api.radio-browser.info/')
+  api.setBaseUrl('https://at1.api.radio-browser.info')
   //api.setBaseUrl('https://fi1.api.radio-browser.info')
 
   const setupAPI = useCallback(async (stationFilter) => {
